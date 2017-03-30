@@ -64,5 +64,7 @@ gem 'newrelic_rpm' # new relic instrumentation (heroku plugin)
 
 gem 'seed_dump'
 
-
+gem "therubyracer"
+gem "less-rails"
+gem "twitter-bootstrap-rails"
 
