@@ -1,9 +1,38 @@
+<script type="javascript">
+  function calcscore(){
+    var score = 0;
+    $(".calc:checked").each(function(){
+        score+=parseInt($(this).val(),10);
+    });
+   
+    document.getElementById('progressRate').innerHTML = score;
+}
+$().ready(function(){
+    $(".calc").change(function(){
+        calcscore()
+    });
+});
+
+$("input[type=radio]").click(function() {
+    var total = 0;
+    $("input[type=radio]:checked").each(function() {
+        total += parseFloat($(this).val());
+    });
+
+    document.getElementById('progressRate').innerHTML = score;
+});
+
+</script>
 <section id="hc-question-section">
 <div class="hc-topic-header">
   <h2 class="survey-title">
     <%= @survey.name %>
     <p><small><%= @attempt.survey.description %></small></p>
   </h2>
+  <div class="hc-progress-bar card-fixed">
+      <div class="hc-progress" style="transform: scaleX(1.6);"></div>
+      <p id="progressRate"></p>
+  </div>
 </div>
 
 <%= form_for(@attempt, url: attempt_scope(@attempt)) do |f| %>
@@ -20,18 +49,22 @@
          <div class="hc-answer-prompt">
             Choose an answer
           </div>
-        <div class="hc-answer-key clickable" data-scrolled="true">
-          <%= collection_radio_buttons('survey_attempt[answers_attributes]', question.id, question.options, :id, :text) do |b| %>
-             <input type="radio" name="hc-answers-1" id="hc-answers-1-1" value="0">
-             <label class="">
-              <p><%= b.label { b.text } %></p>
-            </label>
+          <div class="hc-answer-key clickable">
+         <%= collection_radio_buttons('survey_attempt[answers_attributes]', question.id, question.options, :weight, :text) do |b| %>
+             <% b.radio_button + b.label %>
           <% end %>
+        </div>
         </div>
      
     <% end -%>
+  </div>
+
   <div class="hc-button-wrapper">
-  <%= f.submit "Submit", class: 'button clickable' %>
+     <% if @attempt.survey.id == 6%>
+       <%= f.submit "Submit", class: 'button clickable' %>
+     <%else %>
+      <%= link_to 'Continue', new_attempt_path(survey_id: @attempt.survey.id+1), class: 'button clickable' %>
+     <%end %>
  </div>
 <% end -%>
 </section>
