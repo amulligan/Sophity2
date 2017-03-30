@@ -97,6 +97,7 @@ GEM
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     pdf-core (0.7.0)
+    pg (0.18.4)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
@@ -188,6 +189,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   newrelic_rpm
+  pg (= 0.18.4)
   prawn
   puma
   rails (= 4.2.6)
