@@ -1,0 +1,10 @@
+<div class="container">
+  <% if @survey.nil? %>
+    <p>
+      This survey is no longer available
+    </p>
+  <% else %>
+    <%= render 'form' %>
+    
+  <% end -%>
+</div>

@@ -1,0 +1,635 @@
+/* Color Scheme
+
+---Gray body---
+  background: #ddd;
+
+---Off-white cards---
+  background: #eee;
+
+---Dull green backing panels for emphasis---
+  background: #A5D6A7;
+
+---Accent-green progress bars---
+  background: #00E676;
+
+---Yellow warnings---
+  background: #FFE57F;
+
+---Red warnings---
+  background: #FF9E80;
+
+-----------------------------
+
+#777777 is the grey background
+
+Home Page Top (white background)
+<h2>
+Font-Family: Lato
+Size: 33.33333333px
+Color: #303133
+
+<h5>
+Font-family: Lato
+Size: 14px
+Color: #777777;
+
+<p>
+font-family: Lato
+Size: 15px;
+Color: #777777;
+
+Home Page (black portion bottom)
+<h5>
+Font-family: Poppins;
+Size: 33.33333333px;
+Color: #ffffff;
+
+<p>
+Font-family: Lato
+Size: 15px
+Color: #777777;
+
+--------------
+Services
+<h1>
+Font-family: Lato
+Size: 28px;
+Color: #ffffff;
+
+<h3>
+Font-Family: Lato;
+Size: 24px;
+Color: #303133;
+
+<p>
+Font-family: lato
+Size: 15px;
+Color: #777777
+
+
+“Dimensions” & “Our Services:
+Font-Families:Poppins
+Size: 15px;
+Color: #777777;
+
+Dimensions (green)
+Font-family: Poppins
+Size: 12px
+Color: #44813e;
+
+<h3>
+Font-family: Lato;
+Size: 24px;
+Color: #303133
+
+<p>
+Font-family: Lato;
+Size: 15px;
+Color: #777777
+
+“Get Your Health Check Today”
+Font-family: Lato;
+Size: 14px;
+Color: #777777;
+
+About US
+<h1>
+Font-family: Lato;
+Size: 50px;
+Color: #ffffff;
+
+<h2>
+Font-family: Lato;
+Size: 29px;
+Color: #303133;
+
+<p>
+Font-family: Lato;
+Size: 15px;
+Color: #777777;
+
+<h3>
+Font-family: Lato;
+Size: 24px;
+Color: #303133;
+
+<p>
+Font-family: Lato;
+Size: 15px;
+Color: #000000;
+
+
+
+*/
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffffff;
+  font-family: 'Lato', sans-serif;
+  font-size: 33.333333px;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1em;
+  background: #eee;
+  color: rgba(0,0,0,0.85);
+  padding: 1.5em;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hc-header {
+  width: 100%;
+  padding-top: 2%;
+}
+
+.hc-header-image {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Lato', sans-serif;
+  color: black;
+  padding: 0.5em;
+  font-size: 1.9em;
+  text-align: center;
+  font-weight: normal;
+  /*font-family: serif;*/
+  margin: 0;
+}
+
+section {
+  font-family: 'Lato', sans-serif;
+  display: block;
+  font-size: 0.5em;
+  max-width: 800px;
+  width: 90%;
+  margin: 1.5em auto 3em;
+  /*transition: all 1.5s ease-in-out;*/
+}
+
+.gone {
+  display: none;
+}
+
+.hidden {
+  visibility: hidden;
+  /*height: 0px;*/
+  opacity: 0;
+  color: rgba(0,0,0,0);
+}
+
+.hc-results-wrapper {
+  width: 100%;
+  /*height: 100em;*/
+  padding: 4.5em 5% 3em;
+  border-radius: .5vh;
+  border-style: none;
+  border: 0px;
+  font-color: black;
+  opacity: 1;
+  background: #A5D6A7;
+  transition: background 2.4s ease-in-out,
+              opacity 2.4s ease-in-out,
+              padding-top 1.2s ease-in-out,
+              padding-bottom 1.2s ease-in-out;
+
+}
+
+.hc-results-wrapper .card-rise {
+  max-width: 75%;
+  min-width: 50%;
+  padding: 2.5em 5% 2em;
+  margin: 0 auto 2em;
+  background: #eee;
+  transition: padding 1s 1s ease-in-out,
+              box-shadow 1s 1s ease-in-out,
+              background 1s 1s ease-in-out;
+}
+
+.hc-results-caption {
+  font-size: 1em;
+  font-family: 'Poppins',sans-serif;
+  text-align: center;
+  color: rgba(0,0,0,0.75);
+}
+
+.hc-results-score {
+  text-align: center;
+  font-size: calc(4vw + 8em);
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+}
+
+#hc-results-section .hc-progress-bar {
+  height: 3em;
+  padding: 0;
+  margin-bottom: 0.75em;
+  overflow: hidden;
+}
+
+#hc-results-section .hc-progress-bar p {
+  width: 100%;
+  display: block;
+  height: 1em;
+  font-weight: bold;
+  color: rgba(0,0,0,0.7);
+  transform: scale(1);
+  /*position: relative;*/
+  margin-top: -2em;
+  text-align: center;
+}
+
+#hc-results-section .hc-progress-bar:nth-last-child(2) {
+  margin-bottom: 4em;
+}
+
+.hc-results-header {
+  margin: 1em auto 1em;
+  text-align: justify;
+}
+
+.hc-results-header h2 {
+  text-align: center;
+}
+
+.hc-results-header p:nth-last-of-type(1) {
+  margin-bottom: 2em;
+}
+
+.hc-results-actions-wrapper label,
+.hc-results-actions-wrapper input {
+  display: block;
+  width: 100%;
+}
+
+.hc-results-actions-wrapper label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8em;
+  color: rgba(0,0,0,0.8);
+  margin-top: 0.75em;
+}
+
+.hc-results-actions-wrapper .hc-phone-checkbox {
+  display: block;
+  padding: 0;
+  width: auto;
+  padding-left: 1em;
+  margin-top: 0.25em;
+}
+
+.hc-results-actions-wrapper .hc-phone-checkbox input {
+  transform: scale(1.25);
+}
+
+.hc-results-actions-wrapper .hc-phone-checkbox .hc-phone-inner {
+  display: inline;
+  width: auto;
+  font-variant: normal;
+  font-style: italic;
+  padding-left: 0;
+}
+
+.hc-results-actions-wrapper .clickable {
+  margin: 2.5em auto 0.5em;
+  text-align: center;
+  padding: 0.75em 0 0.75em;
+  width: 100%;
+  overflow: visible;
+  overflow-wrap: break-word;
+}
+
+.hc-progress-bar {
+  width: 100%;
+  border-radius: .5vh;
+  border-style: none;
+  color: black;
+  font-weight: bold;
+  background: #eee;
+}
+
+#hc-question-section .hc-progress-bar {
+  height: 3em;
+  overflow: hidden;
+}
+
+.hc-progress {
+  transform: scaleX(0.03);
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  position: relative;
+  background: #00E676;
+  overflow: visible;
+  transition: transform 2s ease-in-out;
+  margin-left: -50%;
+}
+
+#hc-question-section .hc-progress-bar p {
+  width: 100%;
+  height: 1em;
+  font-weight: normal;
+  color: rgba(0,0,0,0.5);
+  position: relative;
+  margin-top: calc(-2em);
+  text-align: center;
+}
+
+#hc-question-section .hc-topic-header {
+  background: #A5D6A7;
+  padding: 0.5em 5% 0.5em;
+  margin-bottom: 1em;
+}
+
+.hc-question-group {
+  width: 100%;
+  padding-bottom: 3em;
+  display: flex;
+  flex-flow: column nowrap;
+  font-family: sans-serif;
+  background: #eee;
+}
+
+.hc-question-wrapper {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: center;
+  padding-top: 3.5vw;
+}
+
+.hc-question-link {
+  width: 100%;
+  height: 0em;
+}
+
+.hc-question-wrapper .hc-question-number {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.25em;
+  /*width: 2.2em;*/
+  /*height: 2em;*/
+  width: 5%;
+  border-radius: 4px;
+  padding: 0.5em 0.5% 0.25em;
+  background: #ddd;
+  color: black;
+  text-align: center;
+  margin-left: 1%;
+  font-weight: bold;
+  color: rgba(0,0,0,0.85);
+}
+
+.hc-question-wrapper .hc-question-text {
+  width: 90%;
+  padding: 3.5vw 3.5vw 2.5vw 2vw;
+  line-height: 1.5em;
+  font-size: 1.15em;
+}
+
+/*.hc-question-wrapper .hc-question-text:first-line {
+  font-size: 1.15em;
+  line-height: 1.5em;
+}*/
+
+.hc-answer-wrapper {
+  margin: 0 calc(6% + 2vw);
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.hc-answer-wrapper .hc-answer-prompt {
+  color: rgba(0,0,0,0.33);
+  padding: 0.75em 0 0.25em;
+  width: 100%;
+  text-align: center;
+}
+
+.hc-answer-key {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  /*font-size: 3.5em;*/
+  border-radius: .5vh;
+  width: 100%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+/*.hc-answer-key:hover,
+.hc-answer-key.focused {
+  transform: scale(1.01);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.1s cubic-bezier(.25,.8,.25,1);
+}*/
+
+.hc-answer-key input {
+  width: 0px;
+  height: 0px;
+  padding: 0px;
+  margin: 0px;
+  position: absolute;
+  left: -9999px;
+  z-index: -1;
+}
+
+.hc-answer-key label {
+  width: 20%;
+  padding: 1em 1.5vw 0.85em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex: 1;
+  max-height: 3.5em;
+  background: #ddd;
+  box-shadow: none;
+  font-weight: bold;
+  font-size: 0.85em;
+}
+
+.hc-answer-key label:first-of-type {
+  border-radius: .5vh 0% 0% .5vh;
+}
+
+.hc-answer-key label:last-of-type {
+  border-radius: 0% .5vh .5vh 0%;
+  text-align: right;
+}
+
+.hc-answer-key input:hover + label{
+  /*font-weight: bold;*/
+  background: #FCFCFC;
+  color: black;
+}
+
+.hc-answer-key input:checked + label,
+.hc-answer-key label.is-checked {
+  background: black;
+  color: white;
+  /*font-weight: normal;*/
+}
+
+
+.hc-button-wrapper {
+  padding: 3.5vw 0 5.5vw;
+  width: 100%;
+  height: 5em;
+  line-height: 1.5em;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.hc-button-wrapper input {
+  width: 100%;
+  margin-bottom: 5em;
+  padding: 1em;
+  border-radius: .5vh;
+  border-style: none;
+  color: black;
+  font-weight: bold;
+  background: #00E676;
+}
+
+.hc-button-wrapper input:focus {
+  outline: none;
+}
+
+.hc-button-wrapper input:hover {
+  outline: none;
+}
+
+.hc-button-wrapper input:active {
+  border-style: none;
+  outline: none;
+}
+
+.card,
+.card-fixed {
+  margin-bottom: 1em;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.2s cubic-bezier(.25,.8,.25,1);
+}
+
+.clickable:active {
+  transform: scale(1.002);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.1s cubic-bezier(.25,.8,.25,1);
+}
+
+.clickable {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  color: rgba(0,0,0,0.85);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.clickable:focus {
+  transform: scale(1.005);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  transition: all 0.1s cubic-bezier(.25,.8,.25,1);
+}
+
+.focused,
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  transition: all 0.1s cubic-bezier(.25,.8,.25,1);
+}
+
+.clickable:hover {
+  transform: scale(1.01);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  transition: all 0.1s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-rise {
+  margin-bottom: 1em;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.warning {
+  background: #FFE57F;
+  transition: background 1.5s ease-in-out;
+}
+
+.warning-strong {
+  background: #FF9E80;
+  transition: background 1.5s ease-in-out;
+}
+
+/*.card-5 {
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}*/
+
+
+@media screen and (min-width: 601px) {
+  .hc-answer-key label:nth-of-type(n + 2) {
+    margin-left: 1px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  section {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  #hc-results-section .hc-progress-bar p {
+    margin-top: -2.3em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .hc-question-wrapper .hc-question-number {
+    font-size: 0.8em;
+    /*padding-top: 3.6em;*/
+  }
+
+  #hc-results-section .hc-progress-bar p {
+    margin-top: -2.4em;
+  }
+
+  .hc-answer-wrapper {
+    flex-flow: column nowrap;
+  }
+
+  .hc-answer-key {
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .hc-answer-key label {
+    width: 100%;
+    height: 20%;
+    max-height: 2em;
+    /*font-size: 1.75em;*/
+  }
+
+  .hc-answer-key label:nth-last-of-type(n + 2) {
+    margin-bottom: 1px;
+  }
+
+  .hc-answer-key label:first-of-type {
+    border-radius: .5vh .5vh 0% 0%;
+  }
+
+  .hc-answer-key label:last-of-type {
+    border-radius: 0% 0% .5vh .5vh;
+  }
+}
