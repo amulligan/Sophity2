@@ -317,6 +317,7 @@ section {
 #hc-question-section .hc-progress-bar {
   height: 3em;
   overflow: hidden;
+  text-align: center;
 }
 
 .hc-progress {
@@ -633,5 +634,5 @@ section {
     border-radius: 0% 0% .5vh .5vh;
   }
 
-  
+
 }

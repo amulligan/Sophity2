@@ -10,6 +10,38 @@ class AttemptsController < ApplicationController
 
   def show
     @attempt = Survey::Attempt.find_by(id: params[:id])
+    @total_score = @attempt.score * (-1)
+
+    @grade = @total_score.to_f/@attempt.survey.questions.count
+
+    if (@grade >= 3.9) 
+      @gradeLetter = "A+"
+   elsif (@grade >= 3.4) 
+    @gradeLetter = "A"
+   elsif (@grade>= 3.0) 
+    @gradeLetter = "A-"
+   elsif (@grade >= 3.9) 
+    @gradeLetter = "B+"
+   elsif (@grade>= 3.4) 
+    @gradeLetter = "B"
+  elsif (@grade >= 3.0) 
+    @gradeLetter = "B-"
+  elsif (@grade >= 2.9) 
+    @gradeLetter = "C+"
+   elsif (@grade >= 2.4) 
+    @gradeLetter = "C"
+   elsif (@grade >= 2.0) 
+    @gradeLetter = "C-"
+   elsif (@grade>= 1.9) 
+    @gradeLetter = "D+"
+   elsif (@grade >= 1.4) 
+    @gradeLetter = "D"
+   elsif (@grade >= 1.0) 
+    @gradeLetter = "D-"
+   else
+    @gradeLetter = "F"
+  end
+  
     render :access_error if current_user.id != @attempt.participant_id
   end
 
@@ -26,7 +58,9 @@ class AttemptsController < ApplicationController
     @attempt = @survey.attempts.new(params_whitelist)
     @attempt.participant = current_user
     @attempt.participant_id = current_user.id
+
     if @attempt.valid? && @attempt.save
+
       correct_options_text = @survey.correct_options.present? ? 'Below are the correct answers marked in green' : ''
       redirect_to attempt_path(@attempt.id), notice: "Thank you for answering #{@survey.name}! #{correct_options_text}"
     else

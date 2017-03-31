@@ -1,16 +1,3 @@
-<script type="javascript"> 
-$(document).ready(function() {
-  $("input[type=radio]").change(function() {
-      var total = 0;
-      $("input[type=radio]:checked").each(function() {
-          total += parseFloat($(this).val());
-      });
-
-      document.getElementById('progressRate').innerHTML = total;
-  });
-});
-
-</script>
 <section id="hc-question-section">
 <div class="hc-topic-header">
   <h2 class="survey-title">
@@ -19,13 +6,15 @@ $(document).ready(function() {
   </h2>
   <div class="hc-progress-bar card-fixed">
       <span id="progress" style="width: 0%"></span>
-      <div id="progressRate">0 of 45 (0% completed)</div>   
+      <div id="progressRate">0 of <%=number_of_questions(@survey)%> (0% completed)</div>   
   </div>
 </div>
 
 <%= form_for(@attempt, url: attempt_scope(@attempt)) do |f| %>
 <div class="hc-question-group card">
   <%= hidden_field_tag :survey_id, @survey.id %>    
+  <%= hidden_field_tag :survey_qc, number_of_questions(@survey)%> 
+  <%= hidden_field_tag :score, @attempt.score %> 
     <%= f.fields_for :answers, get_answer_fields(@attempt) do |answer_fields| %>
       <div class="hc-question-wrapper">
         <% question = answer_fields.object.question %>
@@ -37,8 +26,7 @@ $(document).ready(function() {
          <div class="hc-answer-prompt">
             Choose an answer
           </div>
-          <div class="hc-answer-key clickable">
-           
+          <div class="hc-answer-key clickable">           
          <%= collection_radio_buttons('survey_attempt[answers_attributes]', question.id, question.options, :weight, :text) do |b| %>
              <% b.radio_button + b.label %>
           <% end %>
@@ -49,11 +37,7 @@ $(document).ready(function() {
   </div>
 
   <div class="hc-button-wrapper">
-     <% if @attempt.survey.id == 6%>
-       <%= f.submit "Submit", class: 'button clickable' %>
-     <%else %>
-      <%= link_to 'Continue', new_attempt_path(survey_id: @attempt.survey.id+1), class: 'button clickable' %>
-     <%end %>
+       <%= f.submit "Submit", class: 'button clickable' %>     
  </div>
 <% end -%>
 </section>

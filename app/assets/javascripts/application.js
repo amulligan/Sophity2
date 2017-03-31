@@ -28,22 +28,22 @@ $(document).ready(function() {
           total += parseFloat($(this).val());
           questionsAnswered += 1;
       });
-
-      var perc = questionsAnswered *2.22;
+      var totalNo = $("#survey_qc").val();
+      var perc = questionsAnswered *100/totalNo;
      if (perc < 15) {
          $("#hc-question-section .hc-progress-bar").css('background', 'red');
      } else if (perc < 30) {
-         $("#hc-progress-bar").css('background', 'orange');
+         $("#hc-question-section .hc-progress-bar").css('background', 'orange');
      } else if (perc < 60) {
-         $("#hc-progress-bar").css('background', 'yellow');
+         $("#hc-question-section .hc-progress-bar").css('background', 'yellow');
      } else {
-         $("#hc-progress-bar").css('background', 'lime');
+         $("#hc-question-section .hc-progress-bar").css('background', 'lime');
      }
 
       $("#progress").css("width", perc + "%");
-      $("#progressRate").text(questionsAnswered + " of 45  (" + perc + "% completed)");
-      
-      //document.getElementById('progressRate').innerHTML = questionsAnswered "of 45 (" questionsAnswered/45 "%)";
+      $("#progressRate").text(questionsAnswered + " of " + totalNo + " (" + perc.toFixed(2) + "% completed)"); 
+      $("#score").val(total/totalNo);
+    
   });
 });
 
