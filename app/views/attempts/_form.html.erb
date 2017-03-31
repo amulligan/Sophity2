@@ -1,25 +1,13 @@
-<script type="javascript">
-  function calcscore(){
-    var score = 0;
-    $(".calc:checked").each(function(){
-        score+=parseInt($(this).val(),10);
-    });
-   
-    document.getElementById('progressRate').innerHTML = score;
-}
-$().ready(function(){
-    $(".calc").change(function(){
-        calcscore()
-    });
-});
+<script type="javascript"> 
+$(document).ready(function() {
+  $("input[type=radio]").change(function() {
+      var total = 0;
+      $("input[type=radio]:checked").each(function() {
+          total += parseFloat($(this).val());
+      });
 
-$("input[type=radio]").click(function() {
-    var total = 0;
-    $("input[type=radio]:checked").each(function() {
-        total += parseFloat($(this).val());
-    });
-
-    document.getElementById('progressRate').innerHTML = score;
+      document.getElementById('progressRate').innerHTML = total;
+  });
 });
 
 </script>
@@ -30,8 +18,8 @@ $("input[type=radio]").click(function() {
     <p><small><%= @attempt.survey.description %></small></p>
   </h2>
   <div class="hc-progress-bar card-fixed">
-      <div class="hc-progress" style="transform: scaleX(1.6);"></div>
-      <p id="progressRate"></p>
+      <span id="progress" style="width: 0%"></span>
+      <div id="progressRate">0 of 45 (0% completed)</div>   
   </div>
 </div>
 
@@ -50,6 +38,7 @@ $("input[type=radio]").click(function() {
             Choose an answer
           </div>
           <div class="hc-answer-key clickable">
+           
          <%= collection_radio_buttons('survey_attempt[answers_attributes]', question.id, question.options, :weight, :text) do |b| %>
              <% b.radio_button + b.label %>
           <% end %>

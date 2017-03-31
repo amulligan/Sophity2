@@ -20,5 +20,32 @@
 
 $('a[data-popup]').on('click', function(e) { window.open($(this).attr('href')); e.preventDefault(); });
 
+$(document).ready(function() {
+  $("input[type=radio]").change(function() {
+      var total = 0;
+      var questionsAnswered = 0;
+      $("input[type=radio]:checked").each(function() {
+          total += parseFloat($(this).val());
+          questionsAnswered += 1;
+      });
+
+      var perc = questionsAnswered *2.22;
+     if (perc < 15) {
+         $("#hc-question-section .hc-progress-bar").css('background', 'red');
+     } else if (perc < 30) {
+         $("#hc-progress-bar").css('background', 'orange');
+     } else if (perc < 60) {
+         $("#hc-progress-bar").css('background', 'yellow');
+     } else {
+         $("#hc-progress-bar").css('background', 'lime');
+     }
+
+      $("#progress").css("width", perc + "%");
+      $("#progressRate").text(questionsAnswered + " of 45  (" + perc + "% completed)");
+      
+      //document.getElementById('progressRate').innerHTML = questionsAnswered "of 45 (" questionsAnswered/45 "%)";
+  });
+});
+
 
 
