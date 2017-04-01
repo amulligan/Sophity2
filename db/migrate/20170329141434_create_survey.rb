@@ -19,7 +19,7 @@ class CreateSurvey < ActiveRecord::Migration
     end
 
     create_table :survey_options do |t|
-      t.integer :question_id
+      t.integer :
       t.integer :weight, :default => 0
       t.string :text
       t.boolean :correct
@@ -33,7 +33,6 @@ class CreateSurvey < ActiveRecord::Migration
       t.integer    :survey_id
       t.boolean    :winner
       t.integer    :score
-      t.string     :grade
     end
 
     create_table :survey_answers do |t|
