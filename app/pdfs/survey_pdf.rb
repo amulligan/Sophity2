@@ -2,30 +2,30 @@ class SurveyPdf < Prawn::Document
   def initialize(all_attempts,total_score)
     super()
     @all_attempts = all_attempts
-    @total_score = (total_score * (-1)).to_f/ 45
+    @total_score = total_score
     if (@total_score >= 3.9) 
         @gradeLetter = "A+"
-     elsif (numericGrade >= 3.4) 
+     elsif (@total_score >= 3.4) 
         @gradeLetter = "A"
-     elsif (numericGrade>= 3.0) 
+     elsif (@total_score>= 3.0) 
        @gradeLetter = "A-"
-     elsif (numericGrade >= 3.9) 
+     elsif (@total_score >= 3.9) 
        @gradeLetter  = "B+"
-     elsif (numericGrade>= 3.4) 
+     elsif (@total_score>= 3.4) 
        @gradeLetter = "B"
-    elsif (numericGrade >= 3.0) 
+    elsif (@total_score >= 3.0) 
        @gradeLetter = "B-"
-    elsif (numericGrade >= 2.9) 
+    elsif (@total_score >= 2.9) 
         @gradeLetter = "C+"
-     elsif (numericGrade >= 2.4) 
+     elsif (@total_score >= 2.4) 
        @gradeLetter = "C"
-     elsif (numericGrade >= 2.0) 
+     elsif (@total_score >= 2.0) 
        @gradeLetter = "C-"
-     elsif (numericGrade>= 1.9) 
+     elsif (@total_score>= 1.9) 
        @gradeLetter = "D+"
-     elsif (numericGrade >= 1.4) 
+     elsif (@total_score >= 1.4) 
        @gradeLetter = "D"
-     elsif (numericGrade>= 1.0) 
+     elsif (@total_score>= 1.0) 
        @gradeLetter = "D-"
      else
        @gradeLetter = "F"

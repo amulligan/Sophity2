@@ -320,7 +320,7 @@ Survey::Survey.create!([
 
 
 User.create!([
-  {name: "Andra", email: nil}
+  {name: "Andra", email: "andrastanciu212@gmail.com"}
 ])
 
 

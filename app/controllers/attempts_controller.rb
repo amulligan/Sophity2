@@ -10,19 +10,44 @@ class AttemptsController < ApplicationController
 
   def show
     @attempt = Survey::Attempt.find_by(id: params[:id])
-    @total_score = @attempt.score * (-1)
-
     if @attempt.survey.id !=6
       redirect_to new_attempt_path(survey_id: @attempt.survey.id+1)
     else
       #collect all survey attempts
       @all_attempts = Survey::Attempt.where(participant_id: 1)
       @total_score = @all_attempts.sum(:score)
-      
+     @numericGrade = (@total_score * (-1)).to_f/ 45
+    if (@numericGrade >= 3.9) 
+        @gradeLetter = "A+"
+     elsif (@numericGrade >= 3.4) 
+        @gradeLetter = "A"
+     elsif (@numericGrade>= 3.0) 
+       @gradeLetter = "A-"
+     elsif (@numericGrade >= 3.9) 
+       @gradeLetter  = "B+"
+     elsif (@numericGrade>= 3.4) 
+       @gradeLetter = "B"
+    elsif (@numericGrade >= 3.0) 
+       @gradeLetter = "B-"
+    elsif (@numericGrade >= 2.9) 
+        @gradeLetter = "C+"
+     elsif (@numericGrade >= 2.4) 
+       @gradeLetter = "C"
+     elsif (@numericGrade >= 2.0) 
+       @gradeLetter = "C-"
+     elsif (@numericGrade>= 1.9) 
+       @gradeLetter = "D+"
+     elsif (@numericGrade >= 1.4) 
+       @gradeLetter = "D"
+     elsif (@numericGrade>= 1.0) 
+       @gradeLetter = "D-"
+     else
+       @gradeLetter = "F"
+    end
    respond_to do |format|
     format.html # show.html.erb
     format.pdf do
-        pdf = SurveyPdf.new(@all_attempts,@total_score)
+        pdf = SurveyPdf.new(@all_attempts,@numericGrade)
         send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
       end
     end

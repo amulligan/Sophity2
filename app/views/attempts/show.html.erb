@@ -19,9 +19,10 @@
             <%= f.text_field :job_title, class: 'form-control' %>
              <%= f.label :company %>
             <%= f.text_field :company, class: 'form-control' %>
-             <%= f.label :phone %>
-            <%= f.text_field :phone, class: 'form-control' %>
+           
              <div class="hc-phone-checkbox">
+                <%= f.label :phone %>
+                <%= f.text_field :phone, class: 'form-control' %>
               <%= f.check_box :send_notification, class: 'hc-phone-inner' %>
               <%= f.label I18n.t(:send_notification), class: 'hc-phone-inner'%> <br>
             </div>

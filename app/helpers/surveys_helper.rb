@@ -117,4 +117,34 @@ module SurveysHelper
     survey.questions.map(&:options).flatten.any? { |o| o.weight != 0 }
   end
 
+  def letter_grade numeric_grade
+    numericGrade = (numeric_grade * (-1)).to_f/ 45
+    if (numericGrade >= 3.9) 
+         "A+"
+     elsif (numericGrade >= 3.4) 
+         "A"
+     elsif (numericGrade>= 3.0) 
+        "A-"
+     elsif (numericGrade >= 3.9) 
+        "B+"
+     elsif (numericGrade>= 3.4) 
+        "B"
+    elsif (numericGrade >= 3.0) 
+        "B-"
+    elsif (numericGrade >= 2.9) 
+         "C+"
+     elsif (numericGrade >= 2.4) 
+        "C"
+     elsif (numericGrade >= 2.0) 
+        "C-"
+     elsif (numericGrade>= 1.9) 
+        "D+"
+     elsif (numericGrade >= 1.4) 
+        "D"
+     elsif (numericGrade>= 1.0) 
+        "D-"
+     else
+        "F"
+    end
+  end
 end
