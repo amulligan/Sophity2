@@ -45,6 +45,10 @@ class Survey::Survey < ActiveRecord::Base
     available_for_participant?(participant)
   end
 
+  def all_attempts(participant)
+    return self.attempts.for_participant(participant)
+  end
+
   private
 
   # a surveys only can be activated if has one or more questions

@@ -12,37 +12,22 @@ class AttemptsController < ApplicationController
     @attempt = Survey::Attempt.find_by(id: params[:id])
     @total_score = @attempt.score * (-1)
 
-    @grade = @total_score.to_f/@attempt.survey.questions.count
-
-    if (@grade >= 3.9) 
-      @gradeLetter = "A+"
-   elsif (@grade >= 3.4) 
-    @gradeLetter = "A"
-   elsif (@grade>= 3.0) 
-    @gradeLetter = "A-"
-   elsif (@grade >= 3.9) 
-    @gradeLetter = "B+"
-   elsif (@grade>= 3.4) 
-    @gradeLetter = "B"
-  elsif (@grade >= 3.0) 
-    @gradeLetter = "B-"
-  elsif (@grade >= 2.9) 
-    @gradeLetter = "C+"
-   elsif (@grade >= 2.4) 
-    @gradeLetter = "C"
-   elsif (@grade >= 2.0) 
-    @gradeLetter = "C-"
-   elsif (@grade>= 1.9) 
-    @gradeLetter = "D+"
-   elsif (@grade >= 1.4) 
-    @gradeLetter = "D"
-   elsif (@grade >= 1.0) 
-    @gradeLetter = "D-"
-   else
-    @gradeLetter = "F"
-  end
-  
+    if @attempt.survey.id !=6
+      redirect_to new_attempt_path(survey_id: @attempt.survey.id+1)
+    else
+      #collect all survey attempts
+      @all_attempts = Survey::Attempt.where(participant_id: 1)
+      @total_score = @all_attempts.sum(:score)
+      
+   respond_to do |format|
+    format.html # show.html.erb
+    format.pdf do
+        pdf = SurveyPdf.new(@all_attempts,@total_score)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
     render :access_error if current_user.id != @attempt.participant_id
+  end
   end
 
   def new
@@ -60,9 +45,7 @@ class AttemptsController < ApplicationController
     @attempt.participant_id = current_user.id
 
     if @attempt.valid? && @attempt.save
-
-      correct_options_text = @survey.correct_options.present? ? 'Below are the correct answers marked in green' : ''
-      redirect_to attempt_path(@attempt.id), notice: "Thank you for answering #{@survey.name}! #{correct_options_text}"
+      redirect_to attempt_path(@attempt.id)
     else
       build_flash(@attempt)   
       @participant = current_user

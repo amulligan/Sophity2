@@ -31,6 +31,8 @@ class Survey::Attempt < ActiveRecord::Base
   # callbacks
   before_create :collect_scores
 
+  before_save :find_grade 
+
   def correct_answers
     return self.answers.where(:correct => true)
   end
@@ -56,5 +58,37 @@ class Survey::Attempt < ActiveRecord::Base
 
   def collect_scores
     self.score = self.answers.map(&:value).reduce(:+) || 0
+  end
+
+  def find_grade 
+    numericScore = (self.answers.map(&:value).reduce(:+) || 0) * (-1)
+    numericGrade = numericScore.to_f/self.survey.questions.count
+    if (numericGrade >= 3.9) 
+        self.grade = "A+"
+     elsif (numericGrade >= 3.4) 
+       self.grade = "A"
+     elsif (numericGrade>= 3.0) 
+      self.grade = "A-"
+     elsif (numericGrade >= 3.9) 
+      self.grade = "B+"
+     elsif (numericGrade>= 3.4) 
+      self.grade = "B"
+    elsif (numericGrade >= 3.0) 
+      self.grade = "B-"
+    elsif (numericGrade >= 2.9) 
+      self.grade = "C+"
+     elsif (numericGrade >= 2.4) 
+      self.grade = "C"
+     elsif (numericGrade >= 2.0) 
+      self.grade = "C-"
+     elsif (numericGrade>= 1.9) 
+      self.grade = "D+"
+     elsif (numericGrade >= 1.4) 
+      self.grade = "D"
+     elsif (numericGrade>= 1.0) 
+      self.grade = "D-"
+     else
+      self.grade = "F"
+    end
   end
 end

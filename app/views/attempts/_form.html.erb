@@ -37,7 +37,11 @@
   </div>
 
   <div class="hc-button-wrapper">
+       <% if @survey.id <6 %>
+        <%= f.submit "Continue", class: 'button clickable' %>     
+       <%else %>
        <%= f.submit "Submit", class: 'button clickable' %>     
+       <%end%>
  </div>
 <% end -%>
 </section>

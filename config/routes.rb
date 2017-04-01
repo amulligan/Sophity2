@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   resources 'attempts'
   resources 'users', only: [:create]
 
+  get 'user_details' => 'users#show'
   delete 'attempts/:survey_id/:user_id' => 'attempts#delete_user_attempts', as: :delete_user_attempts
   post 'user/:id/change_name' => 'users#change_name', as: :change_user_name
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

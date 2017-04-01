@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20170329141434) do
     t.integer "survey_id"
     t.boolean "winner"
     t.integer "score"
+    t.string  "grade"
   end
 
   create_table "survey_options", force: :cascade do |t|
@@ -60,8 +61,12 @@ ActiveRecord::Schema.define(version: 20170329141434) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "job_title"
+    t.string   "company"
+    t.string   "phone"
+    t.boolean  "send_notification"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
 end

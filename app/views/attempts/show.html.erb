@@ -1,4 +1,4 @@
-<section id="hc-results-section" class="">
+<section id="hc-results-section" class="hc-results-section">
       <div class="hc-results-wrapper">
         <div class="card-rise">
           <div class="hc-results-caption">Your Score</div>
@@ -11,22 +11,26 @@
             <p>Using your Health Check responses as a guide, Sophity will create and send you a personalized Professional Services Road Map, and contact you for a free 1-hour consultation to discuss your results.</p>
             <p>Introduce yourself below to request your Road Map.</p>
           </div>
-          <form class="hc-user-info" id="hc-user-info" name="hc-user-info" action="./report/index.php" method="post">
-            <input type="hidden" name="check_submit" value="1">
-            <label for="hc-user-name">Name</label>
-            <input type="text" name="hc-user-name" placeholder="Name" required="">
-            <label for="hc-user-title">Job Title</label>
-            <input type="text" name="hc-user-title" placeholder="Title" required="">
-            <label for="hc-user-company">Company</label>
-            <input type="text" name="hc-user-company" placeholder="Company" required="">
-            <label for="hc-user-phone">Phone Number</label>
-            <input type="text" name="hc-user-phone" placeholder="(123) 555-4567" required="">
-            <div class="hc-phone-checkbox">
-              <input type="checkbox" class="hc-phone-inner" name="hc-user-contact-preference" value="checked">
-              <label class="hc-phone-inner" for="hc-user-contact-preference">I prefer email</label>
+          <div class="hc-user-info">
+           <%= user_form do |f| %>
+            <%= f.label :name %>
+            <%= f.text_field :name, class: 'form-control' %>
+            <%= f.label :job_title %>
+            <%= f.text_field :job_title, class: 'form-control' %>
+             <%= f.label :company %>
+            <%= f.text_field :company, class: 'form-control' %>
+             <%= f.label :phone %>
+            <%= f.text_field :phone, class: 'form-control' %>
+             <div class="hc-phone-checkbox">
+              <%= f.check_box :send_notification, class: 'hc-phone-inner' %>
+              <%= f.label I18n.t(:send_notification), class: 'hc-phone-inner'%> <br>
             </div>
-            <input type="submit" class="clickable" value="REQUEST REPORT" id="hc-results-request">
-          </form>
+            <%= link_to "REQUEST REPORT", attempt_path(@attempt, :format => 'pdf'), class: 'clickable' %>
+           <% end %>
+         </div>
         </div>
       </div>
     </section>
+
+
+   

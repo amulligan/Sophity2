@@ -116,4 +116,5 @@ module SurveysHelper
   def has_weights? survey
     survey.questions.map(&:options).flatten.any? { |o| o.weight != 0 }
   end
+
 end
