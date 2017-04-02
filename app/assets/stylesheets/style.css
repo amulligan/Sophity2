@@ -303,6 +303,7 @@ section {
   width: 100%;
   overflow: visible;
   overflow-wrap: break-word;
+  text-decoration: none;
 }
 
 .hc-progress-bar {
@@ -634,5 +635,8 @@ section {
     border-radius: 0% 0% .5vh .5vh;
   }
 
+  .a {
+    text-decoration: none;
+  }
 
 }

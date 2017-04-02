@@ -1,6 +1,7 @@
 class SurveyPdf < Prawn::Document
-  def initialize(all_attempts,total_score)
+  def initialize(current_user,all_attempts,total_score)
     super()
+    @current_user = current_user
     @all_attempts = all_attempts
     @total_score = total_score
     if (@total_score >= 3.9) 
@@ -41,7 +42,7 @@ class SurveyPdf < Prawn::Document
     text "Sophity Services Success Model Health Check"
     move_cursor_to 200
     font "Helvetica", :style => :normal, :size => 12
-    text "Prepared for: "
+    text "Prepared for: #{ @current_user.name}"
   end
 
   def content
@@ -57,7 +58,7 @@ class SurveyPdf < Prawn::Document
 
   def header
     #This inserts an image in the pdf file and sets the size of the image
-    text "Sophity Services Success Model Health Check ", :align => :center
+    text "Sophity Services Success Model Health Check - #{@current_user.company}", :align => :center
   end
 
 

@@ -1,20 +1,108 @@
 class UsersController < ApplicationController
-  def create
-    session[:user_id] = User.create(user_params).id
-    redirect_to new_attempt_path(survey_id: 1)
-  end
+  before_action :logged_in_user, only: [:index, :edit, :update]
 
-  def change_name
-    @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to new_attempt_path(survey_id: 1)
+  def index
+    @users = User.all
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+    @user = User.find(params[:id])
   end
 
-  def user_params
-    params.require(:user).permit(:name, :email,:company,:job_title,:phone,:send_notification)
+  def new
+    @user = User.new
   end
+
+  def create
+      user = User.find_by(email: params[:email].downcase)
+      if user
+        log_in user     
+      else     
+        @user = User.new(email: params[:email].downcase)
+        @user.save
+        log_in user            
+       end
+      redirect_to view_report_path(participant_id: current_user.id)
+  end
+
+def change_name
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect_to view_report_path(participant_id: @user.id)
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      #SophityMailer.sample_email(@user).deliver_now
+      render 'download'
+    else
+      render 'edit'
+    end
+  end
+
+  def download_pdf
+    @all_attempts = Survey::Attempt.where(participant_id: current_user.id) 
+    @total_score = @all_attempts.sum(:score)
+    @numericGrade = (@total_score * (-1)).to_f/ 45
+    if (@numericGrade >= 3.9) 
+        @gradeLetter = "A+"
+     elsif (@numericGrade >= 3.4) 
+        @gradeLetter = "A"
+     elsif (@numericGrade>= 3.0) 
+       @gradeLetter = "A-"
+     elsif (@numericGrade >= 3.9) 
+       @gradeLetter  = "B+"
+     elsif (@numericGrade>= 3.4) 
+       @gradeLetter = "B"
+    elsif (@numericGrade >= 3.0) 
+       @gradeLetter = "B-"
+    elsif (@numericGrade >= 2.9) 
+        @gradeLetter = "C+"
+     elsif (@numericGrade >= 2.4) 
+       @gradeLetter = "C"
+     elsif (@numericGrade >= 2.0) 
+       @gradeLetter = "C-"
+     elsif (@numericGrade>= 1.9) 
+       @gradeLetter = "D+"
+     elsif (@numericGrade >= 1.4) 
+       @gradeLetter = "D"
+     elsif (@numericGrade>= 1.0) 
+       @gradeLetter = "D-"
+     else
+       @gradeLetter = "F"
+    end
+    respond_to do |format|
+    format.html # show.html.erb
+    format.pdf do
+        pdf = SurveyPdf.new(current_user,@all_attempts,@numericGrade)
+        send_data pdf.render, filename: 'sophity.pdf', type: 'application/pdf'
+      end
+    end
+  end
+
+
+  private
+   def user_params
+    params.require(:user).permit(:name, :email,:company,:job_title,:phone,:send_notification)
+   end
+
+# Confirms a logged-in user.
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+
+    # Confirms the correct user.
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
+    end
+
 end
