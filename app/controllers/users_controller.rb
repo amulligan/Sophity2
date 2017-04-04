@@ -56,31 +56,31 @@ def change_name
     @all_attempts = Survey::Attempt.where(participant_id: current_user.id) 
     @total_score = @all_attempts.sum(:score)
     @numericGrade = (@total_score * (-1)).to_f/ 45
-    if (@numericGrade >= 3.9) 
+    if (@numericGrade >= 4.7) 
         @gradeLetter = "A+"
-     elsif (@numericGrade >= 3.4) 
+     elsif (@numericGrade >= 4.4 && @numericGrade <= 4.6) 
         @gradeLetter = "A"
-     elsif (@numericGrade>= 3.0) 
+     elsif (@numericGrade >= 4.1 && @numericGrade <= 4.3) 
        @gradeLetter = "A-"
-     elsif (@numericGrade >= 3.9) 
+     elsif (@numericGrade >= 3.8 && @numericGrade <= 4.0) 
        @gradeLetter  = "B+"
-     elsif (@numericGrade>= 3.4) 
+     elsif (@numericGrade>= 3.5 && @numericGrade <= 3.7) 
        @gradeLetter = "B"
-    elsif (@numericGrade >= 3.0) 
+    elsif (@numericGrade >= 3.2 && @numericGrade <= 3.4) 
        @gradeLetter = "B-"
-    elsif (@numericGrade >= 2.9) 
+    elsif (@numericGrade >= 2.9 && @numericGrade <= 3.1) 
         @gradeLetter = "C+"
-     elsif (@numericGrade >= 2.4) 
+     elsif (@numericGrade >= 2.6 && @numericGrade <= 2.8) 
        @gradeLetter = "C"
-     elsif (@numericGrade >= 2.0) 
+     elsif (@numericGrade >= 2.3 && @numericGrade <= 2.5) 
        @gradeLetter = "C-"
-     elsif (@numericGrade>= 1.9) 
+     elsif (@numericGrade >= 2.0 && @numericGrade <= 2.2) 
        @gradeLetter = "D+"
-     elsif (@numericGrade >= 1.4) 
+     elsif (@numericGrade >= 1.7 && @numericGrade <= 1.9) 
        @gradeLetter = "D"
-     elsif (@numericGrade>= 1.0) 
+     elsif (@numericGrade >= 1.4 && @numericGrade <= 1.6) 
        @gradeLetter = "D-"
-     else
+     elsif (@numericGrade <= 1.3)
        @gradeLetter = "F"
     end
     if current_user.send_notification
@@ -94,9 +94,6 @@ def change_name
         send_data pdf.render, filename: filename, type: 'application/pdf'
       end
     end
-
-    attachments['free_book.pdf'] = File.read(pdf)
-
 
   end
 
