@@ -65,7 +65,10 @@ gem 'newrelic_rpm' # new relic instrumentation (heroku plugin)
 
 gem 'seed_dump'
 
-gem "therubyracer"
+group :production do
+  gem 'therubyracer', :platform => :ruby
+end
+
 gem "less-rails"
 gem 'sprockets', '3.6.3'
 
