@@ -1,4 +1,3 @@
-
 Survey::Option.create!([
   {question_id: 1, weight: 1, text: "STRONGLY DISAGREE", correct: nil},
   {question_id: 1, weight: 2, text: "DISAGREE", correct: nil},
