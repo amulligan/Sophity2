@@ -28,14 +28,13 @@ class UsersController < ApplicationController
 
 def change_name
     @user = User.find_by(email: user_params[:email].downcase)
-   if @user
-        log_in @user     
-      else     
-        @user = User.new(email: user_params[:email].downcase)
-        @user.save
-        log_in @user            
-       end
-      
+    if @user
+      log_in @user     
+    else     
+      @user = User.new(email: user_params[:email].downcase)
+      @user.save
+      log_in @user            
+     end     
     redirect_to view_report_path(participant_id: @user.id)
   end
 
