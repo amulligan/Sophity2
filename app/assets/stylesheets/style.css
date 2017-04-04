@@ -350,6 +350,7 @@ section {
   width: 100%;
   overflow: visible;
   overflow-wrap: break-word;
+  text-decoration: none;
 }
 
 .hc-progress-bar {
@@ -768,4 +769,10 @@ footer .hc-footer .hc-copyright {
   .hc-header .hc-header-titles {
     visibility: hidden;
   }
+
+.a {
+  text-decoration: none;
+}
+
+
 }

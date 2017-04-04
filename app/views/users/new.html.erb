@@ -1,0 +1,17 @@
+<div class="container">
+ <%= form_for(@user) do |f| %>
+    <h4> <%= f.label :email, 'What is your email address?' %> </h4>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-user"></i>
+        </span>
+        <%= f.text_field :email, class: 'form-control' %>
+      </div>
+    </div>
+    </div>
+    <div class="modal-footer">
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

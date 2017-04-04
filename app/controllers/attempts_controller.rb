@@ -13,46 +13,47 @@ class AttemptsController < ApplicationController
     if @attempt.survey.id !=6
       redirect_to new_attempt_path(survey_id: @attempt.survey.id+1)
     else
-      #collect all survey attempts
-      @all_attempts = Survey::Attempt.where(participant_id: 1)
+      redirect_to view_report_path
+    end
+  end
+
+  def view_report
+    @all_attempts = Survey::Attempt.where(participant_id: current_user.id)
+    if @all_attempts.empty?
+      redirect_to new_attempt_path(survey_id: 1)
+    else
       @total_score = @all_attempts.sum(:score)
-     @numericGrade = (@total_score * (-1)).to_f/ 45
-    if (@numericGrade >= 3.9) 
+      @numericGrade = (@total_score * (-1)).to_f/ 45
+      @numericGrade = (@total_score * (-1)).to_f/ 45
+    if (@numericGrade >= 4.7) 
         @gradeLetter = "A+"
-     elsif (@numericGrade >= 3.4) 
+     elsif (@numericGrade >= 4.4 && @numericGrade <= 4.6) 
         @gradeLetter = "A"
-     elsif (@numericGrade>= 3.0) 
+     elsif (@numericGrade >= 4.1 && @numericGrade <= 4.3) 
        @gradeLetter = "A-"
-     elsif (@numericGrade >= 3.9) 
+     elsif (@numericGrade >= 3.8 && @numericGrade <= 4.0) 
        @gradeLetter  = "B+"
-     elsif (@numericGrade>= 3.4) 
+     elsif (@numericGrade>= 3.5 && @numericGrade <= 3.7) 
        @gradeLetter = "B"
-    elsif (@numericGrade >= 3.0) 
+    elsif (@numericGrade >= 3.2 && @numericGrade <= 3.4) 
        @gradeLetter = "B-"
-    elsif (@numericGrade >= 2.9) 
+    elsif (@numericGrade >= 2.9 && @numericGrade <= 3.1) 
         @gradeLetter = "C+"
-     elsif (@numericGrade >= 2.4) 
+     elsif (@numericGrade >= 2.6 && @numericGrade <= 2.8) 
        @gradeLetter = "C"
-     elsif (@numericGrade >= 2.0) 
+     elsif (@numericGrade >= 2.3 && @numericGrade <= 2.5) 
        @gradeLetter = "C-"
-     elsif (@numericGrade>= 1.9) 
+     elsif (@numericGrade >= 2.0 && @numericGrade <= 2.2) 
        @gradeLetter = "D+"
-     elsif (@numericGrade >= 1.4) 
+     elsif (@numericGrade >= 1.7 && @numericGrade <= 1.9) 
        @gradeLetter = "D"
-     elsif (@numericGrade>= 1.0) 
+     elsif (@numericGrade >= 1.4 && @numericGrade <= 1.6) 
        @gradeLetter = "D-"
-     else
+     elsif (@numericGrade <= 1.3)
        @gradeLetter = "F"
     end
-   respond_to do |format|
-    format.html # show.html.erb
-    format.pdf do
-        pdf = SurveyPdf.new(@all_attempts,@numericGrade)
-        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
-      end
+      @participant = current_user
     end
-    render :access_error if current_user.id != @attempt.participant_id
-  end
   end
 
   def new

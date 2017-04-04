@@ -1,4 +1,4 @@
-<header>
+  <header>
   <div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -18,9 +18,8 @@
         <ul class="nav navbar-nav">
         <% if current_user %>
             <li>
-              <p class="navbar-text">
-                Services Success Health Check - <b> <%= current_user.name %></b>               
-                <%= link_to '(change name)', '#', 'data-toggle': 'modal', 'data-target': '#submit-name-modal' %>
+              <p class="navbar-text">          
+                <%= link_to 'Services Success Health Check', '#', 'data-toggle': 'modal', 'data-target': '#submit-name-modal', :style=> 'text-decoration:none;'%>
               </p>
             </li>
   

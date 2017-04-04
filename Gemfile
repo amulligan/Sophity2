@@ -71,4 +71,4 @@ end
 
 gem "less-rails"
 gem 'sprockets', '3.6.3'
-
+gem 'sendgrid-ruby'
