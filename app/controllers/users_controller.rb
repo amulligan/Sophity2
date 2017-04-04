@@ -95,6 +95,9 @@ def change_name
       end
     end
 
+    attachments['free_book.pdf'] = File.read(pdf)
+
+
   end
 
 

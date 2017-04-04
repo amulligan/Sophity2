@@ -1,6 +1,6 @@
 ActionMailer::Base.smtp_settings = {
-  :user_name => 'apikey',
-  :password => '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',
+  :user_name => '',
+  :password => '',
   :domain => 'smtp.gmail.com',
   :address => 'smtp.sendgrid.net',
   :port => 587,
