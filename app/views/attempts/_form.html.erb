@@ -4,10 +4,7 @@
     <%= @survey.name %>
     <p><small><%= @attempt.survey.description %></small></p>
   </h2>
-  <div class="hc-progress-bar card-fixed">
-      <span id="progress" style="width: 0%"></span>
-      <div id="progressRate">0 of <%=number_of_questions(@survey)%> (0% completed)</div>   
-  </div>
+  
 </div>
 
 <%= form_for(@attempt, url: attempt_scope(@attempt)) do |f| %>
