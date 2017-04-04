@@ -119,32 +119,33 @@ module SurveysHelper
 
   def letter_grade numeric_grade
     numericGrade = (numeric_grade * (-1)).to_f/ 45
-    if (numericGrade >= 3.9) 
+    if (numericGrade >= 4.7) 
          "A+"
-     elsif (numericGrade >= 3.4) 
+     elsif (numericGrade >= 4.4 && numericGrade <= 4.6) 
          "A"
-     elsif (numericGrade>= 3.0) 
+     elsif (numericGrade >= 4.1 && numericGrade <= 4.3) 
         "A-"
-     elsif (numericGrade >= 3.9) 
-        "B+"
-     elsif (numericGrade>= 3.4) 
-        "B"
-    elsif (numericGrade >= 3.0) 
+     elsif (numericGrade >= 3.8 && numericGrade <= 4.0) 
+       "B+"
+     elsif (numericGrade>= 3.5 && numericGrade <= 3.7) 
+       "B"
+    elsif (numericGrade >= 3.2 && numericGrade <= 3.4) 
         "B-"
-    elsif (numericGrade >= 2.9) 
-         "C+"
-     elsif (numericGrade >= 2.4) 
+    elsif (numericGrade >= 2.9 && numericGrade <= 3.1) 
+        "C+"
+     elsif (numericGrade >= 2.6 && numericGrade <= 2.8) 
         "C"
-     elsif (numericGrade >= 2.0) 
+     elsif (numericGrade >= 2.3 && numericGrade <= 2.5) 
         "C-"
-     elsif (numericGrade>= 1.9) 
+     elsif (numericGrade >= 2.0 && numericGrade <= 2.2) 
         "D+"
-     elsif (numericGrade >= 1.4) 
+     elsif (numericGrade >= 1.7 && numericGrade <= 1.9) 
         "D"
-     elsif (numericGrade>= 1.0) 
+     elsif (numericGrade >= 1.4 && numericGrade <= 1.6) 
         "D-"
-     else
+     elsif (numericGrade <= 1.3)
         "F"
     end
+    
   end
 end

@@ -24,33 +24,34 @@ class AttemptsController < ApplicationController
     else
       @total_score = @all_attempts.sum(:score)
       @numericGrade = (@total_score * (-1)).to_f/ 45
-      if (@numericGrade >= 3.9) 
-          @gradeLetter = "A+"
-       elsif (@numericGrade >= 3.4) 
-          @gradeLetter = "A"
-       elsif (@numericGrade>= 3.0) 
-         @gradeLetter = "A-"
-       elsif (@numericGrade >= 3.9) 
-         @gradeLetter  = "B+"
-       elsif (@numericGrade>= 3.4) 
-         @gradeLetter = "B"
-      elsif (@numericGrade >= 3.0) 
-         @gradeLetter = "B-"
-      elsif (@numericGrade >= 2.9) 
-          @gradeLetter = "C+"
-       elsif (@numericGrade >= 2.4) 
-         @gradeLetter = "C"
-       elsif (@numericGrade >= 2.0) 
-         @gradeLetter = "C-"
-       elsif (@numericGrade>= 1.9) 
-         @gradeLetter = "D+"
-       elsif (@numericGrade >= 1.4) 
-         @gradeLetter = "D"
-       elsif (@numericGrade>= 1.0) 
-         @gradeLetter = "D-"
-       else
-         @gradeLetter = "F"
-      end
+      @numericGrade = (@total_score * (-1)).to_f/ 45
+    if (@numericGrade >= 4.7) 
+        @gradeLetter = "A+"
+     elsif (@numericGrade >= 4.4 && @numericGrade <= 4.6) 
+        @gradeLetter = "A"
+     elsif (@numericGrade >= 4.1 && @numericGrade <= 4.3) 
+       @gradeLetter = "A-"
+     elsif (@numericGrade >= 3.8 && @numericGrade <= 4.0) 
+       @gradeLetter  = "B+"
+     elsif (@numericGrade>= 3.5 && @numericGrade <= 3.7) 
+       @gradeLetter = "B"
+    elsif (@numericGrade >= 3.2 && @numericGrade <= 3.4) 
+       @gradeLetter = "B-"
+    elsif (@numericGrade >= 2.9 && @numericGrade <= 3.1) 
+        @gradeLetter = "C+"
+     elsif (@numericGrade >= 2.6 && @numericGrade <= 2.8) 
+       @gradeLetter = "C"
+     elsif (@numericGrade >= 2.3 && @numericGrade <= 2.5) 
+       @gradeLetter = "C-"
+     elsif (@numericGrade >= 2.0 && @numericGrade <= 2.2) 
+       @gradeLetter = "D+"
+     elsif (@numericGrade >= 1.7 && @numericGrade <= 1.9) 
+       @gradeLetter = "D"
+     elsif (@numericGrade >= 1.4 && @numericGrade <= 1.6) 
+       @gradeLetter = "D-"
+     elsif (@numericGrade <= 1.3)
+       @gradeLetter = "F"
+    end
       @participant = current_user
     end
   end
