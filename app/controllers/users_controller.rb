@@ -22,12 +22,20 @@ class UsersController < ApplicationController
         @user.save
         log_in user            
        end
+        UserNotifier.send_signup_email(@user).deliver
       redirect_to view_report_path(participant_id: current_user.id)
   end
 
 def change_name
-    @user = User.find(params[:id])
-    @user.update(user_params)
+    @user = User.find_by(email: user_params[:email].downcase)
+   if @user
+        log_in @user     
+      else     
+        @user = User.new(email: user_params[:email].downcase)
+        @user.save
+        log_in @user            
+       end
+      
     redirect_to view_report_path(participant_id: @user.id)
   end
 
@@ -37,9 +45,8 @@ def change_name
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      #SophityMailer.sample_email(@user).deliver_now
-      render 'download'
+    if @user.update_attributes(user_params)     
+       render 'download'
     else
       render 'edit'
     end
@@ -76,13 +83,18 @@ def change_name
      else
        @gradeLetter = "F"
     end
+    if current_user.send_notification
+          UserNotifier.send_signup_email(@current_user).deliver
+    end
+    filename = 'SophityReport'<<current_user.company<<'.pdf'
     respond_to do |format|
     format.html # show.html.erb
     format.pdf do
         pdf = SurveyPdf.new(current_user,@all_attempts,@numericGrade)
-        send_data pdf.render, filename: 'sophity.pdf', type: 'application/pdf'
+        send_data pdf.render, filename: filename, type: 'application/pdf'
       end
     end
+
   end
 
 
