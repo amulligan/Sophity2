@@ -22,32 +22,34 @@ class AttemptsController < ApplicationController
     if @all_attempts.empty?
       redirect_to new_attempt_path(survey_id: 1)
     else
+      debugger
       @total_score = @all_attempts.sum(:score)
       @numericGrade = (@total_score * (-1)).to_f/ 45
       @numericGrade = (@total_score * (-1)).to_f/ 45
-    if (@numericGrade >= 4.7) 
+      @gradeLetter = (@total_score).to_s + "/45 = " + (@numericGrade).to_s + ": "
+    if (@numericGrade >= 4.7)
         @gradeLetter = "A+"
-     elsif (@numericGrade >= 4.4 && @numericGrade <= 4.6) 
+     elsif (@numericGrade >= 4.4 && @numericGrade <= 4.6)
         @gradeLetter = "A"
-     elsif (@numericGrade >= 4.1 && @numericGrade <= 4.3) 
+     elsif (@numericGrade >= 4.1 && @numericGrade <= 4.3)
        @gradeLetter = "A-"
-     elsif (@numericGrade >= 3.8 && @numericGrade <= 4.0) 
+     elsif (@numericGrade >= 3.8 && @numericGrade <= 4.0)
        @gradeLetter  = "B+"
-     elsif (@numericGrade>= 3.5 && @numericGrade <= 3.7) 
+     elsif (@numericGrade>= 3.5 && @numericGrade <= 3.7)
        @gradeLetter = "B"
-    elsif (@numericGrade >= 3.2 && @numericGrade <= 3.4) 
+    elsif (@numericGrade >= 3.2 && @numericGrade <= 3.4)
        @gradeLetter = "B-"
-    elsif (@numericGrade >= 2.9 && @numericGrade <= 3.1) 
+    elsif (@numericGrade >= 2.9 && @numericGrade <= 3.1)
         @gradeLetter = "C+"
-     elsif (@numericGrade >= 2.6 && @numericGrade <= 2.8) 
+     elsif (@numericGrade >= 2.6 && @numericGrade <= 2.8)
        @gradeLetter = "C"
-     elsif (@numericGrade >= 2.3 && @numericGrade <= 2.5) 
+     elsif (@numericGrade >= 2.3 && @numericGrade <= 2.5)
        @gradeLetter = "C-"
-     elsif (@numericGrade >= 2.0 && @numericGrade <= 2.2) 
+     elsif (@numericGrade >= 2.0 && @numericGrade <= 2.2)
        @gradeLetter = "D+"
-     elsif (@numericGrade >= 1.7 && @numericGrade <= 1.9) 
+     elsif (@numericGrade >= 1.7 && @numericGrade <= 1.9)
        @gradeLetter = "D"
-     elsif (@numericGrade >= 1.4 && @numericGrade <= 1.6) 
+     elsif (@numericGrade >= 1.4 && @numericGrade <= 1.6)
        @gradeLetter = "D-"
      elsif (@numericGrade <= 1.3)
        @gradeLetter = "F"
@@ -58,7 +60,7 @@ class AttemptsController < ApplicationController
 
   def new
     @participant = current_user
-    
+
     unless @survey.nil?
       @attempt = @survey.attempts.new
       @attempt.answers.build
@@ -73,7 +75,7 @@ class AttemptsController < ApplicationController
     if @attempt.valid? && @attempt.save
       redirect_to attempt_path(@attempt.id)
     else
-      build_flash(@attempt)   
+      build_flash(@attempt)
       @participant = current_user
       render :new
     end
