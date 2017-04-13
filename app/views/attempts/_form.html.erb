@@ -4,42 +4,44 @@
     <%= @survey.name %>
     <p><small><%= @attempt.survey.description %></small></p>
   </h2>
-  
+
 </div>
 
 <%= form_for(@attempt, url: attempt_scope(@attempt)) do |f| %>
-<div class="hc-question-group card">
+
   <%= hidden_field_tag :survey_id, @survey.id %>    
   <%= hidden_field_tag :survey_qc, number_of_questions(@survey)%> 
   <%= hidden_field_tag :score, @attempt.score %> 
   <%= hidden_field_tag :user_id, current_user.id %> 
    
-    <%= f.fields_for :answers, get_answer_fields(@attempt) do |answer_fields| %>
+    <%= f.fields_for :answers, get_answer_fields(@attempt) do |answer_fields, index| %>
+       <% question = answer_fields.object.question %>
+<div class="hc-question-group card">
       <div class="hc-question-wrapper">
-        <% question = answer_fields.object.question %>
+        <div class="hc-question-number card-fixed">
+            <%= question.id %> 
+        </div>
+       
         <div class="hc-question-text">
           <%= question.text %>
         </div>
       </div>
      <div class="hc-answer-wrapper">
-         <div class="hc-answer-prompt">
-            Choose an answer
-          </div>
           <div class="hc-answer-key clickable">           
-         <%= collection_radio_buttons('survey_attempt[answers_attributes]', question.id, question.options, :weight, :text) do |b| %>
-             <% b.radio_button + b.label %>
+         <%= collection_radio_buttons('survey_attempt[answers_attributes]', question.id, question.options, :weight, :text_to_print) do |b| %>
+             <%b.radio_button + b.label %>
           <% end %>
         </div>
         </div>
-     
+    </div>
     <% end -%>
   </div>
 
   <div class="hc-button-wrapper">
        <% if @survey.id <6 %>
-        <%= f.submit "Continue", class: 'button clickable' %>     
+        <%= f.submit "Continue", class: 'hc-button-next clickable' %>     
        <%else %>
-       <%= f.submit "Submit", class: 'button clickable' %>     
+       <%= f.submit "Submit", class: 'hc-button-next clickable' %>     
        <%end%>
  </div>
 <% end -%>

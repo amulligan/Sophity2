@@ -31,4 +31,7 @@ class Survey::Option < ActiveRecord::Base
     self.weight = 1 if correct? && self.weight == 0
   end
 
+  def text_to_print
+    "<p>" "#{text}" "</p>".html_safe
+  end
 end

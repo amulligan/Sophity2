@@ -41,7 +41,6 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
-
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
