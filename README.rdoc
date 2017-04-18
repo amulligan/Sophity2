@@ -7,6 +7,10 @@ Things you may want to cover:
 
 * Ruby version
 
+ This app runs on:
+  ruby-2.3.1
+  rails-4.2.8
+
 * System dependencies
 
 * Configuration
