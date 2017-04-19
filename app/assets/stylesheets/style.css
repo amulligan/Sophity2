@@ -195,6 +195,13 @@ section {
   float: left;
   padding: 0;
   margin: 10px 0px 10px 20px;
+  z-index: 500;
+}
+
+.hc-header-image a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .hc-header-image img {
@@ -212,7 +219,10 @@ section {
   position: absolute;
   width: 100%;
   padding: 10px 5px 10px;
+  pointer-events: none;
+  z-index: 200;
 }
+
 
 .hc-header-titles h1 {
   padding: 0;
@@ -226,6 +236,10 @@ section {
   font-size: 32px;
   margin: 0;
   padding: 0;
+}
+
+.disclaimer {
+  color: red;
 }
 
 .hc-results-wrapper {
@@ -350,7 +364,6 @@ section {
   width: 100%;
   overflow: visible;
   overflow-wrap: break-word;
-  text-decoration: none;
 }
 
 .hc-progress-bar {
@@ -667,12 +680,14 @@ footer .hc-footer .hc-copyright {
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
-.warning {
-  background: #e85c41;
-  transition: background 1.5s ease-in-out;
+.card .warning {
+  color: #e85c41;
+  border: 2px solid #e85c41;
+  transition: color 1.5s ease-in-out;
+  transition: border 1.5s ease-in-out;
 }
 
-.warning-strong {
+.card .warning-strong {
   background: #e85c41;
   transition: background 1.5s ease-in-out;
 }
@@ -769,10 +784,4 @@ footer .hc-footer .hc-copyright {
   .hc-header .hc-header-titles {
     visibility: hidden;
   }
-
-.a {
-  text-decoration: none;
-}
-
-
 }
