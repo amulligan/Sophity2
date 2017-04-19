@@ -1,7 +1,7 @@
 <section id="hc-question-section">
 <div class="hc-topic-header">
   <h2 class="survey-title">
-    <%= @survey.name %>
+    <%= @survey.name + " \u{8226} " + @attempt.survey.description %>
     <p><small><%= @attempt.survey.description %></small></p>
   </h2>
 
@@ -9,25 +9,25 @@
 
 <%= form_for(@attempt, url: attempt_scope(@attempt)) do |f| %>
 
-  <%= hidden_field_tag :survey_id, @survey.id %>    
-  <%= hidden_field_tag :survey_qc, number_of_questions(@survey)%> 
-  <%= hidden_field_tag :score, @attempt.score %> 
-  <%= hidden_field_tag :user_id, current_user.id %> 
-   
+  <%= hidden_field_tag :survey_id, @survey.id %>
+  <%= hidden_field_tag :survey_qc, number_of_questions(@survey)%>
+  <%= hidden_field_tag :score, @attempt.score %>
+  <%= hidden_field_tag :user_id, current_user.id %>
+
     <%= f.fields_for :answers, get_answer_fields(@attempt) do |answer_fields, index| %>
        <% question = answer_fields.object.question %>
 <div class="hc-question-group card">
       <div class="hc-question-wrapper">
         <div class="hc-question-number card-fixed">
-            <%= question.id %> 
+            <%= question.id %>
         </div>
-       
+
         <div class="hc-question-text">
           <%= question.text %>
         </div>
       </div>
      <div class="hc-answer-wrapper">
-          <div class="hc-answer-key clickable">           
+          <div class="hc-answer-key clickable">
          <%= collection_radio_buttons('survey_attempt[answers_attributes]', question.id, question.options, :weight, :text_to_print) do |b| %>
              <%b.radio_button + b.label %>
           <% end %>
@@ -39,9 +39,9 @@
 
   <div class="hc-button-wrapper">
        <% if @survey.id <6 %>
-        <%= f.submit "Continue", class: 'hc-button-next clickable' %>     
+        <%= f.submit "Continue", class: 'hc-button-next clickable' %>
        <%else %>
-       <%= f.submit "Submit", class: 'hc-button-next clickable' %>     
+       <%= f.submit "Submit", class: 'hc-button-next clickable' %>
        <%end%>
  </div>
 <% end -%>
