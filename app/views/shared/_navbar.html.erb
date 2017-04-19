@@ -3,8 +3,10 @@
     <div class='hc-header card-fixed'>
       <div class='hc-header-titles'>
         <h1>Services Success Model</h1>
-        <%= link_to surveys_path, class: '' do %>
-          <h2><span class='disclaimer'>Sample </span>Health Check</h2>
+        <h2>
+          <span class='disclaimer'>Sample </span>
+          <%= link_to surveys_path, 'Health Check', '#', 'data-toggle': 'modal', 'data-target': '#submit-name-modal', :style=> 'text-decoration:none;' do %>
+        </h2>
         <% end %>
       </div>
       <div class='hc-header-image'>
