@@ -13,6 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
- stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Lato'
- stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Poppins'
