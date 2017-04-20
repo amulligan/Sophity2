@@ -80,4 +80,8 @@ $(document).ready(function() {
     }
     return false;
   });
+
+  $('#hc-report-button').on('click', function(ev) {
+    $('hc-report-response').removeClass('collapsed');
+  });
 });

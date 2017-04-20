@@ -26,7 +26,7 @@
           <%= f.check_box :send_notification, class: 'hc-phone-inner' %>
           <%= f.label I18n.t(:send_notification), class: 'hc-phone-inner'%> <br>
         </div>
-        <%= f.submit 'REQUEST REPORT', class: 'clickable' %>
+        <%= f.submit 'REQUEST REPORT', id: 'hc-report-button', class: 'clickable' %>
         <% end %>
       </div>
 
