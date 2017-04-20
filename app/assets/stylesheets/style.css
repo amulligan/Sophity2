@@ -368,6 +368,26 @@ section {
   overflow-wrap: break-word;
 }
 
+.hc-report-response {
+  padding: 1.5em 10%;
+}
+
+.hc-report-response p {
+  text-align: center;
+  margin: 0.5em 0;
+}
+
+.hc-results-links {
+  padding: 1em 10%;
+}
+
+.hc-results-links a {
+  display: block;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
 .hc-progress-bar {
   width: 100%;
   border-radius: .5vh;
