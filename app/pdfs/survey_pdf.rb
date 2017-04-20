@@ -4,39 +4,39 @@ class SurveyPdf < Prawn::Document
     @current_user = current_user
     @all_attempts = all_attempts
     @total_score = total_score
-    if (@total_score >= 3.9) 
+    if (@total_score >= 4.7)
         @gradeLetter = "A+"
-     elsif (@total_score >= 3.4) 
+     elsif (@total_score >= 4.4)
         @gradeLetter = "A"
-     elsif (@total_score>= 3.0) 
+     elsif (@total_score>= 4.1)
        @gradeLetter = "A-"
-     elsif (@total_score >= 3.9) 
+     elsif (@total_score >= 3.8)
        @gradeLetter  = "B+"
-     elsif (@total_score>= 3.4) 
+     elsif (@total_score>= 3.5)
        @gradeLetter = "B"
-    elsif (@total_score >= 3.0) 
+    elsif (@total_score >= 3.2)
        @gradeLetter = "B-"
-    elsif (@total_score >= 2.9) 
+    elsif (@total_score >= 2.9)
         @gradeLetter = "C+"
-     elsif (@total_score >= 2.4) 
+     elsif (@total_score >= 2.6)
        @gradeLetter = "C"
-     elsif (@total_score >= 2.0) 
+     elsif (@total_score >= 2.3)
        @gradeLetter = "C-"
-     elsif (@total_score>= 1.9) 
+     elsif (@total_score>= 2.0)
        @gradeLetter = "D+"
-     elsif (@total_score >= 1.4) 
+     elsif (@total_score >= 1.7)
        @gradeLetter = "D"
-     elsif (@total_score>= 1.0) 
+     elsif (@total_score>= 1.4)
        @gradeLetter = "D-"
      else
        @gradeLetter = "F"
     end
-    cover   
+    cover
     content
   end
 
-  def cover 
-    image "#{Rails.root}/app/assets/images/sophity-report-logo.png",  :at => [50,700], :width => 450 
+  def cover
+    image "#{Rails.root}/app/assets/images/sophity-report-logo.png",  :at => [50,700], :width => 450
         image "#{Rails.root}/app/assets/images/puzzle.png",  :at => [0,550], :width => 600
     move_cursor_to 300
     font "Helvetica", :style => :bold_italic, :size => 20
@@ -50,7 +50,7 @@ class SurveyPdf < Prawn::Document
     start_new_page
     page_1
      start_new_page
-    page_2 
+    page_2
      start_new_page
     page_3
      start_new_page
@@ -67,7 +67,7 @@ class SurveyPdf < Prawn::Document
   end
 
   def page_1
-    
+
   end
 
   def page_2
@@ -86,11 +86,11 @@ class SurveyPdf < Prawn::Document
     move_cursor_to 550
     text "Total Grade: #{ @gradeLetter }", :color => "0000ff", :size => 16
     main_build
-    footer  
+    footer
   end
 
 def page_details
-end 
+end
   def footer
       string = '#<page>'
   # Green page numbers 1 to 7
@@ -103,9 +103,9 @@ end
     color: '000000'
   }
   number_pages string, options
-    
+
   end
-  
+
    def main_build
      move_down 20
      table transaction_rows do
@@ -123,7 +123,7 @@ end
       end
     end
 
- 
 
-  
+
+
 end
