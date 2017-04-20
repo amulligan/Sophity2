@@ -369,8 +369,8 @@ section {
 }
 
 .hc-report-response {
-  margin-top: 1em;
-  padding: 1.5em 10%;
+  margin-top: 1.5em;
+  padding: 0.5em 10% 1.5em;
   transition: height 0.5s ease-in-out;
 }
 
