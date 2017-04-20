@@ -23,8 +23,8 @@ class AttemptsController < ApplicationController
       redirect_to new_attempt_path(survey_id: 1)
     else
       @total_score = @all_attempts.sum(:score)
-      # @numericGrade = (@total_score * (-1)).to_f/ 45
-      # @numericGrade = (@total_score * (-1)).to_f/ 45
+      @numericGrade = (@total_score * (-1)).to_f/ 45
+      @numericGrade = (@total_score * (-1)).to_f/ 45
       # @gradeLetter = (@total_score).to_s + "/45 = " + (@numericGrade).to_s + ": "
     if (@numericGrade >= 4.7)
         @gradeLetter = "A+"
