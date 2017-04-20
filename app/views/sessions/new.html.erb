@@ -1,5 +1,6 @@
-<div class="row">
-  <section id="hc-question-section">
+
+  <section>
+    <div class="card">
     <%= form_for(:session, url: login_path) do |f| %>
 
       <%= f.label :email, 'What is your email address?'%>
@@ -8,6 +9,5 @@
 
       <%= f.submit "Submit", class: "btn btn-primary" %>
     <% end %>
-
-  </div>
-</div>
+    </div>
+  </section>
