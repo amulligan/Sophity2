@@ -53,7 +53,7 @@ var validateAnswers = function () {
     names[$(this).attr('name')] = true;
   });
   if (radios.length !== names.length) {
-    console.log("something's undone");
+    console.log("something's undone: " + radios.length + " != " + names.length);
   } else {
     console.log("all checked out");
   }
