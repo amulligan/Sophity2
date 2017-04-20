@@ -385,11 +385,11 @@ section {
 
 .hc-results-links {
   padding: 1em 10%;
+  text-align: center;
 }
 
 .hc-results-links a {
   display: block;
-  text-align: center;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
   margin: 1em 0;
