@@ -50,7 +50,8 @@ var validateAnswers = function () {
   $('[type="radio"]').each(function(el) { //[name|="survey_attempt[answers_attributes]"]
     alert(el.closest('hc-question-group').find('hc-question-number').innerHTML + " = " + el.val());
   });
-}
+  return false;
+};
 
   $("input[type=submit]").click(function() {
     return validateAnswers();
@@ -70,5 +71,4 @@ var validateAnswers = function () {
       });
       return false;
     }
-});
 });
