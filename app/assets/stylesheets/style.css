@@ -161,11 +161,8 @@ section {
   max-width: 800px;
   width: 90%;
   margin: 1.5em auto 3em;
-  /*transition: all 1.5s ease-in-out;*/
-}
-
-section {
   margin-top: 100px;
+  /*transition: all 1.5s ease-in-out;*/
 }
 
 .gone {

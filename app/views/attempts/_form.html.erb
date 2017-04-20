@@ -3,8 +3,7 @@
   <h2>
     <%= @survey.name + " \u{2023} " + @attempt.survey.description %>
   </h2>
-    <p><small><%= @attempt.survey.description %></small></p>
-
+  <p><small><%= @attempt.survey.description %></small></p>
 </div>
 
 <%= form_for(@attempt, url: attempt_scope(@attempt)) do |f| %>
