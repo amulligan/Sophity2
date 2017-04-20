@@ -18,7 +18,7 @@
 
 
 
-$('a[data-popup]').on('click', function(e) { window.open($(this).attr('href')); e.preventDefault(); });
+// $('a[data-popup]').on('click', function(e) { window.open($(this).attr('href')); e.preventDefault(); });
 
 // $(document).ready(function() {
 //   $("input[type=radio]").change(function() {
@@ -54,22 +54,27 @@ var validateAnswers = function () {
   return false;
 };
 
-  $("input[type=submit]").click(function() {
-    return validateAnswers();
-    var names = {};
-    $(':radio').each(function() {
-        names[$(this).attr('name')] = true;
-    });
-    var count = 0;
-    $.each(names, function() {
-        count++;
-    });
-    if ($(':radio:checked').length != count) {
-      $(':radio').each(function(el) {
-        if (!el.is(':checked')) {
-          el.parent().parent().addClass("warning");
-        }
-      });
-      return false;
-    }
+$('.hc-question-section form').on('submit', function(ev) {
+  if (!validateAnswers()) {
+    ev.preventDefault();
+    return false;
+  }
+  return true;
 });
+
+  // var names = {};
+  // $(':radio').each(function() {
+  //     names[$(this).attr('name')] = true;
+  // });
+  // var count = 0;
+  // $.each(names, function() {
+  //     count++;
+  // });
+  // if ($(':radio:checked').length != count) {
+  //   $(':radio').each(function(el) {
+  //     if (!el.is(':checked')) {
+  //       el.parent().parent().addClass("warning");
+  //     }
+  //   });
+  //   return false;
+  // }
