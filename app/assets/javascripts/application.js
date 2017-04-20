@@ -47,7 +47,7 @@
 //   });
 
 var validateAnswers = function () {
-  console.log("I'm checkin'");
+  console.log("I'm checkin', go submit dude");
   // $('[type="radio"]').each(function(el) { //[name|="survey_attempt[answers_attributes]"]
   //   alert(el.closest('hc-question-group').find('hc-question-number').innerHTML + " = " + el.val());
   // });
@@ -57,7 +57,9 @@ var validateAnswers = function () {
 $(document).ready(function() {
   $('.hc-button-next').on('click', function(ev) {
     if (validateAnswers()) {
-      $('.hc-question-section form').submit();
+      alert("yes");
+      console.log("Submitted");
+      $('form#new_survey_attempt').submit();
       return true;
     }
     return false;
