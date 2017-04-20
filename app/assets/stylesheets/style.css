@@ -392,6 +392,7 @@ section {
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
   margin: 1em 0;
+  text-decoration: none;
 }
 
 .hc-progress-bar {
