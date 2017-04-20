@@ -48,9 +48,9 @@
 
 var validateAnswers = function () {
   console.log("I'm checkin'");
-  $('[type="radio"]').each(function(el) { //[name|="survey_attempt[answers_attributes]"]
-    alert(el.closest('hc-question-group').find('hc-question-number').innerHTML + " = " + el.val());
-  });
+  // $('[type="radio"]').each(function(el) { //[name|="survey_attempt[answers_attributes]"]
+  //   alert(el.closest('hc-question-group').find('hc-question-number').innerHTML + " = " + el.val());
+  // });
   return false;
 };
 
