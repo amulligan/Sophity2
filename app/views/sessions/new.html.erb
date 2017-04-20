@@ -1,5 +1,6 @@
 
   <section>
+    <div class="hc-results-wrapper">
     <div class="hc-results-actions-wrapper card-fixed">
     <%= form_for(:session, url: login_path) do |f| %>
 
@@ -7,7 +8,8 @@
       <%= f.email_field :email, class: 'form-control' %>
 
 
-      <%= f.submit "Submit", class: "btn btn-primary" %>
+      <%= f.submit "Submit", class: "clickable" %>
     <% end %>
     </div>
+  </div>
   </section>
