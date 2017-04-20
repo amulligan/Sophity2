@@ -370,11 +370,16 @@ section {
 
 .hc-report-response {
   padding: 1.5em 10%;
+  transition: height 0.5s ease-in-out;
 }
 
 .hc-report-response p {
   text-align: center;
   margin: 0.5em 0;
+}
+
+.collapse {
+  height: 0;
 }
 
 .hc-results-links {
@@ -386,6 +391,7 @@ section {
   text-align: center;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
+  margin: 1em 0;
 }
 
 .hc-progress-bar {
