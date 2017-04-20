@@ -47,24 +47,21 @@
 //   });
 
 var validateAnswers = function () {
-  console.log("I'm checkin', go submit dude");
+  console.log($('[type="radio"]'));
   // $('[type="radio"]').each(function(el) { //[name|="survey_attempt[answers_attributes]"]
   //   alert(el.closest('hc-question-group').find('hc-question-number').innerHTML + " = " + el.val());
   // });
-  return true;
+  return false;
 };
 
 $(document).ready(function() {
   $('.hc-button-next').on('click', function(ev) {
     if (validateAnswers()) {
-      alert("yes");
-      console.log("Submitted");
       $('form#new_survey_attempt').submit();
       return true;
     }
     return false;
   });
-  console.log("Created onsubmit for form");
 });
   // var names = {};
   // $(':radio').each(function() {
