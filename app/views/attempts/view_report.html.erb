@@ -29,13 +29,16 @@
         <%= f.submit 'REQUEST REPORT', class: 'clickable' %>
         <% end %>
       </div>
+
+      <div class="hc-report-response modal card-fixed">
+        <h2>Done!</h2>
+        <p>Check your email: your report is on the way!</p>
+        <p>Can't wait? Download a copy <a href="#">here.</a></p>
     </div>
 
-    <div class="hc-results-links card-rise">
-      <%= button_to "Take Another Health Check", class: 'clickable' %>
-    </div>
-    <div class="hc-results-links card-rise">
-      <%= button_to "Back to Sophity", class: 'clickable' %>
+    <div class="hc-results-links card-fixed">
+      <%= link_to "Take Another Health Check", class: 'clickable' %>
+      <%= link_to "Back to Sophity", class: 'clickable' %>
     </div>
   </div>
 </section>
