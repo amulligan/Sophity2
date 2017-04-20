@@ -94,7 +94,7 @@ Survey::Option.create!([
   {question_id: 16, weight: 3, text: "NEUTRAL", correct: nil},
   {question_id: 16, weight: 4, text: "AGREE", correct: nil},
   {question_id: 16, weight: 5, text: "STRONGLY AGREE", correct: nil},
-  
+
   {question_id: 17, weight: 1, text: "STRONGLY DISAGREE", correct: nil},
   {question_id: 17, weight: 2, text: "DISAGREE", correct: nil},
   {question_id: 17, weight: 3, text: "NEUTRAL", correct: nil},
@@ -296,7 +296,7 @@ Survey::Question.create!([
  {survey_id: 5, text:"Services team members do not need to leave the department or company to grow their skills, responsibilities, and salary."},
 {survey_id: 5, text:"We actively use a skills matrix to ensure we have the right skills in house and can assign the people with the right skills to projects."},
 {survey_id: 5, text:"Our skills matrix is used as a tool to discuss skills development with each team member."},
-{survey_id: 5, text:"We provide and incentivize a system for team members to capture important lessons learned."},
+{survey_id: 5, text:"We provide a system for team members to capture important lessons learned, and incentivize doing so."},
 {survey_id: 5, text:"Services team members develop their personal brands through thought leadership (writing, speaking, blogging, etc.)."},
 {survey_id: 6, text:"The Key Performance Indicators (metrics) are reviewed regularly by Services management, Finance, and senior leadership and are strongly aligned with the goals and objectives of the Services team."},
 {survey_id: 6, text:"Team members are empowered to make decisions but reach out to management for approval when required."},
@@ -322,5 +322,3 @@ Survey::Survey.create!([
 User.create!([
   {name: "Andra", email: "andrastanciu212@gmail.com"}
 ])
-
-

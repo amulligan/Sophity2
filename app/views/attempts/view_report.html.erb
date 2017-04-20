@@ -7,15 +7,15 @@
 
     <div class="hc-results-actions-wrapper card-rise">
       <div class="hc-results-header">
-        <h2>Want More Detail?</h2>
-        <p>Using your Health Check responses as a guide, Sophity will create and send you a personalized Professional Services Road Map, and contact you for a free 1-hour consultation to discuss your results.</p>
-        <p>Introduce yourself below to request your Road Map.</p>
+        <h2>Need More Information?</h2>
+        <p>Sophity will use your Health Check responses to produce a complete <em>Sophity Services Health Check Report</em>. You are also eligible for a one-hour review of the results.</p>
+        <p>Introduce yourself below to get your complete report and to schedule your session with the Sophity team.</p>
       </div>
 
       <div class="hc-user-info">
         <%= form_for(@participant) do |f| %>
         <%= f.label :name %>
-        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.text_field :name, class: 'form-control', required: true %>
         <%= f.label :job_title %>
         <%= f.text_field :job_title, class: 'form-control' %>
         <%= f.label :company %>
