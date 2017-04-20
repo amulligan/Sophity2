@@ -206,7 +206,7 @@ section {
 
 .hc-header-image img {
   height: 30px;
-  margin-top: 12.275px;
+  margin-top: 0;
 }
 
 .hc-header::after {
