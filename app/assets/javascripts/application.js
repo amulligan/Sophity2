@@ -81,19 +81,3 @@ $(document).ready(function() {
     return false;
   });
 });
-  // var names = {};
-  // $(':radio').each(function() {
-  //     names[$(this).attr('name')] = true;
-  // });
-  // var count = 0;
-  // $.each(names, function() {
-  //     count++;
-  // });
-  // if ($(':radio:checked').length != count) {
-  //   $(':radio').each(function(el) {
-  //     if (!el.is(':checked')) {
-  //       el.parent().parent().addClass("warning");
-  //     }
-  //   });
-  //   return false;
-  // }
