@@ -54,14 +54,16 @@ var validateAnswers = function () {
   return false;
 };
 
-$('.hc-question-section form').on('submit', function(ev) {
-  if (!validateAnswers()) {
-    ev.preventDefault();
-    return false;
-  }
-  return true;
+$(document).ready(function() {
+  $('.hc-question-section form').on('submit', function(ev) {
+    if (!validateAnswers()) {
+      ev.preventDefault();
+      return false;
+    }
+    return true;
+  });
+  console.log("Created onsubmit for form");
 });
-
   // var names = {};
   // $(':radio').each(function() {
   //     names[$(this).attr('name')] = true;
