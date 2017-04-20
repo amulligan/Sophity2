@@ -3,6 +3,14 @@
   <h2>
     <%= @survey.name + " \u{2023} " + @attempt.survey.description %>
   </h2>
+  <% if @survey.id > 1 %>
+    <div class='hc-progress-bar card-fixed'>
+      <div class='hc-progress'></div>
+      <p>1
+        of <%= number_of_questions(@survey) %> completed (<%= number_of_questions(@survey) %>%)
+      </p>
+    </div>
+  <%end%>
   <p><small><%= @attempt.survey.description %></small></p>
 </div>
 
