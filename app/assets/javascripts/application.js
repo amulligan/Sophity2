@@ -50,12 +50,14 @@ var validateAnswers = function () {
   var names = {};
   var radios = $('#new_survey_attempt [type="radio"]');
   var checkedRadios = $('#new_survey_attempt [type="radio"]:checked');
+
   radios.each(function () {
     if (!($(this).attr('name') in names)) {
       names[$(this).attr('name')] = 0;
     }
     names[$(this).attr('name')] += $(this).prop('checked') ? 1 : 0;
   });
+
   if (checkedRadios.length !== Object.keys(names).length) {
     $.each(names, function (key, val) {
       if (val == 0) {
@@ -64,15 +66,10 @@ var validateAnswers = function () {
         $('#new_survey_attempt [type="radio"][name="' + key + '"]').closest('.hc-question-group').find('.hc-question-number').removeClass('warning');
       }
     });
-    console.log("something's undone: " + checkedRadios.length + " != " + Object.keys(names).length);
-  } else {
-    console.log("all checked out");
+    return false;
   }
 
-  // $('[type="radio"]').each(function(el) { //[name|="survey_attempt[answers_attributes]"]
-  //   alert(el.closest('hc-question-group').find('hc-question-number').innerHTML + " = " + el.val());
-  // });
-  return false;
+  return true;
 };
 
 $(document).ready(function() {
