@@ -7,24 +7,23 @@
     <div class='hc-progress-bar card-fixed'>
       <div class='hc-progress'></div>
       <p>
-        <%= if @survey.id == 2 %>
+        <% if @survey.id == 2 %>
           7
-        <%= elsif @survey.id == 3 %>
+        <% elsif @survey.id == 3 %>
           14
-        <%= elsif @survey.id == 4 %>
+        <% elsif @survey.id == 4 %>
           18
-        <%= elsif @survey.id == 5 %>
+        <% elsif @survey.id == 5 %>
           26
-        <%= elsif @survey.id == 6 %>
+        <% elsif @survey.id == 6 %>
           36
-        <%= else %>
+        <% else %>
           ??
-        <%= end %>
+        <% end %>
         of 45 completed (<%= 45 %>%)
       </p>
     </div>
   <%end%>
-  <p><small><%= @attempt.survey.description %></small></p>
 </div>
 
 <%= form_for(@attempt, url: attempt_scope(@attempt)) do |f| %>
