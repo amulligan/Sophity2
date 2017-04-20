@@ -49,11 +49,12 @@
 var validateAnswers = function () {
   var names = {};
   var radios = $('#new_survey_attempt [type="radio"]');
+  var checkedRadios = $('#new_survey_attempt [type="radio"]:checked');
   radios.each(function () {
     names[$(this).attr('name')] = true;
   });
-  if (radios.length !== Object.keys(names).length) {
-    console.log("something's undone: " + radios.length + " != " + Object.keys(names).length);
+  if (checkedRadios.length !== Object.keys(names).length) {
+    console.log("something's undone: " + checkedRadios.length + " != " + Object.keys(names).length);
   } else {
     console.log("all checked out");
   }
