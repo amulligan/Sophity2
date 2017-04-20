@@ -38,9 +38,9 @@
 
   <div class="hc-button-wrapper">
        <% if @survey.id <6 %>
-        <%= f.submit "Continue", class: 'hc-button-next clickable' %>
+        <%= f.submit "Continue", :type => :button, class: 'hc-button-next clickable' %>
        <%else %>
-       <%= f.submit "Submit", class: 'hc-button-next clickable' %>
+       <%= f.submit "Get Score", :type => :button, class: 'hc-button-next clickable' %>
        <%end%>
  </div>
 <% end -%>

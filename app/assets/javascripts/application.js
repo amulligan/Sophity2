@@ -55,12 +55,12 @@ var validateAnswers = function () {
 };
 
 $(document).ready(function() {
-  $('.hc-question-section form').on('submit', function(ev) {
-    if (!validateAnswers()) {
-      ev.preventDefault();
-      return false;
+  $('.hc-button-next').on('click', function(ev) {
+    if (validateAnswers()) {
+      $('.hc-question-section form').submit();
+      return true;
     }
-    return true;
+    return false;
   });
   console.log("Created onsubmit for form");
 });
