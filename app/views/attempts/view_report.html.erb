@@ -17,11 +17,11 @@
         <%= f.label :name %>
         <%= f.text_field :name, class: 'form-control', required: true %>
         <%= f.label :job_title %>
-        <%= f.text_field :job_title, class: 'form-control' %>
+        <%= f.text_field :job_title, class: 'form-control', required: true %>
         <%= f.label :company %>
-        <%= f.text_field :company, class: 'form-control' %>
+        <%= f.text_field :company, class: 'form-control', required: true %>
         <%= f.label :phone %>
-        <%= f.text_field :phone, class: 'form-control' %>
+        <%= f.text_field :phone, class: 'form-control', required: true %>
         <div class="hc-phone-checkbox">
           <%= f.check_box :send_notification, class: 'hc-phone-inner' %>
           <%= f.label I18n.t(:send_notification), class: 'hc-phone-inner'%> <br>
@@ -30,7 +30,7 @@
         <% end %>
       </div>
 
-      <div class="hc-report-response modal card-fixed">
+      <div class="hc-report-response modal card-fixed collapsed">
         <h2>Done!</h2>
         <p><strong>Check your email:</strong> your report is on the way!</p>
         <p>Can't wait? Download a copy <strong><a href="#">here.</a></strong></p>
