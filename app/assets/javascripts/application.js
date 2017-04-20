@@ -46,7 +46,7 @@ $('a[data-popup]').on('click', function(e) { window.open($(this).attr('href')); 
 //
 //   });
 
-let validateAnswers = function () {
+var validateAnswers = function () {
   $('[type="radio"]').each(function(el) { //[name|="survey_attempt[answers_attributes]"]
     alert(el.closest('hc-question-group').find('hc-question-number').innerHTML + " = " + el.val());
   });
