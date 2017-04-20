@@ -20,39 +20,46 @@
 
 $('a[data-popup]').on('click', function(e) { window.open($(this).attr('href')); e.preventDefault(); });
 
-$(document).ready(function() {
-  $("input[type=radio]").change(function() {
-      var total = 0;
-      var questionsAnswered = 0;
-      $("input[type=radio]:checked").each(function() {
-          total += parseFloat($(this).val());
-          questionsAnswered += 1;
-      });
-      var totalNo = $("#survey_qc").val();
-      var perc = questionsAnswered *100/totalNo;
-     if (perc < 15) {
-         $("#hc-question-section .hc-progress-bar").css('background', 'red');
-     } else if (perc < 30) {
-         $("#hc-question-section .hc-progress-bar").css('background', 'orange');
-     } else if (perc < 60) {
-         $("#hc-question-section .hc-progress-bar").css('background', 'yellow');
-     } else {
-         $("#hc-question-section .hc-progress-bar").css('background', 'lime');
-     }
+// $(document).ready(function() {
+//   $("input[type=radio]").change(function() {
+//       var total = 0;
+//       var questionsAnswered = 0;
+//       $("input[type=radio]:checked").each(function() {
+//           total += parseFloat($(this).val());
+//           questionsAnswered += 1;
+//       });
+//       var totalNo = $("#survey_qc").val();
+//       var perc = questionsAnswered *100/totalNo;
+//      if (perc < 15) {
+//          $("#hc-question-section .hc-progress-bar").css('background', 'red');
+//      } else if (perc < 30) {
+//          $("#hc-question-section .hc-progress-bar").css('background', 'orange');
+//      } else if (perc < 60) {
+//          $("#hc-question-section .hc-progress-bar").css('background', 'yellow');
+//      } else {
+//          $("#hc-question-section .hc-progress-bar").css('background', 'lime');
+//      }
+//
+//       $("#progress").css("width", perc + "%");
+//       $("#progressRate").text(questionsAnswered + " of " + totalNo + " (" + perc.toFixed(2) + "% completed)");
+//       $("#score").val(total/totalNo);
+//
+//   });
 
-      $("#progress").css("width", perc + "%");
-      $("#progressRate").text(questionsAnswered + " of " + totalNo + " (" + perc.toFixed(2) + "% completed)"); 
-      $("#score").val(total/totalNo);
-    
+let validateAnswers = function () {
+  $(':radio[name|="survey_attempt[answers_attributes]"]').each(function(el) {
+    alert(el.closest('hc-question-group').find('hc-question-number').innerHTML + " = " + el.val());
   });
+}
 
   $("input[type=submit]").click(function() {
+    return validateAnswers();
     var names = {};
     $(':radio').each(function() {
         names[$(this).attr('name')] = true;
     });
     var count = 0;
-    $.each(names, function() { 
+    $.each(names, function() {
         count++;
     });
     if ($(':radio:checked').length != count) {
@@ -65,6 +72,3 @@ $(document).ready(function() {
     }
 });
 });
-
-
-
