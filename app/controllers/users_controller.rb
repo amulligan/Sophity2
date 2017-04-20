@@ -16,11 +16,11 @@ class UsersController < ApplicationController
   def create
       user = User.find_by(email: params[:email].downcase)
       if user
-        log_in user     
-      else     
+        log_in user
+      else
         @user = User.new(email: params[:email].downcase)
         @user.save
-        log_in user            
+        log_in user
        end
         #UserNotifier.send_signup_email(@user).deliver
       redirect_to view_report_path(participant_id: current_user.id)
@@ -29,12 +29,12 @@ class UsersController < ApplicationController
 def change_name
     @user = User.find_by(email: user_params[:email].downcase)
     if @user
-      log_in @user     
-    else     
+      log_in @user
+    else
       @user = User.new(email: user_params[:email].downcase)
       @user.save
-      log_in @user            
-     end     
+      log_in @user
+     end
     redirect_to view_report_path(participant_id: @user.id)
   end
 
@@ -44,7 +44,7 @@ def change_name
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)     
+    if @user.update_attributes(user_params)
        render 'download'
     else
       render 'edit'
@@ -52,34 +52,34 @@ def change_name
   end
 
   def download_pdf
-    @all_attempts = Survey::Attempt.where(participant_id: current_user.id) 
+    @all_attempts = Survey::Attempt.where(participant_id: current_user.id)
     @total_score = @all_attempts.sum(:score)
     @numericGrade = (@total_score * (-1)).to_f/ 45
-    if (@numericGrade >= 4.7) 
+    if (@numericGrade >= 4.7)
         @gradeLetter = "A+"
-     elsif (@numericGrade >= 4.4 && @numericGrade <= 4.6) 
+     elsif (@numericGrade >= 4.4)
         @gradeLetter = "A"
-     elsif (@numericGrade >= 4.1 && @numericGrade <= 4.3) 
+     elsif (@numericGrade >= 4.1)
        @gradeLetter = "A-"
-     elsif (@numericGrade >= 3.8 && @numericGrade <= 4.0) 
+     elsif (@numericGrade >= 3.8)
        @gradeLetter  = "B+"
-     elsif (@numericGrade>= 3.5 && @numericGrade <= 3.7) 
+     elsif (@numericGrade>= 3.5)
        @gradeLetter = "B"
-    elsif (@numericGrade >= 3.2 && @numericGrade <= 3.4) 
+    elsif (@numericGrade >= 3.2)
        @gradeLetter = "B-"
-    elsif (@numericGrade >= 2.9 && @numericGrade <= 3.1) 
+    elsif (@numericGrade >= 2.9)
         @gradeLetter = "C+"
-     elsif (@numericGrade >= 2.6 && @numericGrade <= 2.8) 
+     elsif (@numericGrade >= 2.6)
        @gradeLetter = "C"
-     elsif (@numericGrade >= 2.3 && @numericGrade <= 2.5) 
+     elsif (@numericGrade >= 2.3)
        @gradeLetter = "C-"
-     elsif (@numericGrade >= 2.0 && @numericGrade <= 2.2) 
+     elsif (@numericGrade >= 2.0)
        @gradeLetter = "D+"
-     elsif (@numericGrade >= 1.7 && @numericGrade <= 1.9) 
+     elsif (@numericGrade >= 1.7)
        @gradeLetter = "D"
-     elsif (@numericGrade >= 1.4 && @numericGrade <= 1.6) 
+     elsif (@numericGrade >= 1.4)
        @gradeLetter = "D-"
-     elsif (@numericGrade <= 1.3)
+     else
        @gradeLetter = "F"
     end
     if current_user.send_notification

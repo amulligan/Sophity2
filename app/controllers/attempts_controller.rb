@@ -24,33 +24,32 @@ class AttemptsController < ApplicationController
     else
       @total_score = @all_attempts.sum(:score)
       @numericGrade = (@total_score * (-1)).to_f/ 45
-      @numericGrade = (@total_score * (-1)).to_f/ 45
       # @gradeLetter = (@total_score).to_s + "/45 = " + (@numericGrade).to_s + ": "
     if (@numericGrade >= 4.7)
         @gradeLetter = "A+"
-     elsif (@numericGrade >= 4.4 && @numericGrade <= 4.6)
+     elsif (@numericGrade >= 4.4)
         @gradeLetter = "A"
-     elsif (@numericGrade >= 4.1 && @numericGrade <= 4.3)
+     elsif (@numericGrade >= 4.1)
        @gradeLetter = "A-"
-     elsif (@numericGrade >= 3.8 && @numericGrade <= 4.0)
+     elsif (@numericGrade >= 3.8)
        @gradeLetter  = "B+"
-     elsif (@numericGrade>= 3.5 && @numericGrade <= 3.7)
+     elsif (@numericGrade>= 3.5)
        @gradeLetter = "B"
-    elsif (@numericGrade >= 3.2 && @numericGrade <= 3.4)
+    elsif (@numericGrade >= 3.2)
        @gradeLetter = "B-"
-    elsif (@numericGrade >= 2.9 && @numericGrade <= 3.1)
+    elsif (@numericGrade >= 2.9)
         @gradeLetter = "C+"
-     elsif (@numericGrade >= 2.6 && @numericGrade <= 2.8)
+     elsif (@numericGrade >= 2.6)
        @gradeLetter = "C"
-     elsif (@numericGrade >= 2.3 && @numericGrade <= 2.5)
+     elsif (@numericGrade >= 2.3)
        @gradeLetter = "C-"
-     elsif (@numericGrade >= 2.0 && @numericGrade <= 2.2)
+     elsif (@numericGrade >= 2.0)
        @gradeLetter = "D+"
-     elsif (@numericGrade >= 1.7 && @numericGrade <= 1.9)
+     elsif (@numericGrade >= 1.7)
        @gradeLetter = "D"
-     elsif (@numericGrade >= 1.4 && @numericGrade <= 1.6)
+     elsif (@numericGrade >= 1.4)
        @gradeLetter = "D-"
-     elsif (@numericGrade <= 1.3)
+     else
        @gradeLetter = "F"
     end
       @participant = current_user

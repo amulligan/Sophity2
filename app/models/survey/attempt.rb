@@ -31,7 +31,7 @@ class Survey::Attempt < ActiveRecord::Base
   # callbacks
   before_create :collect_scores
 
-  before_save :find_grade 
+  before_save :find_grade
 
   def correct_answers
     return self.answers.where(:correct => true)
@@ -60,38 +60,38 @@ class Survey::Attempt < ActiveRecord::Base
     self.score = self.answers.map(&:value).reduce(:+) || 0
   end
 
-  def find_grade 
+  def find_grade
     numericScore = (self.answers.map(&:value).reduce(:+) || 0) * (-1)
     numericGrade = numericScore.to_f/self.survey.questions.count
 
      if (numericGrade >= 4.7) 
         self.grade = "A+"
-     elsif (numericGrade >= 4.4 && numericGrade <= 4.6) 
+     elsif (numericGrade >= 4.4)
         self.grade = "A"
-     elsif (numericGrade >= 4.1 && numericGrade <= 4.3) 
+     elsif (numericGrade >= 4.1)
        self.grade = "A-"
-     elsif (numericGrade >= 3.8 && numericGrade <= 4.0) 
+     elsif (numericGrade >= 3.8)
        self.grade  = "B+"
-     elsif (numericGrade>= 3.5 && numericGrade <= 3.7) 
+     elsif (numericGrade>= 3.5)
        self.grade = "B"
-    elsif (numericGrade >= 3.2 && numericGrade <= 3.4) 
+    elsif (numericGrade >= 3.2)
        self.grade = "B-"
-    elsif (numericGrade >= 2.9 && numericGrade <= 3.1) 
+    elsif (numericGrade >= 2.9)
         self.grade = "C+"
-     elsif (numericGrade >= 2.6 && numericGrade <= 2.8) 
+     elsif (numericGrade >= 2.6)
        self.grade = "C"
-     elsif (numericGrade >= 2.3 && numericGrade <= 2.5) 
+     elsif (numericGrade >= 2.3)
        self.grade = "C-"
-     elsif (numericGrade >= 2.0 && numericGrade <= 2.2) 
+     elsif (numericGrade >= 2.0)
        self.grade = "D+"
-     elsif (numericGrade >= 1.7 && numericGrade <= 1.9) 
+     elsif (numericGrade >= 1.7)
        self.grade = "D"
-     elsif (numericGrade >= 1.4 && numericGrade <= 1.6) 
+     elsif (numericGrade >= 1.4)
        self.grade = "D-"
-     elsif (numericGrade <= 1.3)
+     else
        self.grade = "F"
     end
 
-   
+
   end
 end
