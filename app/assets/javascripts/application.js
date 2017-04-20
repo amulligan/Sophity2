@@ -59,11 +59,12 @@ var validateAnswers = function () {
   if (checkedRadios.length !== Object.keys(names).length) {
     $.each(names, function (key, val) {
       if (val == 0) {
-        $('#new_survey_attempt [type="radio"][name="' + key + '"]').closest('.hc-question-group').addClass('warning');
+        $('#new_survey_attempt [type="radio"][name="' + key + '"]').closest('.hc-question-group').find('.hc-question-number').addClass('warning');
+      } else {
+        $('#new_survey_attempt [type="radio"][name="' + key + '"]').closest('.hc-question-group').find('.hc-question-number').removeClass('warning');
       }
     });
     console.log("something's undone: " + checkedRadios.length + " != " + Object.keys(names).length);
-    console.log(names);
   } else {
     console.log("all checked out");
   }
