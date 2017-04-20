@@ -57,10 +57,11 @@ var validateAnswers = function () {
     names[$(this).attr('name')] += $(this).prop('checked') ? 1 : 0;
   });
   if (checkedRadios.length !== Object.keys(names).length) {
-    // $.each(names, function (key, val) {
-    //
-    //   $('#new_survey_attempt [type="radio"][name=' + val + ']:checked').val();
-    // });
+    $.each(names, function (key, val) {
+      if (val == 0) {
+        $('#new_survey_attempt [type="radio"][name=' + key + ']').closest('.hc-question-group').addClass('warning');
+      }
+    });
     console.log("something's undone: " + checkedRadios.length + " != " + Object.keys(names).length);
     console.log(names);
   } else {
