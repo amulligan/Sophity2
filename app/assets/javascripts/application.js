@@ -47,13 +47,13 @@
 //   });
 
 var validateAnswers = function () {
-  var names = [];
+  var names = {};
   var radios = $('#new_survey_attempt [type="radio"]');
   radios.each(function () {
     names[$(this).attr('name')] = true;
   });
-  if (radios.length !== names.length) {
-    console.log("something's undone: " + radios.length + " != " + names.length);
+  if (radios.length !== Object.keys(names).length) {
+    console.log("something's undone: " + radios.length + " != " + Object.keys(names).length);
   } else {
     console.log("all checked out");
   }
