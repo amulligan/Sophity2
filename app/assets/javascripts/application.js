@@ -47,7 +47,7 @@
 //   });
 
 var validateAnswers = function () {
-  console.log($('[type="radio"][name|="survey_attempt[answers_attributes]"]'));
+  console.log($('[type="radio"][name]'));
   // $('[type="radio"]').each(function(el) { //[name|="survey_attempt[answers_attributes]"]
   //   alert(el.closest('hc-question-group').find('hc-question-number').innerHTML + " = " + el.val());
   // });
