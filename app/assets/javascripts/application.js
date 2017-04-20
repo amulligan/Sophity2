@@ -51,10 +51,18 @@ var validateAnswers = function () {
   var radios = $('#new_survey_attempt [type="radio"]');
   var checkedRadios = $('#new_survey_attempt [type="radio"]:checked');
   radios.each(function () {
-    names[$(this).attr('name')] = true;
+    if (!($(this).attr('name') in names)) {
+      names[$(this).attr('name')] = 0;
+    }
+    names[$(this).attr('name')] += $(this).prop('checked') ? 1 : 0;
   });
   if (checkedRadios.length !== Object.keys(names).length) {
+    // $.each(names, function (key, val) {
+    //
+    //   $('#new_survey_attempt [type="radio"][name=' + val + ']:checked').val();
+    // });
     console.log("something's undone: " + checkedRadios.length + " != " + Object.keys(names).length);
+    console.log(names);
   } else {
     console.log("all checked out");
   }
