@@ -688,7 +688,7 @@ footer .hc-footer .hc-copyright {
   color: #e85c41;
   border: 2px solid #e85c41;
   transition: color 1.5s ease-in-out;
-  transition: border 1.5s ease-in-out;
+  transition: border-color 1.5s ease-in-out;
 }
 
 .card .warning-strong {
