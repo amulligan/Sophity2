@@ -51,7 +51,7 @@ var validateAnswers = function () {
   var radios = $('#new_survey_attempt [type="radio"]');
   radios.each(function () {
     names[$(this).attr('name')] = true;
-  };
+  });
   if (radios.length !== names.length) {
     console.log("something's undone");
   } else {
