@@ -56,11 +56,15 @@
   </div>
 
   <div class="hc-button-wrapper">
-       <% if @survey.id <6 %>
-        <%= f.submit "Continue", :type => :button, class: 'hc-button-next clickable' %>
-       <%else %>
-       <%= f.submit "Get Score", :type => :button, class: 'hc-button-next clickable' %>
-       <%end%>
+    <div class="hc-survey-validation modal card-fixed collapsed warning">
+      <p>Some questions haven't been answered.</p>
+    </div>
+
+    <% if @survey.id < 6 %>
+    <%= f.submit "Continue", :type => :button, class: 'hc-button-next clickable' %>
+    <% else %>
+    <%= f.submit "Get Score", :type => :button, class: 'hc-button-next clickable' %>
+    <% end %>
  </div>
 <% end -%>
 </section>

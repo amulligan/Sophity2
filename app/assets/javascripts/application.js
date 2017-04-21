@@ -66,6 +66,7 @@ var validateAnswers = function () {
         $('#new_survey_attempt [type="radio"][name="' + key + '"]').closest('.hc-question-group').find('.hc-question-number').removeClass('warning');
       }
     });
+    $('.hc-survey-validation').removeClass('collapsed');
     return false;
   }
 
@@ -74,6 +75,7 @@ var validateAnswers = function () {
 
 $(document).ready(function() {
   $('.hc-button-next').on('click', function(ev) {
+    $('.hc-survey-validation').addClass('collapsed');
     if (validateAnswers()) {
       $('form#new_survey_attempt').submit();
       return true;
