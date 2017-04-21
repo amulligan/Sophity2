@@ -35,30 +35,24 @@ class SurveyPdf < Prawn::Document
     content
   end
 
-  def cover
+  def cover    
     image "#{Rails.root}/app/assets/images/sophity-report-logo.png",  :at => [50,700], :width => 450
-        image "#{Rails.root}/app/assets/images/puzzle.png",  :at => [0,550], :width => 600
+    image "#{Rails.root}/app/assets/images/puzzle.png",  :at => [0,550], :width => 550
     move_cursor_to 300
     font "Helvetica", :style => :bold_italic, :size => 20
     text "Sophity Services Success Model Health Check"
     move_cursor_to 200
     font "Helvetica", :style => :normal, :size => 12
-    text "Prepared for: #{ @current_user.name}"
+    text "Prepared for: #{ @current_user.name}" "on "
+    text "#{ @current_user.name}"
+    text "#{ @current_user.job_title}"
+    text "#{ @current_user.company}"
+
   end
 
   def content
     start_new_page
-    page_1
-     start_new_page
-    page_2
-     start_new_page
-    page_3
-     start_new_page
-    page_4
-     start_new_page
-    page_your_results
-     start_new_page
-    page_details
+    page_your_result
   end
 
   def header
@@ -91,6 +85,7 @@ class SurveyPdf < Prawn::Document
 
 def page_details
 end
+
   def footer
       string = '#<page>'
   # Green page numbers 1 to 7
