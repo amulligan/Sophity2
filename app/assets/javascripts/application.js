@@ -85,5 +85,6 @@ $(document).ready(function() {
 
   $('#hc-report-button').on('click', function(ev) {
     $('.hc-report-response').removeClass('collapsed');
+    $(this).addClass('collapsed');
   });
 });
