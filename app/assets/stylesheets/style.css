@@ -395,11 +395,11 @@ section {
 }
 
 .collapsed {
-  height: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 0;
-  padding-bottom: 0;
+  height: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   visibility: hidden;
   transition: height 0.2s ease-out,
               padding 0.2s ease-out,
