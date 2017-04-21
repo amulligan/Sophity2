@@ -83,10 +83,9 @@ $(document).ready(function() {
     return false;
   });
 
-  $('.hc-user-info').on('submit', function(ev) {
+  $('.hc-user-info form').on('submit', function(ev) {
     ev.preventDefault();
-    $('.hc-report-response form').removeClass('collapsed');
-    $(this).addClass('collapsed');
-    $(this).prop('disabled', true);
+    $('.hc-report-response').removeClass('collapsed');
+    $(this).find('#hc-report-button').prop('disabled', true);
   });
 });
