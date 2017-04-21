@@ -83,7 +83,8 @@ $(document).ready(function() {
     return false;
   });
 
-  $('#hc-report-button').on('click', function(ev) {
+  $('.hc-user-info').on('submit', function(ev) {
+    ev.preventDefault();
     $('.hc-report-response').removeClass('collapsed');
     $(this).addClass('collapsed');
     $(this).prop('disabled', true);
