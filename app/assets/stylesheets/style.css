@@ -378,17 +378,16 @@ section {
               margin 0.2s ease-out;
 }
 
-/*.modal.collapsed {
-  padding-top: 0;
-  padding-bottom: 0;
-  transition: height 0.5s ease-in-out;
+.hc-survey-validation {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0.25em 10% 0.25em;
 }
 
-.modal:not(.collapsed) {
+.hc-report-response {
   margin-top: 1.5em;
   padding: 0.5em 10% 1.5em;
-  transition: height 0.5s ease-in-out;
-}*/
+}
 
 .modal p {
   text-align: center;
