@@ -19,7 +19,7 @@
               @topQuestion = 35
             end
         %>
-        <p> <%= @topQuestion.to_s %> of 45 completed (<%= ((@topQuestion.to_i / 45).round).to_s %>%)
+        <p> <%= @topQuestion.to_s %> of 45 completed (<%= (@topQuestion.to_i / 0.45).round.to_s %>%)
       </p>
     </div>
   <%end%>
