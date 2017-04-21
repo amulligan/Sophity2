@@ -6,20 +6,20 @@
   <% if @survey.id > 1 %>
     <div class='hc-progress-bar card-fixed'>
       <div class='hc-progress'></div>
-        <%  @topQuestion = 1
+        <%  @topQuestion = 0
             if @survey.id == 2
-              @topQuestion = 7
+              @topQuestion = 6
             elsif @survey.id == 3
-              @topQuestion = 14
+              @topQuestion = 13
             elsif @survey.id == 4
-              @topQuestion = 18
+              @topQuestion = 17
             elsif @survey.id == 5
-              @topQuestion = 26
+              @topQuestion = 25
             elsif @survey.id == 6
-              @topQuestion = 36
+              @topQuestion = 35
             end
         %>
-        <p> <%= @topQuestion.to_s %> of 45 completed (<%= (@topQuestion / 45).round.to_s %>%)
+        <p> <%= @topQuestion.to_s %> of 45 completed (<%= ((@topQuestion.to_i / 45).round).to_s %>%)
       </p>
     </div>
   <%end%>
