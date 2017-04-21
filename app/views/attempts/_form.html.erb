@@ -3,26 +3,26 @@
   <h2>
     <%= @survey.name + " \u{2023} " + @attempt.survey.description %>
   </h2>
-  <% if @survey.id > 1 %>
-    <div class='hc-progress-bar card-fixed'>
-      <div class='hc-progress'></div>
-        <%  @topQuestion = 0
-            if @survey.id == 2
-              @topQuestion = 6
-            elsif @survey.id == 3
-              @topQuestion = 13
-            elsif @survey.id == 4
-              @topQuestion = 17
-            elsif @survey.id == 5
-              @topQuestion = 25
-            elsif @survey.id == 6
-              @topQuestion = 35
-            end
-        %>
-        <p> <%= @topQuestion.to_s %> of 45 completed (<%= (@topQuestion.to_i / 0.45).round.to_s %>%)
-      </p>
-    </div>
-  <%end%>
+  <%  if @survey.id > 1
+        @topQuestion = 0
+        if @survey.id == 2
+          @topQuestion = 6
+        elsif @survey.id == 3
+          @topQuestion = 13
+        elsif @survey.id == 4
+          @topQuestion = 17
+        elsif @survey.id == 5
+          @topQuestion = 25
+        elsif @survey.id == 6
+          @topQuestion = 35
+        end
+  %>
+        <div class='hc-progress-bar card-fixed'>
+          <div class='hc-progress' style='transform: scaleX(<%= (2 * @topQuestion.to_i / 45).to_s %>)'></div>
+            <p> <%= @topQuestion.to_s %> of 45 completed (<%= (@topQuestion.to_i / 0.45).round.to_s %>%)
+          </p>
+        </div>
+  <% end %>
 </div>
 
 <%= form_for(@attempt, url: attempt_scope(@attempt)) do |f| %>
