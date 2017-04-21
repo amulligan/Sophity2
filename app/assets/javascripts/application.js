@@ -85,7 +85,7 @@ $(document).ready(function() {
 
   $('.hc-user-info').on('submit', function(ev) {
     ev.preventDefault();
-    $('.hc-report-response').removeClass('collapsed');
+    $('.hc-report-response form').removeClass('collapsed');
     $(this).addClass('collapsed');
     $(this).prop('disabled', true);
   });
