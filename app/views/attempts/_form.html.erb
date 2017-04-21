@@ -18,7 +18,7 @@
         end
   %>
         <div class='hc-progress-bar card-fixed'>
-          <div class='hc-progress' style='transform: scaleX(<%= (2 * @topQuestion.to_i / 45).to_s %>)'></div>
+          <div class='hc-progress' style='transform: scaleX(<%= (2 * @topQuestion.to_f / 45).to_s %>);'></div>
             <p> <%= @topQuestion.to_s %> of 45 completed (<%= (@topQuestion.to_i / 0.45).round.to_s %>%)
           </p>
         </div>
