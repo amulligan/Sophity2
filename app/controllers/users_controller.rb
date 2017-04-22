@@ -22,20 +22,23 @@ class UsersController < ApplicationController
         @user.save
         log_in user
        end
+
         #UserNotifier.send_signup_email(@user).deliver
-      redirect_to view_report_path(participant_id: current_user.id)
+      #redirect_to view_report_path(participant_id: current_user.id)
   end
 
 def change_name
     @user = User.find_by(email: user_params[:email].downcase)
+    @user.report_requested = false
     if @user
+      @user.update_attributes(user_params)
       log_in @user
     else
       @user = User.new(email: user_params[:email].downcase)
       @user.save
       log_in @user
      end
-    redirect_to view_report_path(participant_id: @user.id)
+    #redirect_to view_report_path(participant_id: @user.id)
   end
 
   def edit
@@ -45,6 +48,8 @@ def change_name
   def update
     @user = User.find(params[:id])
     @user.report_requested = true
+    params[:report_requested] = true
+
     if @user.update_attributes(user_params)
        redirect_to view_report_path(participant_id: @user.id)
     else

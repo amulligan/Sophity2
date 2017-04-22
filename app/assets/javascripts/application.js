@@ -85,10 +85,15 @@ $(document).ready(function() {
 
   $('.hc-user-info form').on('submit', function(ev) {
     //ev.preventDefault();
-    if (document.getElementById('user_report_requested').value) {
+    if (document.getElementById('user_report_requested').value == true) {
       ev.preventDefault();
-      $(this).find('#hc-report-button').prop('disabled', true);
+       $(this).find('#hc-report-button').prop('disabled', true);
     }
+    else {
+      document.getElementById('user_report_requested').value = true;
+       $(this).find('#hc-report-button').prop('disabled', true);
+    }
+   
     //console.log('here   ' + document.getElementById('user_job_title').value);
 
     //$('.hc-report-response').removeClass('collapsed');

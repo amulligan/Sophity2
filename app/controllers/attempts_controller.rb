@@ -58,7 +58,8 @@ class AttemptsController < ApplicationController
 
   def new
     @participant = current_user
-
+    @participant.report_requested = false
+    @participant.save
     unless @survey.nil?
       @attempt = @survey.attempts.new
       @attempt.answers.build
@@ -77,6 +78,11 @@ class AttemptsController < ApplicationController
       @participant = current_user
       render :new
     end
+  end
+
+  def restart
+    Survey::Attempt.where(participant_id: current_user.id).delete_all
+    #redirect_to 
   end
 
   def delete_user_attempts
