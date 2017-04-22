@@ -17,3 +17,6 @@
 /tmp
 sendgrid.env
 sendgrid.env
+
+# Ignore application configuration
+/config/application.yml

@@ -23,7 +23,7 @@ class UsersController < ApplicationController
         log_in user
        end
 
-        #UserNotifier.send_signup_email(@user).deliver
+      UserNotifier.send_signup_email(@user).deliver
       #redirect_to view_report_path(participant_id: current_user.id)
   end
 
@@ -89,7 +89,7 @@ def change_name
        @gradeLetter = "F"
     end
     if current_user.send_notification
-          #UserNotifier.send_signup_email(@current_user).deliver
+        UserNotifier.send_signup_email(@current_user).deliver
     end
     filename = 'SophityReport.pdf'
     respond_to do |format|
