@@ -126,14 +126,54 @@ class SurveyPdf < Prawn::Document
 
   def page_6
     text "Sophity Services Success Health Check - #{@current_user.company} Results", :color => "0000ff", :size => 16
-    move_cursor_to 550
-    text "Total Grade: #{ @gradeLetter }", :color => "0000ff", :size => 16
+    move_down 20 
     main_build
+    move_down 20
+    text "Total Grade: #{ @gradeLetter }", :color => "0000ff", :size => 16
+    move_down 20
+    text "Comments: ", :size => 12
+    text "Your grade of #{ @gradeLetter } indicates that", :size => 12
+    move_down 20
+  
     footer
   end
 
    def page_8
     text "About Sophity LLC", :color => "0000ff", :size => 16
+    move_down 20
+    text "Sophity knows first hand that running a growing IT consulting business is challenging. People don’t scale well, sales are competitive, and poor visibility into practice and project health can wreck a business forecast or client relationship over night. If your practice is embedded in a software or hardware business, you have the added challenges of ensuring your mission is aligned with the corporate mission, managing through conflicts with sales, marketing, and product management, and ensuring your work does not adversely affect overall corporate financial reporting. (Did I hear you say “VSOE?”)", :size => 12
+    move_down 20
+    text "At Sophity, we are committed to partnering with our customers – members of the services leadership and delivery teams – to ensure you are wildly successful in your endeavor to build a world-class consulting business.", :size => 12
+    move_down 20
+    text "Sophity provides software and consulting services designed to help you optimize the 6 dimensions of a success consulting practice and your business.", :size => 12
+    move_down 20
+    text "Clients who work with us:", :size => 12
+    move_down 20
+    text " Increase sales by defining an effective Services Portfolio that monetizes what you do.",  :size => 12, :indent_paragraphs => 30
+    text "Improve margins and expedite new hire onboarding by developing a Repeatable Delivery Framework that ensures consistent quality across your team.",  :size => 12, :indent_paragraphs => 30
+    text "Reduce friction, improve relationships, and improve employee and customer satisfaction by partnering with sales and marketing to define a Go To Market Strategy that accelerates sales while giving you the command and control you need to ensure a high-level customer satisfaction from every project.",  :size => 12, :indent_paragraphs => 30
+    text "Reduce voluntary attrition and increase employee satisfaction by developing the programs you need to find, hire, and retain the best people for your team.",  :size => 12, :indent_paragraphs => 30
+    text" Look like heroes to executive management when partnerships with members of operations and finance to align business strategies and ensure the right governance, controls, and reporting are in place to allow you to have the visibility you need into your practice’s health.",  :size => 12, :indent_paragraphs => 30
+    move_down 20
+    text "Contact us today to talk about how we can help you build a fast growing, profitable, and truly world-class consulting business.", :size => 12
+    move_down 10
+    text "Phone: 978-265-2378 ", :size => 12
+    move_down 10
+    text "Email: info@sophity.com", :size => 12
+    move_down 10
+    text "<u><link href='www.sophity.com'>www.sophity.com" +
+         "</link></u>", :color => "0000ff",
+         :inline_format => true
+    move_down 10
+    text "<u><link href='https://www.facebook.com/sophity1/'>https://www.facebook.com/sophity1/" "</link></u>", :color => "0000ff",
+         :inline_format => true
+    move_down 10
+    text "<u><link href='https://twitter.com/SophityPSA'>https://twitter.com/SophityPSA" "</link></u>", :color => "0000ff",
+         :inline_format => true
+    move_down 10
+    text "<u><link href='https://www.linkedin.com/company/sophity-llc/'>https://www.linkedin.com/company/sophity-llc/" "</link></u>", :color => "0000ff",
+         :inline_format => true
+
     footer
   end
 
