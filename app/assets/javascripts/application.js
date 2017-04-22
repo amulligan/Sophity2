@@ -84,8 +84,14 @@ $(document).ready(function() {
   });
 
   $('.hc-user-info form').on('submit', function(ev) {
-    ev.preventDefault();
-    $('.hc-report-response').removeClass('collapsed');
-    $(this).find('#hc-report-button').prop('disabled', true);
+    //ev.preventDefault();
+    if (document.getElementById('user_report_requested').value) {
+      ev.preventDefault();
+      $(this).find('#hc-report-button').prop('disabled', true);
+    }
+    //console.log('here   ' + document.getElementById('user_job_title').value);
+
+    //$('.hc-report-response').removeClass('collapsed');
+    //$(this).find('#hc-report-button').prop('disabled', true);
   });
 });

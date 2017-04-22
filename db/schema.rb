@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20170329141434) do
     t.string   "company"
     t.string   "phone"
     t.boolean  "send_notification"
+    t.boolean  "report_requested"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end

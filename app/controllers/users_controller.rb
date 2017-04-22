@@ -44,8 +44,9 @@ def change_name
 
   def update
     @user = User.find(params[:id])
+    @user.report_requested = true
     if @user.update_attributes(user_params)
-       render 'download'
+       redirect_to view_report_path(participant_id: @user.id)
     else
       render 'edit'
     end
@@ -85,7 +86,7 @@ def change_name
     if current_user.send_notification
           #UserNotifier.send_signup_email(@current_user).deliver
     end
-    filename = 'SophityReport'<<current_user.company<<'.pdf'
+    filename = 'SophityReport.pdf'
     respond_to do |format|
     format.html # show.html.erb
     format.pdf do
@@ -99,7 +100,7 @@ def change_name
 
   private
    def user_params
-    params.require(:user).permit(:name, :email,:company,:job_title,:phone,:send_notification)
+    params.require(:user).permit(:name, :email,:company,:job_title,:phone,:send_notification, :report_requested)
    end
 
 # Confirms a logged-in user.
@@ -115,5 +116,7 @@ def change_name
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
+
+   
 
 end

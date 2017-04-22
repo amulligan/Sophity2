@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :company
       t.string :phone
       t.boolean :send_notification
+      t.boolean :report_requested
       t.timestamps null: false
     end
   end
