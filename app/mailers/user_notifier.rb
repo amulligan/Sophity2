@@ -1,11 +1,11 @@
 class UserNotifier < ActionMailer::Base
-  default :from => 'admin@sophity.com'
+  default :from => 'The Sophity Team <admin@sophity.com>'
  
   # send a signup email to the user, pass in the user object that   contains the user's email address
   def send_signup_email(user)
     @user = user
-    mail( :to => 'andrastanciu212@gmail.com',
-    :subject => 'Thanks for signing up for our amazing app' )
+    mail( :to => @user.email,
+    :subject => 'Your Sophity Healthcheck Report' )
   end
 
   def send_admin_report(user)
