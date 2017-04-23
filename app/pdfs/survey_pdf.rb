@@ -116,6 +116,7 @@ class SurveyPdf < Prawn::Document
     font "Helvetica", :color => "345A8A", :size => 16 do
       text "The Sophity Services Success Model"
     end
+
     move_down 10
     text "Sophity has developed the Sophity 6-Point Services Success Model in order to provide a framework our customers use to build their business plan for a world-class consulting business."
     move_down 20
@@ -142,41 +143,47 @@ class SurveyPdf < Prawn::Document
 
     line_y = cursor
     text "•"
-    bounding_box([15, line_y], :width => 417) do
+    move_cursor_to line_y
+    span(417, :position => :right) do
       text "Services Go To Market Strategy: The Go To Market (GTM) Strategy evaluation looks at the degree to which there is a plan for how sales will be conducted and to whom. We look at the marketing plan, sales model, and sales team, among other things."
     end
     move_down 18
 
     line_y = cursor
     text "•"
-    bounding_box([15, line_y], :width => 417) do
+    move_cursor_to line_y
+    span(417, :position => :right) do
       text "Services Portfolio: The Services Portfolio evaluation assesses the degree to which clear, easy to sell services offerings have been developed. We look at the alignment of the offerings to the services team’s skills and capabilities, the market need, and the sell-ability of each."
     end
     move_down 18
 
     line_y = cursor
     text "•"
-    bounding_box([15, line_y], :width => 417) do
+    move_cursor_to line_y
+    span(417, :position => :right) do
       text "Repeatable Delivery Framework: The Repeatable Delivery Framework assessment reviews the tools, templates, and processes that have been developed for each service offering in the services portfolio and how they are used within services to improve delivery quality and scalability, new hire and partner onboarding, and even the sales process.", :size => 12
     end
     move_down 18
 
     line_y = cursor
     text "•"
-    bounding_box([15, line_y], :width => 417) do
+    move_cursor_to line_y
+    span(417, :position => :right) do
       text "The Team: The Team assessment looks at the alignment of skills represented on the team and the stated mission of the services department, as well as the needs expressed by the market. Additionally, we assess how well services management communicates with, empowers, and invests in the team."
     end
     move_down 18
 
     line_y = cursor
     text "•"
-    bounding_box([15, line_y], :width => 417) do
+    move_cursor_to line_y
+    span(417, :position => :right) do
       text "Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals."
     end
     move_down 18
 
     move_down 20
-    bounding_box([45, cursor], :width => 342) do
+    move_cursor_to line_y
+    span(417, :position => :right) do
       image "#{Rails.root}/app/assets/images/Categories.png", :width => 342, :position => :center
       stroke_bounds
     end
