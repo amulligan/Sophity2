@@ -218,7 +218,7 @@ class SurveyPdf < Prawn::Document
     font "Helvetica", :style => :normal, :size => 12
     header_string = "Sophity Services Success Model Health Check - #{@current_user.company}"
     header_options = {
-      at: [bounds.right - 300, bounds.top + 12],
+      at: [bounds.right - 300, bounds.top + 22],
       width: 300,
       align: :right,
       page_filter: (2..8),
@@ -242,7 +242,7 @@ class SurveyPdf < Prawn::Document
     }
     footer_options = {
       at: [bounds.left, -8],
-      width: 200,
+      width: 216,
       align: :left,
       page_filter: (2..8),
       start_count_at: 2,
