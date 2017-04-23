@@ -124,7 +124,7 @@ class SurveyPdf < Prawn::Document
     move_down 10
     text "Each component is comprised of a number of attributes; Each component is described here.", :size => 12
     move_down 10
-    text "\2022".force_encoding("UTF-8") + " - Services Business Strategy: Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management." , :size => 12
+    text "\u{2022}" + "Services Business Strategy: Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management." , :size => 12
     start_new_page
     text " - Services Go To Market Strategy: The Go To Market (GTM) Strategy evaluation looks at the degree to which there is a plan for how sales will be conducted and to whom. We look at the marketing plan, sales model, and sales team, among other things." , :size => 12
     text " - Services Portfolio: The Services Portfolio evaluation assesses the degree to which clear, easy to sell services offerings have been developed. We look at the alignment of the offerings to the services team’s skills and capabilities, the market need, and the sell-ability of each.", :size => 12
