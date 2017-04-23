@@ -4,7 +4,12 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>The following user <%= @user.name %> completed a survey and requested a Healtcheck Report!</h1>
+  	<p> The following person has complete the health check:</p>
+  	<p> Name:<%= @user.name %> </p>
+	<p>Title:<%= @user.job_title %></p>
+    <p>Organization:<%= @user.company %></p>
+    <p>Email Address:<%= @user.email %></p>
+    <p>Phone Number:<%= @user.phone %></p>
     <p></p>
   </body>
 </html>

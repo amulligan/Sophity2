@@ -5,12 +5,12 @@ class UserNotifier < ActionMailer::Base
   def send_signup_email(user)
     @user = user
     mail( :to => @user.email,
-    :subject => 'Your Sophity Healthcheck Report' )
+    :subject => 'Health Check Request' )
   end
 
   def send_admin_report(user)
   	@user = user
    mail( :to => 'amulligan@sophity.com',
-    :subject => 'Sophity Healthcheck Report Request' )
+    :subject => 'Health Check Request' )
   end
 end

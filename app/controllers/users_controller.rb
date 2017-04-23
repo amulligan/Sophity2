@@ -21,10 +21,7 @@ class UsersController < ApplicationController
         @user = User.new(email: params[:email].downcase)
         @user.save
         log_in user
-       end
-
-      #UserNotifier.send_signup_email(@user).deliver
-      #redirect_to view_report_path(participant_id: current_user.id)
+       end     
   end
 
 def change_name
@@ -38,7 +35,7 @@ def change_name
       @user.save
       log_in @user
      end
-    #redirect_to view_report_path(participant_id: @user.id)
+    
   end
 
   def edit
@@ -49,7 +46,10 @@ def change_name
     @user = User.find(params[:id])
     @user.report_requested = true
     params[:report_requested] = true
-
+     if current_user.send_notification
+        UserNotifier.send_signup_email(@current_user).deliver_now
+        UserNotifier.send_admin_report(@current_user).deliver_now
+    end
     if @user.update_attributes(user_params)
        redirect_to view_report_path(participant_id: @user.id)
     else
@@ -62,7 +62,6 @@ def change_name
     @proficient = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [3 .. 5])
     @improve = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [2.3 .. 2.9])
     @deltas = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [1 .. 2])
-    #@topConcerns = Survey::Question.find_by_sql ["select sq.text  FROM  survey_questions sq  join survey_answers sa on sa.question_id = sq.id  join survey_surveys s on sq.survey_id = s.id join survey_attempts sat on sa.attempt_id = sat.id where sa.option_id <=3 and sat.participant_id = 1;", {:participant_id=> current_user.id}];
     @total_score = @all_attempts.sum(:score)
     @numericGrade = (@total_score * (-1)).to_f/ 45
     if (@numericGrade >= 4.7)
@@ -92,10 +91,11 @@ def change_name
      else
        @gradeLetter = "F"
     end
-    if current_user.send_notification
-        #UserNotifier.send_signup_email(@current_user).deliver
+     if current_user.send_notification
+        UserNotifier.send_signup_email(@current_user).deliver_now
+        UserNotifier.send_admin_report(@current_user).deliver_now
     end
-    filename = 'SophityReport.pdf'
+    filename = 'SophityHealthCheckReport.pdf'
     respond_to do |format|
     format.html # show.html.erb
     format.pdf do
