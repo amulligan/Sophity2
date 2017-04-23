@@ -52,19 +52,19 @@ class SurveyPdf < Prawn::Document
         font "DejaVuSans", :style => :bold_italic, :size => 20
         text "Sophity Services Success Model Health Check"
         move_down 30
-        font :style => :normal, :size => 12
+        font "DejaVuSans", :style => :normal, :size => 12
         text "Prepared for:"
-        move_down 12
+        move_down 14
         text "#{ @current_user.name}"
         move_down 6
         text "#{ @current_user.job_title}"
         move_down 6
         text "#{ @current_user.company}"
-        move_down 12
+        move_down 14
         text "Prepared on: #{Time.now.strftime('%B %d, %Y')}"
       end
       bounding_box([72, 90], :width => 468, :height => 45) do
-        font :style => :normal, :size => 8
+        font "DejaVuSans", :style => :normal, :size => 8
         text "© 2016 Sophity LLC. All Rights Reserved. Cannot be used all or in part without express written permission from Sophity LLC."
       end
     end
@@ -93,7 +93,8 @@ class SurveyPdf < Prawn::Document
 
   def header
     #This inserts an image in the pdf file and sets the size of the image
-    text "Sophity Services Success Model Health Check - #{@current_user.company}", :align => :center
+    font "DejaVuSans", :style => :normal, :size => 12
+    text "Sophity Services Success Model Health Check - #{@current_user.company}", :align => :right
   end
 
   def page_2
