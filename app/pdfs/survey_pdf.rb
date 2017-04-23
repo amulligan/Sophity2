@@ -192,7 +192,11 @@ class SurveyPdf < Prawn::Document
 
   def about_survey
     add_dest "page5", dest_xyz(bounds.absolute_left, y)
-    text "Sophity Services Success Health Check – Introduction", :color => "0000ff", :size => 16
+
+    font "Helvetica", :size => 16 do
+      text "Sophity Services Success Health Check – Introduction", :color => "345A8A"
+    end
+
     move_down 10
     text "Sophity presented a series of statements in the form of a survey and asked the participant to rate the degree to which s/he agreed with each statement. The questions were framed such that the more you agreed with the statement in context with the reality of your current business, the more points you received for your response."
     move_down 20
@@ -212,7 +216,11 @@ class SurveyPdf < Prawn::Document
 
   def your_scores
     add_dest "page6", dest_xyz(bounds.absolute_left, y)
-    text "Sophity Services Success Health Check - #{@current_user.company} Results", :color => "0000ff", :size => 16
+
+    font "Helvetica", :size => 16 do
+      text "Sophity Services Success Health Check - Your Results", :color => "345A8A"
+    end
+
     move_down 20
     build_results_table
     move_down 40
@@ -234,7 +242,11 @@ class SurveyPdf < Prawn::Document
 
    def outro_section
     add_dest "page8", dest_xyz(bounds.absolute_left, y)
-    text "About Sophity LLC", :color => "0000ff", :size => 16
+
+    font "Helvetica", :size => 16 do
+      text "About Sophity LLC", :color => "345A8A"
+    end
+
     move_down 20
     text "Sophity knows first hand that running a growing IT consulting business is challenging. People don’t scale well, sales are competitive, and poor visibility into practice and project health can wreck a business forecast or client relationship over night. If your practice is embedded in a software or hardware business, you have the added challenges of ensuring your mission is aligned with the corporate mission, managing through conflicts with sales, marketing, and product management, and ensuring your work does not adversely affect overall corporate financial reporting. (Did I hear you say “VSOE?”)", :size => 12
     move_down 10
@@ -274,7 +286,7 @@ class SurveyPdf < Prawn::Document
     font "Helvetica", :style => :normal, :size => 10
     header_string = "Sophity Services Success Model Health Check - #{@current_user.company}"
     header_options = {
-      at: [bounds.right - 300, bounds.top + 24],
+      at: [bounds.right - 300, bounds.top + 32],
       width: 300,
       align: :right,
       page_filter: (2..8),
