@@ -51,7 +51,7 @@ class SurveyPdf < Prawn::Document
       image "#{Rails.root}/app/assets/images/puzzle.png",  :at => [25, 610], :width => (612 - 50)
       fill_color "000000"
       bounding_box([72, 342], :width => 468, :height => 252) do
-        font "Helvetica", :style => :bold_italic, :size => 20
+        font "DejaVu Sans", :style => :bold_italic, :size => 20
         text "Sophity Services Success Model Health Check"
         move_down 30
         font "Helvetica", :style => :normal, :size => 12
