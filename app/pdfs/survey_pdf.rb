@@ -38,8 +38,27 @@ class SurveyPdf < Prawn::Document
     font_families.update(
       "Avenir" => {
         :normal => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Avenir-Light.otf"
+        :bold => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Avenir-Black.otf"
+        :bold_italic => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Avenir-BlackOblique.otf"
       }
     )
+
+    font_families.update(
+      "Calibri" => {
+        :normal => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Calibri.ttf"
+        :bold => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Calibri-Bold.ttf"
+      }
+    )
+
+    font_families.update(
+      "Cambria" => {
+        :normal => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Cambria.ttc"
+        :bold => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Cambria-Bold.ttf"
+        :italic => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Cambria-Italic.ttf"
+      }
+    )
+
+    #Symbol is already included in Prawn
 
     cover
     content
