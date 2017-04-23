@@ -177,10 +177,10 @@ class SurveyPdf < Prawn::Document
     move_down 20
     text "The components of the Sophity 6-Point Services Success Model are pictured below."
 
-    move_down 20
+    move_down 30
     image "#{Rails.root}/app/assets/images/6Dimensions.png",  :width => 342, :position => :center
 
-    move_down 20
+    move_down 30
     text "Each component is comprised of a number of attributes:"
     move_down 10
 
@@ -313,7 +313,7 @@ class SurveyPdf < Prawn::Document
     span(417, :position => :right) do
       text "Increase sales by defining an effective Services Portfolio that monetizes what you do."
     end
-    move_down 18
+    move_down 12
 
     line_y = cursor
     text "•"
@@ -321,7 +321,7 @@ class SurveyPdf < Prawn::Document
     span(417, :position => :right) do
       text "Improve margins and expedite new hire onboarding by developing a Repeatable Delivery Framework that ensures consistent quality across your team."
     end
-    move_down 18
+    move_down 12
 
     line_y = cursor
     text "•"
@@ -329,7 +329,7 @@ class SurveyPdf < Prawn::Document
     span(417, :position => :right) do
       text "Reduce friction, improve relationships, and improve employee and customer satisfaction by partnering with sales and marketing to define a Go To Market Strategy that accelerates sales while giving you the command and control you need to ensure a high-level customer satisfaction from every project."
     end
-    move_down 18
+    move_down 12
 
     line_y = cursor
     text "•"
@@ -337,7 +337,7 @@ class SurveyPdf < Prawn::Document
     span(417, :position => :right) do
       text "Reduce voluntary attrition and increase employee satisfaction by developing the programs you need to find, hire, and retain the best people for your team."
     end
-    move_down 18
+    move_down 12
 
     line_y = cursor
     text "•"
@@ -345,26 +345,17 @@ class SurveyPdf < Prawn::Document
     span(417, :position => :right) do
       text "Look like heroes to executive management when partnerships with members of operations and finance to align business strategies and ensure the right governance, controls, and reporting are in place to allow you to have the visibility you need into your practice’s health."
     end
-    move_down 18
+    move_down 12
 
     text "Contact us today to talk about how we can help you build a fast growing, profitable, and truly world-class consulting business."
     move_down 10
-    text "Phone: 978-265-2378 "
-    move_down 10
-    text "Email: info@sophity.com"
-    move_down 10
-    text "<u><link href='www.sophity.com'>www.sophity.com" +
-         "</link></u>", :color => "0000ff",
-         :inline_format => true
-    move_down 10
-    text "<u><link href='https://www.facebook.com/sophity1/'>https://www.facebook.com/sophity1/" "</link></u>", :color => "0000ff",
-         :inline_format => true
-    move_down 10
-    text "<u><link href='https://twitter.com/SophityPSA'>https://twitter.com/SophityPSA" "</link></u>", :color => "0000ff",
-         :inline_format => true
-    move_down 10
-    text "<u><link href='https://www.linkedin.com/company/sophity-llc/'>https://www.linkedin.com/company/sophity-llc/" "</link></u>", :color => "0000ff",
-         :inline_format => true
+
+    table [
+      ["Phone: 978-265-2378", "<u><link href='https://www.facebook.com/sophity1/'>https://www.facebook.com/sophity1/</link></u>"],
+      ["Email: info@sophity.com", "<u><link href='https://twitter.com/SophityPSA'>https://twitter.com/SophityPSA</link></u>"],
+      ["<u><link href='www.sophity.com'>www.sophity.com</link></u>", "<u><link href='https://www.linkedin.com/company/sophity-llc/'>https://www.linkedin.com/company/sophity-llc/</link></u>"]
+    ], :inline_format => true
+    
   end
 
 
