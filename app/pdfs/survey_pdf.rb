@@ -118,7 +118,10 @@ class SurveyPdf < Prawn::Document
     move_down 20
     text "The components of the Sophity 6-Point Services Success Model are:", :size => 12
     move_down 10
-    image "#{Rails.root}/app/assets/images/6Dimensions.png",  :width => 400
+    bounding_box([16, cursor], :width => 400) do
+      image "#{Rails.root}/app/assets/images/6Dimensions.png",  :width => 400
+      stroke_bounds
+    end
     move_down 10
     text "Each component is comprised of a number of attributes; Each component is described here.", :size => 12
     move_down 10
