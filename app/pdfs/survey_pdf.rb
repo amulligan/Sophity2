@@ -49,10 +49,10 @@ class SurveyPdf < Prawn::Document
       image "#{Rails.root}/app/assets/images/puzzle.png",  :at => [25, 610], :width => (612 - 50)
       fill_color "000000"
       bounding_box([72, 342], :width => 468, :height => 252) do
-        font "DejaVu Sans", :style => :bold_italic, :size => 20
+        font "Helvetica", :style => :bold_italic, :size => 20
         text "Sophity Services Success Model Health Check"
         move_down 30
-        font "DejaVu Sans", :style => :normal, :size => 12
+        font "Helvetica", :style => :normal, :size => 12
         text "Prepared for:"
         move_down 14
         text "#{ @current_user.name}"
@@ -64,7 +64,7 @@ class SurveyPdf < Prawn::Document
         text "Prepared on: #{Time.now.strftime('%B %d, %Y')}"
       end
       bounding_box([72, 90], :width => 468, :height => 45) do
-        font "DejaVu Sans", :style => :normal, :size => 8
+        font "Helvetica", :style => :normal, :size => 8
         text "© 2016 Sophity LLC. All Rights Reserved. Cannot be used all or in part without express written permission from Sophity LLC."
       end
     end
@@ -93,7 +93,7 @@ class SurveyPdf < Prawn::Document
 
   def header
     #This inserts an image in the pdf file and sets the size of the image
-    font "DejaVu Sans", :style => :normal, :size => 12
+    font "Helvetica", :style => :normal, :size => 12
     text "Sophity Services Success Model Health Check - #{@current_user.company}", :align => :right
   end
 
