@@ -117,7 +117,6 @@ class SurveyPdf < Prawn::Document
       text "The Sophity Services Success Model"
     end
     move_down 10
-    span(432) do
     text "Sophity has developed the Sophity 6-Point Services Success Model in order to provide a framework our customers use to build their business plan for a world-class consulting business."
     move_down 20
     text "We use this model to evaluate the current health of a consulting practice and identify opportunities to improve your business model and execution plan. We work with our customers to develop a roadmap of change that drives the business to growth and world-class status."
@@ -144,14 +143,14 @@ class SurveyPdf < Prawn::Document
     line_y = cursor
     text "•"
     bounding_box([15, line_y], :width => 417) do
-      text "Services Go To Market Strategy: The Go To Market (GTM) Strategy evaluation looks at the degree to which there is a plan for how sales will be conducted and to whom. We look at the marketing plan, sales model, and sales team, among other things." , :size => 12
+      text "Services Go To Market Strategy: The Go To Market (GTM) Strategy evaluation looks at the degree to which there is a plan for how sales will be conducted and to whom. We look at the marketing plan, sales model, and sales team, among other things."
     end
     move_down 18
 
     line_y = cursor
     text "•"
     bounding_box([15, line_y], :width => 417) do
-      text "Services Portfolio: The Services Portfolio evaluation assesses the degree to which clear, easy to sell services offerings have been developed. We look at the alignment of the offerings to the services team’s skills and capabilities, the market need, and the sell-ability of each.", :size => 12
+      text "Services Portfolio: The Services Portfolio evaluation assesses the degree to which clear, easy to sell services offerings have been developed. We look at the alignment of the offerings to the services team’s skills and capabilities, the market need, and the sell-ability of each."
     end
     move_down 18
 
@@ -165,14 +164,14 @@ class SurveyPdf < Prawn::Document
     line_y = cursor
     text "•"
     bounding_box([15, line_y], :width => 417) do
-      text "The Team: The Team assessment looks at the alignment of skills represented on the team and the stated mission of the services department, as well as the needs expressed by the market. Additionally, we assess how well services management communicates with, empowers, and invests in the team." , :size => 12
+      text "The Team: The Team assessment looks at the alignment of skills represented on the team and the stated mission of the services department, as well as the needs expressed by the market. Additionally, we assess how well services management communicates with, empowers, and invests in the team."
     end
     move_down 18
 
     line_y = cursor
     text "•"
     bounding_box([15, line_y], :width => 417) do
-      text "Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals." , :size => 12
+      text "Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals."
     end
     move_down 18
 
@@ -189,9 +188,9 @@ class SurveyPdf < Prawn::Document
     add_dest "page5", dest_xyz(bounds.absolute_left, y)
     text "Sophity Services Success Health Check – Introduction", :color => "0000ff", :size => 16
     move_down 10
-    text "Sophity presented a series of statements in the form of a survey and asked the participant to rate the degree to which s/he agreed with each statement. The questions were framed such that the more you agreed with the statement in context with the reality of your current business, the more points you received for your response.", :size => 12
+    text "Sophity presented a series of statements in the form of a survey and asked the participant to rate the degree to which s/he agreed with each statement. The questions were framed such that the more you agreed with the statement in context with the reality of your current business, the more points you received for your response."
     move_down 20
-    text "Each statement was worth five (5) points. Points were awarded as follows:", :size => 12
+    text "Each statement was worth five (5) points. Points were awarded as follows:"
     move_down 20
     text "        Strongly Agree: 5 points ", :size => 12, :indent_paragraphs => 80
     text "        Agree: 4 points ", :size => 12, :indent_paragraphs => 80
@@ -199,7 +198,7 @@ class SurveyPdf < Prawn::Document
     text "        Disagree: 2 points ", :size => 12, :indent_paragraphs => 80
     text "        Strongly Disagree: 1 point ", :size => 12, :indent_paragraphs => 80
     move_down 20
-    text "A letter grade was provided for each of the six components of the Sophity 6-Point Services Success Model. An overall grade for your practice was also provided. Grades were determined by the number of points awarded per the information above. Grades were calculated as follows: ", :size => 12
+    text "A letter grade was provided for each of the six components of the Sophity 6-Point Services Success Model. An overall grade for your practice was also provided. Grades were determined by the number of points awarded per the information above. Grades were calculated as follows: "
     move_down 20
     image "#{Rails.root}/app/assets/images/scores.png", :width => 400
   end
