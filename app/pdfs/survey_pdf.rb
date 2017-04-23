@@ -76,7 +76,11 @@ class SurveyPdf < Prawn::Document
 
   def content
 
-    font "Times", :style => :normal, :size => 12
+    font_families.update(
+     "DejaVu Sans" => {
+     :normal => "#{Prawn::DATADIR}/fonts/DejaVuSans.ttf"
+     }
+    )
 
     start_new_page(:margin => [72, 90])
     table_of_contents
