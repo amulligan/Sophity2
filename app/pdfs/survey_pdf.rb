@@ -158,7 +158,7 @@ class SurveyPdf < Prawn::Document
     add_dest "page6", dest_xyz(bounds.absolute_left, y)
     text "Sophity Services Success Health Check - #{@current_user.company} Results", :color => "0000ff", :size => 16
     move_down 20
-    main_build
+    build_results_table
     move_down 40
     text "Total Grade: #{ @gradeLetter }", :color => "0000ff", :size => 16
     move_down 20
@@ -215,10 +215,10 @@ class SurveyPdf < Prawn::Document
 
   def headers
     #This inserts an image in the pdf file and sets the size of the image
-    font "Helvetica", :style => :normal, :size => 12
+    font "Helvetica", :style => :normal, :size => 10
     header_string = "Sophity Services Success Model Health Check - #{@current_user.company}"
     header_options = {
-      at: [bounds.right - 300, bounds.top + 22],
+      at: [bounds.right - 300, bounds.top + 24],
       width: 300,
       align: :right,
       page_filter: (2..8),
@@ -252,9 +252,10 @@ class SurveyPdf < Prawn::Document
     number_pages footer_string, footer_options
   end
 
+
   def table_proficient
     table(proficient_rows, :cell_style => {:border_width => 0})
- end
+  end
 
   def table_improve
     table(improve_rows, :cell_style => {:border_width => 0})
@@ -262,7 +263,6 @@ class SurveyPdf < Prawn::Document
 
   def table_deltas
     table(deltas_rows, :cell_style => {:border_width => 0})
-
   end
 
   def proficient_rows
@@ -300,7 +300,7 @@ class SurveyPdf < Prawn::Document
   end
 
 
-   def main_build
+   def build_results_table
      move_down 20
      table table_rows, :cell_style => { :font => "Helvetica", :font_style => :italic }
    end
