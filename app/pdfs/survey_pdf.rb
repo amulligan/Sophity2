@@ -104,27 +104,59 @@ class SurveyPdf < Prawn::Document
 
     move_down 20
     line_y = cursor
-    toc_string = "<link anchor='page3'>The Sophity Services Success Model</link> " + " . " * 100
+    toc_string = "<link anchor='page3'>The Sophity Services Success Model " + " . " * 100 + "</link>"
     text_box toc_string,
         :at => [0, line_y],
         :inline_format => true,
         :width => 412,
         :height => 18,
         :overflow => :truncate
-
     move_cursor_to line_y
     span(20, :position => :right) do
       text "<link anchor='page3'>3</link>", :align => :right, :inline_format => true
     end
 
     move_down 20
-    text "The Sophity Services Success Model                                               " +"<u><link anchor='page3'>3</link></u>", :inline_format => true
+    line_y = cursor
+    toc_string = "<link anchor='page5'>Sophity Services Success Health Check – Introduction" + " . " * 100 + "</link>"
+    text_box toc_string,
+        :at => [0, line_y],
+        :inline_format => true,
+        :width => 412,
+        :height => 18,
+        :overflow => :truncate
+    move_cursor_to line_y
+    span(20, :position => :right) do
+      text "<link anchor='page5'>5</link>", :align => :right, :inline_format => true
+    end
+
     move_down 20
-    text " Sophity Services Success Health Check – Introduction                    " + "<u><link anchor='page5'>5</link></u>", :inline_format => true
+    line_y = cursor
+    toc_string = "<link anchor='page6'>Sophity Services Success Health Check – Your Results " + " . " * 100 + "</link>"
+    text_box toc_string,
+        :at => [0, line_y],
+        :inline_format => true,
+        :width => 412,
+        :height => 18,
+        :overflow => :truncate
+    move_cursor_to line_y
+    span(20, :position => :right) do
+      text "<link anchor='page6'>6</link>", :align => :right, :inline_format => true
+    end
+
     move_down 20
-    text " Sophity Services Success Health Check – Your Results           " +"<u><link anchor='page6'>6</link></u>",:inline_format => true
-    move_down 20
-    text " About Sophity LLC                                                                            " +"<u><link anchor='page8'>8</link></u>",:size => 12, :inline_format => true
+    line_y = cursor
+    toc_string = "<link anchor='page8'>About Sophity LLC " + " . " * 100 + "</link>"
+    text_box toc_string,
+        :at => [0, line_y],
+        :inline_format => true,
+        :width => 412,
+        :height => 18,
+        :overflow => :truncate
+    move_cursor_to line_y
+    span(20, :position => :right) do
+      text "<link anchor='page8'>8</link>", :align => :right, :inline_format => true
+    end
   end
 
   def intro_section
