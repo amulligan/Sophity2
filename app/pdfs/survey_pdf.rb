@@ -284,7 +284,7 @@ class SurveyPdf < Prawn::Document
 
    def main_build
      move_down 20
-     table table_rows, :cell_style => { :font => "Times-Roman", :font_style => :italic }
+     table table_rows, :cell_style => { :font => "Helvetica", :font_style => :italic }
    end
 
    def subtable(top_concerns)
