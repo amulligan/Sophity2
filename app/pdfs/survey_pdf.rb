@@ -302,22 +302,22 @@ class SurveyPdf < Prawn::Document
 
    def build_results_table
      move_down 20
-     table table_rows, :cell_style => { :font => "Helvetica", :font_style => :italic }
+     table table_rows, :cell_style => { :font => "Helvetica", :font_style => :italic }, :width => 432
    end
 
-   def subtable(top_concerns)
-      top_concerns do |c|
-        [c.text]
-   end
-   end
+  #  def subtable(top_concerns)
+  #     top_concerns do |c|
+  #       [c.text]
+  #     end
+  #  end
 
-   def table_rows
+  def table_rows
     top_concerns_string = "bla bla bla \n\r bla bla bla \n\r bla bla \n\r"
-      [["Service Component", "Grade", "Top Concerns"]] +
-      @all_attempts.map do |line|
+    [["Service Component", "Grade", "Top Concerns"]] +
+        @all_attempts.map do |line|
         #  [{:content => l.survey.description, :rowspan => l.survey.top_concerns.count}, {:content => l.grade, :rowspan => l.survey.top_concerns.count}, {:content => "test", :rowspan => l.survey.top_concerns.count}]
-         [line.survey.description, line.grade, top_concerns_string]
-      end
+          [line.survey.description, line.grade, top_concerns_string]
+        end
   end
 
   #  def table_rows
