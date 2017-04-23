@@ -182,8 +182,7 @@ class SurveyPdf < Prawn::Document
     move_down 18
 
     move_down 20
-    move_cursor_to line_y
-    span(417, :position => :right) do
+    bounding_box([45, cursor], :width => 342) do
       image "#{Rails.root}/app/assets/images/Categories.png", :width => 342, :position => :center
       stroke_bounds
     end
