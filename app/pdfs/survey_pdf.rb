@@ -98,7 +98,9 @@ class SurveyPdf < Prawn::Document
 
   def table_of_contents
     move_down 20
-    text "Table of Contents",:color => "0000ff", :size => 16
+    font "Helvetica", :color => "345A8A", :size => 16 do
+      text "Table of Contents"
+    end
     move_down 20
     text "The Sophity Services Success Model                                               " +"<u><link anchor='page3'>3</link></u>", :size => 12, :inline_format => true
     move_down 20
@@ -111,21 +113,23 @@ class SurveyPdf < Prawn::Document
 
   def intro_section
     add_dest "page3", dest_xyz(bounds.absolute_left, y)
-    text "The Sophity Services Success Model", :color => "0000ff", :size => 16
+    font "Helvetica", :color => "345A8A", :size => 16 do
+      text "The Sophity Services Success Model"
+    end
     move_down 10
-    text "Sophity has developed the Sophity 6-Point Services Success Model in order to provide a framework our customers use to build their business plan for a world-class consulting business.", :size => 12
+    text "Sophity has developed the Sophity 6-Point Services Success Model in order to provide a framework our customers use to build their business plan for a world-class consulting business."
     move_down 20
-    text "We use this model to evaluate the current health of a consulting practice and identify opportunities to improve your business model and execution plan. We work with our customers to develop a roadmap of change that drives the business to growth and world-class status.", :size => 12
+    text "We use this model to evaluate the current health of a consulting practice and identify opportunities to improve your business model and execution plan. We work with our customers to develop a roadmap of change that drives the business to growth and world-class status."
     move_down 20
-    text "Our customers continue to use the Sophity 6-Point Services Success Model to evolve their business over time in order to address changes in the market and technical environment.", :size => 12
+    text "Our customers continue to use the Sophity 6-Point Services Success Model to evolve their business over time in order to address changes in the market and technical environment."
     move_down 20
-    text "The components of the Sophity 6-Point Services Success Model are:", :size => 12
+    text "The components of the Sophity 6-Point Services Success Model are:"
 
     move_down 10
-    image "#{Rails.root}/app/assets/images/6Dimensions.png",  :width => 400, :position => :center
+    image "#{Rails.root}/app/assets/images/6Dimensions.png",  :width => 342, :position => :center
 
     move_down 10
-    text "Each component is comprised of a number of attributes; Each component is described here.", :size => 12
+    text "Each component is comprised of a number of attributes; Each component is described here."
     move_down 10
 
     line_y = cursor
@@ -141,8 +145,8 @@ class SurveyPdf < Prawn::Document
     text " -  Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals." , :size => 12
 
     move_down 20
-    bounding_box([16, cursor], :width => 400) do
-      image "#{Rails.root}/app/assets/images/Categories.png", :width => 400, :position => :center
+    bounding_box([16, cursor], :width => 342) do
+      image "#{Rails.root}/app/assets/images/Categories.png", :width => 342, :position => :center
       stroke_bounds
     end
 
