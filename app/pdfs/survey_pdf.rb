@@ -297,6 +297,9 @@ class SurveyPdf < Prawn::Document
       [["Service Component", "Grade", "Top Concerns"]] +
       @all_attempts.map do |line|
          [line.survey.description, line.grade, " "]
+      end
+  end
+
   #  def table_rows
   #   [["Service Component", "Grade", "Top Concerns"]] +
   #     @all_attempts.map do |l|
