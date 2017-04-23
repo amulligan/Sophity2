@@ -35,22 +35,10 @@ class SurveyPdf < Prawn::Document
        @gradeLetter = "F"
     end
 
-    fonts_declare
-
     cover
     content
     headers
     footers
-  end
-
-  def fonts_declare
-    dejavu = "#{Prawn::BASEDIR}/data/fonts/DejaVuSans.ttf"
-    font_families.update("DejaVuSans" => {
-      :normal      => dejavu,
-      :italic      => dejavu,
-      :bold        => dejavu,
-      :bold_italic => dejavu
-    })
   end
 
   def cover
