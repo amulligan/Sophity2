@@ -225,7 +225,7 @@ class SurveyPdf < Prawn::Document
     string = '<page>'
     # Green page numbers 1 to 7
     options = {
-      at: [bounds.right - 12, -12]
+      at: [bounds.right - 12, 0]
       width: 12,
       align: :right,
       page_filter: (2..8),
