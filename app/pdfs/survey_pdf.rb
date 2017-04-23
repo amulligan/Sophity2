@@ -37,6 +37,8 @@ class SurveyPdf < Prawn::Document
 
     cover
     content
+    headers
+    footers
   end
 
   def cover
@@ -74,15 +76,15 @@ class SurveyPdf < Prawn::Document
 
   def content
     start_new_page(:margin => [72, 90])
-    page_2
+    table_of_contents
     start_new_page(:margin => [72, 90])
-    page_3
+    intro_section
     start_new_page(:margin => [72, 90])
-    page_5
+    about_survey
     start_new_page(:margin => [72, 90])
-    page_6
+    your_scores
     start_new_page(:margin => [72, 90])
-    page_8
+    outro_section
     outline.define do
          page :title => "The Sophity Services Success Model", :destination => 3
          page :title => "Sophity Services Success Health Check – Introduction", :destination => 5
@@ -91,13 +93,7 @@ class SurveyPdf < Prawn::Document
     end
   end
 
-  def header
-    #This inserts an image in the pdf file and sets the size of the image
-    font "Helvetica", :style => :normal, :size => 12
-    text "Sophity Services Success Model Health Check - #{@current_user.company}", :align => :right
-  end
-
-  def page_2
+  def table_of_contents
     move_down 20
     text "Table of Contents",:color => "0000ff", :size => 16
     move_down 20
@@ -108,10 +104,9 @@ class SurveyPdf < Prawn::Document
     text " Sophity Services Success Health Check - #{@current_user.company} Results           " +"<u><link anchor='page6'>6</link></u>", :size => 12,:inline_format => true
     move_down 20
     text " About Sophity LLC                                                                            " +"<u><link anchor='page8'>8</link></u>",:size => 12, :inline_format => true
-    footer
   end
 
-  def page_3
+  def intro_section
     add_dest "page3", dest_xyz(bounds.absolute_left, y)
     text "The Sophity Services Success Model", :color => "0000ff", :size => 16
     move_down 10
@@ -136,11 +131,10 @@ class SurveyPdf < Prawn::Document
     text " -  Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals." , :size => 12
     move_down 20
     image "#{Rails.root}/app/assets/images/Categories.png", :width => 400
-    footer
   end
 
 
-  def page_5
+  def about_survey
     add_dest "page5", dest_xyz(bounds.absolute_left, y)
     text "Sophity Services Success Health Check – Introduction", :color => "0000ff", :size => 16
     move_down 10
@@ -157,11 +151,10 @@ class SurveyPdf < Prawn::Document
     text "A letter grade was provided for each of the six components of the Sophity 6-Point Services Success Model. An overall grade for your practice was also provided. Grades were determined by the number of points awarded per the information above. Grades were calculated as follows: ", :size => 12
     move_down 20
     image "#{Rails.root}/app/assets/images/scores.png", :width => 400
-    footer
   end
 
 
-  def page_6
+  def your_scores
     add_dest "page6", dest_xyz(bounds.absolute_left, y)
     text "Sophity Services Success Health Check - #{@current_user.company} Results", :color => "0000ff", :size => 16
     move_down 20
@@ -181,10 +174,9 @@ class SurveyPdf < Prawn::Document
     move_down 20
     table_deltas
     start_new_page
-    footer
   end
 
-   def page_8
+   def outro_section
     add_dest "page8", dest_xyz(bounds.absolute_left, y)
     text "About Sophity LLC", :color => "0000ff", :size => 16
     move_down 20
@@ -218,35 +210,45 @@ class SurveyPdf < Prawn::Document
     move_down 10
     text "<u><link href='https://www.linkedin.com/company/sophity-llc/'>https://www.linkedin.com/company/sophity-llc/" "</link></u>", :color => "0000ff",
          :inline_format => true
-    footer
   end
 
-  def footer
-    string = '<page>'
-    # Green page numbers 1 to 7
-    options = {
-      at: [bounds.right - 12, 0],
+
+  def headers
+    #This inserts an image in the pdf file and sets the size of the image
+    font "Helvetica", :style => :normal, :size => 12
+    header_string = "Sophity Services Success Model Health Check - #{@current_user.company}"
+    header_options = {
+      at: [bounds.right - 300, bounds.top + 12],
+      width: 300,
+      align: :right,
+      page_filter: (2..8),
+      start_count_at: 2,
+      color: '000000'
+    }
+    number_pages header_string, header_options
+  end
+
+  def footers
+    page_number_string = '<page>'
+    footer_string = '© 2016 Sophity LLC. All Rights Reserved. Cannot be used all\n\ror in part without express written permission from Sophity LLC'
+    page_number_options = {
+      at: [bounds.right - 12, -8],
       width: 12,
       align: :right,
       page_filter: (2..8),
       start_count_at: 2,
       color: '000000'
     }
-    number_pages string, options
-
-    # string = '© 2016 Sophity LLC. All Rights Reserved. Cannot be used all\n\ror in part without express written permission from Sophity LLC'
-    # # Green page numbers 1 to 7
-    # options = {
-    #   at: [bounds.left, -12]
-    #   width: 300,
-    #   align: :left,
-    #   page_filter: (2..8),
-    #   start_count_at: 2,
-    #   color: '000000'
-    # }
-    # number_pages string, options
-
-
+    footer_options = {
+      at: [bounds.left, -8],
+      width: 300,
+      align: :left,
+      page_filter: (2..8),
+      start_count_at: 2,
+      color: '000000'
+    }
+    number_pages page_number_string, page_number_options
+    number_pages footer_string, footer_options
   end
 
   def table_proficient
