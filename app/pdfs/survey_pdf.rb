@@ -180,7 +180,7 @@ class SurveyPdf < Prawn::Document
     image "#{Rails.root}/app/assets/images/6Dimensions.png",  :width => 342, :position => :center
 
     move_down 20
-    text "Each component is comprised of a number of attributes; Each component is described here."
+    text "Each component is comprised of a number of attributes:"
     move_down 10
 
     line_y = cursor
@@ -251,17 +251,12 @@ class SurveyPdf < Prawn::Document
     move_down 10
     text "Sophity presented a series of statements in the form of a survey and asked the participant to rate the degree to which s/he agreed with each statement. The questions were framed such that the more you agreed with the statement in context with the reality of your current business, the more points you received for your response."
     move_down 20
-    text "Each statement was worth five (5) points. Points were awarded as follows:"
+    text "We took the average of the scores for all questions to calculate the category-level " +
+        "scores. We then took the average of the 6 category scores to calculate the total score for your business."
     move_down 20
-    text "        Strongly Agree: 5 points ", :indent_paragraphs => 80
-    text "        Agree: 4 points ", :indent_paragraphs => 80
-    text "        Neutral: 3 points ", :indent_paragraphs => 80
-    text "        Disagree: 2 points ", :indent_paragraphs => 80
-    text "        Strongly Disagree: 1 point ", :indent_paragraphs => 80
+    text "The following table shows how the letter grades were derived:"
     move_down 20
-    text "A letter grade was provided for each of the six components of the Sophity 6-Point Services Success Model. An overall grade for your practice was also provided. Grades were determined by the number of points awarded per the information above. Grades were calculated as follows: "
-    move_down 20
-    image "#{Rails.root}/app/assets/images/scores.png", :width => 400
+
   end
 
 
@@ -273,7 +268,7 @@ class SurveyPdf < Prawn::Document
       text "Sophity Services Success Health Check – Your Results", :color => "345A8A"
     end
 
-    move_down 20
+    move_down 10
     build_results_table
     move_down 40
     text "Total Grade: #{ @gradeLetter }", :color => "0000ff", :size => 16
@@ -299,7 +294,7 @@ class SurveyPdf < Prawn::Document
       text "About Sophity LLC", :color => "345A8A"
     end
 
-    move_down 20
+    move_down 10
     text "Sophity knows first hand that running a growing IT consulting business is challenging. People don’t scale well, sales are competitive, and poor visibility into practice and project health can wreck a business forecast or client relationship over night. If your practice is embedded in a software or hardware business, you have the added challenges of ensuring your mission is aligned with the corporate mission, managing through conflicts with sales, marketing, and product management, and ensuring your work does not adversely affect overall corporate financial reporting. (Did I hear you say “VSOE?”)"
     move_down 10
     text "At Sophity, we are committed to partnering with our customers – members of the services leadership and delivery teams – to ensure you are wildly successful in your endeavor to build a world-class consulting business."
