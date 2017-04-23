@@ -23,7 +23,7 @@ class CreateSurvey < ActiveRecord::Migration
       t.integer :weight, :default => 0
       t.string :text
       t.boolean :correct
-
+      t.boolean :concern
       t.timestamps
     end
 
@@ -33,7 +33,7 @@ class CreateSurvey < ActiveRecord::Migration
       t.integer    :survey_id
       t.boolean    :winner
       t.integer    :score
-      t.float     :numericGrade
+      t.float      :numericGrade
       t.string     :grade
         
     end
@@ -43,6 +43,7 @@ class CreateSurvey < ActiveRecord::Migration
       t.integer    :question_id
       t.integer    :option_id
       t.boolean    :correct
+      t.boolean    :concern
       t.timestamps
     end
   end
