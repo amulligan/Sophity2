@@ -117,64 +117,65 @@ class SurveyPdf < Prawn::Document
       text "The Sophity Services Success Model"
     end
     move_down 10
-    text "Sophity has developed the Sophity 6-Point Services Success Model in order to provide a framework our customers use to build their business plan for a world-class consulting business."
-    move_down 20
-    text "We use this model to evaluate the current health of a consulting practice and identify opportunities to improve your business model and execution plan. We work with our customers to develop a roadmap of change that drives the business to growth and world-class status."
-    move_down 20
-    text "Our customers continue to use the Sophity 6-Point Services Success Model to evolve their business over time in order to address changes in the market and technical environment."
-    move_down 20
-    text "The components of the Sophity 6-Point Services Success Model are:"
+    span(432) do
+      text "Sophity has developed the Sophity 6-Point Services Success Model in order to provide a framework our customers use to build their business plan for a world-class consulting business."
+      move_down 20
+      text "We use this model to evaluate the current health of a consulting practice and identify opportunities to improve your business model and execution plan. We work with our customers to develop a roadmap of change that drives the business to growth and world-class status."
+      move_down 20
+      text "Our customers continue to use the Sophity 6-Point Services Success Model to evolve their business over time in order to address changes in the market and technical environment."
+      move_down 20
+      text "The components of the Sophity 6-Point Services Success Model are:"
 
-    move_down 10
-    image "#{Rails.root}/app/assets/images/6Dimensions.png",  :width => 342, :position => :center
+      move_down 10
+      image "#{Rails.root}/app/assets/images/6Dimensions.png",  :width => 342, :position => :center
 
-    move_down 10
-    text "Each component is comprised of a number of attributes; Each component is described here."
-    move_down 10
+      move_down 10
+      text "Each component is comprised of a number of attributes; Each component is described here."
+      move_down 10
 
-    line_y = cursor
-    text "•"
-    bounding_box([15, line_y], :width => 417) do
-      text "Services Business Strategy: Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management."
+      line_y = cursor
+      text "•"
+      bounding_box([15, line_y], :width => 417) do
+        text "Services Business Strategy: Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management."
+      end
+      move_down 18
+
+      line_y = cursor
+      text "•"
+      bounding_box([15, line_y], :width => 417) do
+        text "Services Go To Market Strategy: The Go To Market (GTM) Strategy evaluation looks at the degree to which there is a plan for how sales will be conducted and to whom. We look at the marketing plan, sales model, and sales team, among other things." , :size => 12
+      end
+      move_down 18
+
+      line_y = cursor
+      text "•"
+      bounding_box([15, line_y], :width => 417) do
+        text "Services Portfolio: The Services Portfolio evaluation assesses the degree to which clear, easy to sell services offerings have been developed. We look at the alignment of the offerings to the services team’s skills and capabilities, the market need, and the sell-ability of each.", :size => 12
+      end
+      move_down 18
+
+      line_y = cursor
+      text "•"
+      bounding_box([15, line_y], :width => 417) do
+        text "Repeatable Delivery Framework: The Repeatable Delivery Framework assessment reviews the tools, templates, and processes that have been developed for each service offering in the services portfolio and how they are used within services to improve delivery quality and scalability, new hire and partner onboarding, and even the sales process.", :size => 12
+      end
+      move_down 18
+
+      line_y = cursor
+      text "•"
+      bounding_box([15, line_y], :width => 417) do
+        text "The Team: The Team assessment looks at the alignment of skills represented on the team and the stated mission of the services department, as well as the needs expressed by the market. Additionally, we assess how well services management communicates with, empowers, and invests in the team." , :size => 12
+      end
+      move_down 18
+
+      line_y = cursor
+      text "•"
+      bounding_box([15, line_y], :width => 417) do
+        text "Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals." , :size => 12
+      end
+      move_down 18
     end
-    move_down 18
 
-    line_y = cursor
-    text "•"
-    bounding_box([15, line_y], :width => 417) do
-      text "Services Go To Market Strategy: The Go To Market (GTM) Strategy evaluation looks at the degree to which there is a plan for how sales will be conducted and to whom. We look at the marketing plan, sales model, and sales team, among other things." , :size => 12
-    end
-    move_down 18
-
-    line_y = cursor
-    text "•"
-    bounding_box([15, line_y], :width => 417) do
-      text "Services Portfolio: The Services Portfolio evaluation assesses the degree to which clear, easy to sell services offerings have been developed. We look at the alignment of the offerings to the services team’s skills and capabilities, the market need, and the sell-ability of each.", :size => 12
-    end
-    move_down 18
-
-    line_y = cursor
-    text "•"
-    bounding_box([15, line_y], :width => 417) do
-      text "Repeatable Delivery Framework: The Repeatable Delivery Framework assessment reviews the tools, templates, and processes that have been developed for each service offering in the services portfolio and how they are used within services to improve delivery quality and scalability, new hire and partner onboarding, and even the sales process.", :size => 12
-    end
-    move_down 18
-
-    line_y = cursor
-    text "•"
-    bounding_box([15, line_y], :width => 417) do
-      text "The Team: The Team assessment looks at the alignment of skills represented on the team and the stated mission of the services department, as well as the needs expressed by the market. Additionally, we assess how well services management communicates with, empowers, and invests in the team." , :size => 12
-    end
-    move_down 18
-
-    line_y = cursor
-    text "•"
-    bounding_box([15, line_y], :width => 417) do
-      text "Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals." , :size => 12
-    end
-    move_down 18
-
-    move_down 20
     bounding_box([45, cursor], :width => 342) do
       image "#{Rails.root}/app/assets/images/Categories.png", :width => 342, :position => :center
       stroke_bounds
