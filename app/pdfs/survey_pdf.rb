@@ -354,8 +354,8 @@ class SurveyPdf < Prawn::Document
       ["Phone: 978-265-2378", "<u><link href='https://www.facebook.com/sophity1/'>https://www.facebook.com/sophity1/</link></u>"],
       ["Email: info@sophity.com", "<u><link href='https://twitter.com/SophityPSA'>https://twitter.com/SophityPSA</link></u>"],
       ["<u><link href='www.sophity.com'>www.sophity.com</link></u>", "<u><link href='https://www.linkedin.com/company/sophity-llc/'>https://www.linkedin.com/company/sophity-llc/</link></u>"]
-    ], :inline_format => true
-    
+    ], :cell_style => {:inline_format => true}
+
   end
 
 
