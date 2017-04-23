@@ -33,6 +33,7 @@ class CreateSurvey < ActiveRecord::Migration
       t.integer    :survey_id
       t.boolean    :winner
       t.integer    :score
+      t.float     :numericGrade
       t.string     :grade
         
     end

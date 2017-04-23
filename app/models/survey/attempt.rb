@@ -63,7 +63,7 @@ class Survey::Attempt < ActiveRecord::Base
   def find_grade
     numericScore = (self.answers.map(&:value).reduce(:+) || 0) * (-1)
     numericGrade = numericScore.to_f/self.survey.questions.count
-
+    self.numericGrade = numericGrade
      if (numericGrade >= 4.7) 
         self.grade = "A+"
      elsif (numericGrade >= 4.4)

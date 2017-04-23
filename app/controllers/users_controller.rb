@@ -59,6 +59,9 @@ def change_name
 
   def download_pdf
     @all_attempts = Survey::Attempt.where(participant_id: current_user.id)
+    @proficient = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [3 .. 5])
+    @improve = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [2.3 .. 2.9])
+    @deltas = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [1 .. 2])
     @total_score = @all_attempts.sum(:score)
     @numericGrade = (@total_score * (-1)).to_f/ 45
     if (@numericGrade >= 4.7)
@@ -95,7 +98,7 @@ def change_name
     respond_to do |format|
     format.html # show.html.erb
     format.pdf do
-        pdf = SurveyPdf.new(current_user,@all_attempts,@numericGrade)
+        pdf = SurveyPdf.new(current_user,@all_attempts,@proficient, @improve, @deltas,@numericGrade)
         send_data pdf.render, filename: filename, type: 'application/pdf'
       end
     end

@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20170329141434) do
     t.integer "survey_id"
     t.boolean "winner"
     t.integer "score"
+    t.float   "numericGrade"
     t.string  "grade"
   end
 

@@ -1,9 +1,12 @@
 class SurveyPdf < Prawn::Document
-  def initialize(current_user,all_attempts,total_score)
+  def initialize(current_user,all_attempts, proficient, improve, deltas,total_score)
     super()
     @current_user = current_user
     @all_attempts = all_attempts
     @total_score = total_score
+    @proficient = proficient
+    @improve = improve
+    @deltas = deltas
     if (@total_score >= 4.7)
         @gradeLetter = "A+"
      elsif (@total_score >= 4.4)
@@ -36,7 +39,6 @@ class SurveyPdf < Prawn::Document
   end
 
   def cover    
-    stroke_axis
     image "#{Rails.root}/app/assets/images/sophity-report-logo.png",  :at => [50,700], :width => 450
     image "#{Rails.root}/app/assets/images/puzzle.png",  :at => [0,550], :width => 550
     move_cursor_to 300
@@ -132,9 +134,16 @@ class SurveyPdf < Prawn::Document
     text "Total Grade: #{ @gradeLetter }", :color => "0000ff", :size => 16
     move_down 20
     text "Comments: ", :size => 12
+    move_down 5
     text "Your grade of #{ @gradeLetter } indicates that", :size => 12
+    move_down 10
+    table_proficient
+
     move_down 20
-  
+    table_improve
+    
+    move_down 20
+    table_deltas
     footer
   end
 
@@ -192,6 +201,54 @@ class SurveyPdf < Prawn::Document
 
   end
 
+  def table_proficient 
+    table(proficient_rows, :cell_style => {:border_width => 0}) 
+ end
+
+  def table_improve
+    table(improve_rows, :cell_style => {:border_width => 0}) 
+  end
+
+  def table_deltas 
+    table(deltas_rows, :cell_style => {:border_width => 0}) 
+
+  end
+
+  def proficient_rows   
+    if @proficient.empty?
+      [["You're proficient in: "]] + [[" - " + "N/A"]]
+    else
+      [["You're proficient in: "]] +
+      @proficient.map do |p|
+        ["  - " + p.survey.description]
+      end
+    end
+  end
+
+  def improve_rows 
+    if @improve.empty?
+      [[ "You have room for improvement in these areas: "]]+ [[" - " + "N/A"]]
+    else 
+      [[ "You have room for improvement in these areas: "]]+ 
+      @improve.map do |i|
+        ["  - " + i.survey.description]
+      end
+    end
+  end
+
+  def deltas_rows
+    
+    if @deltas.empty?
+      [[ "You need to make significant improvement in these areas: "]] + [[" - " + "N/A"]]
+    else
+      [[ "You need to make significant improvement in these areas: "]] + 
+      @deltas.map do |d|
+        ["  - " + d.survey.description]
+      end
+    end
+  end
+
+
    def main_build
      move_down 20
      table transaction_rows do
@@ -205,7 +262,7 @@ class SurveyPdf < Prawn::Document
    def transaction_rows
       [["Service Component", "Grade", "Top Concerns"]] +
       @all_attempts.map do |l|
-         [l.survey.description, l.grade, ""]
+         [l.survey.description, l.grade, " "]
       end
     end
 
