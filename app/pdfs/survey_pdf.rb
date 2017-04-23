@@ -35,13 +35,13 @@ class SurveyPdf < Prawn::Document
        @gradeLetter = "F"
     end
 
-    # font_families.update(
-    #   "Avenir" => {
-    #     :normal => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Avenir-Light.otf"
-    #     :bold => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Avenir-Black.otf"
-    #     :bold_italic => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Avenir-BlackOblique.otf"
-    #   }
-    # )
+    font_families.update(
+      "Avenir" => {
+        :normal => "#{Rails.root.join('vendor', 'assets', 'fonts', 'Avenir-Light.otf')}"
+        :bold => "#{Rails.root.join('vendor', 'assets', 'fonts', 'Avenir-Black.otf')}"
+        :bold_italic => "#{Rails.root.join('vendor', 'assets', 'fonts', 'Avenir-BlackOblique.otf')}"
+      }
+    )
     #
     # font_families.update(
     #   "Calibri" => {
