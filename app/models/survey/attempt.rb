@@ -53,10 +53,10 @@ class Survey::Attempt < ActiveRecord::Base
 
      if self.grade.include? 'A'
        if top_concerns_list.empty?
-         return [top_concerns_list.first]
+        return ["N/A"]
        else 
-          return ["NA"]
-        end 
+        return [top_concerns_list.first]
+       end 
     elsif self.grade.include? 'B'      
       return top_concerns_list.first(2)
     else

@@ -46,7 +46,7 @@ def change_name
     @user = User.find(params[:id])
     @user.report_requested = true
     params[:report_requested] = true
-     if current_user.send_notification
+    if current_user.send_notification
         UserNotifier.send_signup_email(@current_user).deliver_now
         UserNotifier.send_admin_report(@current_user).deliver_now
     end
@@ -92,8 +92,8 @@ def change_name
        @gradeLetter = "F"
     end
      if current_user.send_notification
-        UserNotifier.send_signup_email(@current_user).deliver_now
-        UserNotifier.send_admin_report(@current_user).deliver_now
+        #UserNotifier.send_signup_email(@current_user).deliver_now
+        #UserNotifier.send_admin_report(@current_user).deliver_now
     end
     filename = 'SophityHealthCheckReport.pdf'
     respond_to do |format|

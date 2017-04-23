@@ -72,6 +72,7 @@ class SurveyPdf < Prawn::Document
   end
 
   def content
+    font "Times-Roman", :style => :normal, :size => 12
     start_new_page(:margin => [72, 90])
     page_2
     start_new_page(:margin => [72, 90])
@@ -121,7 +122,7 @@ class SurveyPdf < Prawn::Document
     move_down 20
     text "The components of the Sophity 6-Point Services Success Model are:", :size => 12
     move_down 10
-    image "#{Rails.root}/app/assets/images/6Dimensions.png",  :width => 400
+    image "#{Rails.root}/app/assets/images/6Dimensions.png",  :width => 400, :position => :center
     move_down 10
     text "Each component is comprised of a number of attributes; Each component is described here.", :size => 12
     move_down 10
@@ -133,7 +134,10 @@ class SurveyPdf < Prawn::Document
     text " - The Team: The Team assessment looks at the alignment of skills represented on the team and the stated mission of the services department, as well as the needs expressed by the market. Additionally, we assess how well services management communicates with, empowers, and invests in the team." , :size => 12
     text " -  Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals." , :size => 12
     move_down 20
-    image "#{Rails.root}/app/assets/images/Categories.png", :width => 400
+    bounding_box([16, cursor], :width => 400) do
+      image "#{Rails.root}/app/assets/images/Categories.png", :width => 400, :position => :center
+      stroke_bounds
+    end
     footer
   end
 
