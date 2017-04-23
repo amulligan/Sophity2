@@ -257,6 +257,8 @@ class SurveyPdf < Prawn::Document
     text "The following table shows how the letter grades were derived:"
     move_down 20
 
+    table ["Letter Grade", "Category Average"]
+
   end
 
 
