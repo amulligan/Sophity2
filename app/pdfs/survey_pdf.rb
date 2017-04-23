@@ -34,6 +34,13 @@ class SurveyPdf < Prawn::Document
      else
        @gradeLetter = "F"
     end
+
+    font_families.update(
+      "Avenir" => {
+        :normal => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Avenir-Light.otf"
+      }
+    )
+
     cover
     content
   end
