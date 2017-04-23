@@ -145,7 +145,7 @@ class SurveyPdf < Prawn::Document
     text " -  Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals." , :size => 12
 
     move_down 20
-    bounding_box([16, cursor], :width => 342) do
+    bounding_box([45, cursor], :width => 342) do
       image "#{Rails.root}/app/assets/images/Categories.png", :width => 342, :position => :center
       stroke_bounds
     end
