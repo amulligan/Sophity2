@@ -35,10 +35,22 @@ class SurveyPdf < Prawn::Document
        @gradeLetter = "F"
     end
 
+    fonts_declare
+
     cover
     content
     headers
     footers
+  end
+
+  def fonts_declare
+    dejavu = "#{Prawn::BASEDIR}/data/fonts/DejaVuSans.ttf"
+    font_families.update("DejaVuSans" => {
+      :normal      => dejavu,
+      :italic      => dejavu,
+      :bold        => dejavu,
+      :bold_italic => dejavu
+    })
   end
 
   def cover
@@ -51,7 +63,7 @@ class SurveyPdf < Prawn::Document
       image "#{Rails.root}/app/assets/images/puzzle.png",  :at => [25, 610], :width => (612 - 50)
       fill_color "000000"
       bounding_box([72, 342], :width => 468, :height => 252) do
-        font "DejaVu Sans", :style => :bold_italic, :size => 20
+        font "Helvetica", :style => :bold_italic, :size => 20
         text "Sophity Services Success Model Health Check"
         move_down 30
         font "Helvetica", :style => :normal, :size => 12
@@ -75,6 +87,8 @@ class SurveyPdf < Prawn::Document
   end
 
   def content
+    font "Dustismo_Roman", :style => :normal, :size => 12
+
     start_new_page(:margin => [72, 90])
     table_of_contents
     start_new_page(:margin => [72, 90])
