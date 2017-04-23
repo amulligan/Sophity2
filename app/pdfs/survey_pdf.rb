@@ -88,6 +88,7 @@ class SurveyPdf < Prawn::Document
     your_scores
     start_new_page(:margin => [72, 90])
     outro_section
+
     outline.define do
          page :title => "The Sophity Services Success Model", :destination => 3
          page :title => "Sophity Services Success Health Check – Introduction", :destination => 5
@@ -162,7 +163,7 @@ class SurveyPdf < Prawn::Document
   def intro_section
     add_dest "page3", dest_xyz(bounds.absolute_left, y)
 
-    move_down 10
+    move_down 20
     font "Helvetica", :size => 16 do
       text "The Sophity Services Success Model", :color => "345A8A"
     end
@@ -243,7 +244,7 @@ class SurveyPdf < Prawn::Document
   def about_survey
     add_dest "page5", dest_xyz(bounds.absolute_left, y)
 
-    move_down 10
+    move_down 20
     font "Helvetica", :size => 16 do
       text "Sophity Services Success Health Check – Introduction", :color => "345A8A"
     end
@@ -265,7 +266,7 @@ class SurveyPdf < Prawn::Document
   def your_scores
     add_dest "page6", dest_xyz(bounds.absolute_left, y)
 
-    move_down 10
+    move_down 20
     font "Helvetica", :size => 16 do
       text "Sophity Services Success Health Check – Your Results", :color => "345A8A"
     end
@@ -288,7 +289,7 @@ class SurveyPdf < Prawn::Document
     table_deltas
   end
 
-   def outro_section
+  def outro_section
     add_dest "page8", dest_xyz(bounds.absolute_left, y)
 
     move_down 10
@@ -296,7 +297,7 @@ class SurveyPdf < Prawn::Document
       text "About Sophity LLC", :color => "345A8A"
     end
 
-    move_down 10
+    move_down 20
     text "Sophity knows first hand that running a growing IT consulting business is challenging. People don’t scale well, sales are competitive, and poor visibility into practice and project health can wreck a business forecast or client relationship over night. If your practice is embedded in a software or hardware business, you have the added challenges of ensuring your mission is aligned with the corporate mission, managing through conflicts with sales, marketing, and product management, and ensuring your work does not adversely affect overall corporate financial reporting. (Did I hear you say “VSOE?”)"
     move_down 10
     text "At Sophity, we are committed to partnering with our customers – members of the services leadership and delivery teams – to ensure you are wildly successful in your endeavor to build a world-class consulting business."
@@ -407,6 +408,20 @@ class SurveyPdf < Prawn::Document
   end
 
 
+  def build_results_table
+    table table_rows, :cell_style => { :font => "Helvetica", :font_style => :italic }, :width => 432
+  end
+
+  def table_rows
+    top_concerns_string = "bla bla bla \n\r bla bla bla \n\r bla bla \n\r"
+    [["Service Component", "Grade", "Top Concerns"]] +
+        @all_attempts.map do |line|
+        #  [{:content => l.survey.description, :rowspan => l.survey.top_concerns.count}, {:content => l.grade, :rowspan => l.survey.top_concerns.count}, {:content => "test", :rowspan => l.survey.top_concerns.count}]
+          [line.survey.description, line.grade, top_concerns_string]
+        end
+  end
+
+
   def table_proficient
     table(proficient_rows, :cell_style => {:border_width => 0})
   end
@@ -442,7 +457,6 @@ class SurveyPdf < Prawn::Document
   end
 
   def deltas_rows
-
     if @deltas.empty?
       [[ "You need to make significant improvement in these areas: "]] + [[" – " + "N/A"]]
     else
@@ -454,10 +468,6 @@ class SurveyPdf < Prawn::Document
   end
 
 
-   def build_results_table
-     move_down 20
-     table table_rows, :cell_style => { :font => "Helvetica", :font_style => :italic }, :width => 432
-   end
 
   #  def subtable(top_concerns)
   #     top_concerns do |c|
@@ -465,14 +475,6 @@ class SurveyPdf < Prawn::Document
   #     end
   #  end
 
-  def table_rows
-    top_concerns_string = "bla bla bla \n\r bla bla bla \n\r bla bla \n\r"
-    [["Service Component", "Grade", "Top Concerns"]] +
-        @all_attempts.map do |line|
-        #  [{:content => l.survey.description, :rowspan => l.survey.top_concerns.count}, {:content => l.grade, :rowspan => l.survey.top_concerns.count}, {:content => "test", :rowspan => l.survey.top_concerns.count}]
-          [line.survey.description, line.grade, top_concerns_string]
-        end
-  end
 
   #  def table_rows
   #   [["Service Component", "Grade", "Top Concerns"]] +
@@ -481,18 +483,18 @@ class SurveyPdf < Prawn::Document
   #     end
   #  end
 
-   def toc
-    table(toc_rows, :cell_style => {:border_width => 0})
-   end
-
-   def toc_rows
-      [["Table of Contents", "     "]]+
-      [[" The Sophity Services Success Model",  "<u> <link anchor='page3'>3</link></u> "]] +
-      [[" Sophity Services Success Health Check – Introduction  " ,  " <u> <link anchor='page5'>5</link></u>"]]+
-      [[" Sophity Services Success Health Check – #{@current_user.company} Results", "<u> <link anchor='page6'>6</link></u>"]] +
-      [[" About Sophity LLC", "<u> <link anchor='page8'>8</link></u>"]]
-
-   end
+  #  def toc
+  #   table(toc_rows, :cell_style => {:border_width => 0})
+  #  end
+   #
+  #  def toc_rows
+  #     [["Table of Contents", "     "]]+
+  #     [[" The Sophity Services Success Model",  "<u> <link anchor='page3'>3</link></u> "]] +
+  #     [[" Sophity Services Success Health Check – Introduction  " ,  " <u> <link anchor='page5'>5</link></u>"]]+
+  #     [[" Sophity Services Success Health Check – #{@current_user.company} Results", "<u> <link anchor='page6'>6</link></u>"]] +
+  #     [[" About Sophity LLC", "<u> <link anchor='page8'>8</link></u>"]]
+   #
+  #  end
 
 
 end
