@@ -46,7 +46,8 @@ class SurveyPdf < Prawn::Document
     text "Sophity Services Success Model Health Check"
     move_cursor_to 200
     font "Helvetica", :style => :normal, :size => 12
-    text "Prepared for: #{ @current_user.name}" " on "
+    text "Prepared for: #{ @current_user.name}"
+    text "Prepared on #{Time.now.strftime("%Y-%m-%d %I:%M%P")}"
     text "#{ @current_user.name}"
     text "#{ @current_user.job_title}"
     text "#{ @current_user.company}"
@@ -64,6 +65,12 @@ class SurveyPdf < Prawn::Document
     page_6
     start_new_page
     page_8
+    outline.define do       
+         page :title => "The Sophity Services Success Model", :destination => 3
+         page :title => "Sophity Services Success Health Check – Introduction", :destination => 5
+         page :title => "Sophity Services Success Health Check - Results", :destination => 6
+         page :title => "About Sophity LLC", :destination => 8       
+    end
   end
 
   def header
@@ -72,12 +79,21 @@ class SurveyPdf < Prawn::Document
   end
 
   def page_2
-    text "Table of Contents", :color => "0000ff", :size => 16   
-
+    move_down 20
+    text "Table of Contents",:color => "0000ff", :size => 16
+    move_down 20
+    text "The Sophity Services Success Model                                               " +"<u><link anchor='page3'>3</link></u>", :inline_format => true
+    move_down 20
+    text " Sophity Services Success Health Check – Introduction                    " + "<u><link anchor='page5'>5</link></u>", :inline_format => true
+    move_down 20
+    text " Sophity Services Success Health Check - #{@current_user.company} Results           " +"<u><link anchor='page6'>6</link></u>", :inline_format => true
+    move_down 20
+    text " About Sophity LLC                                                                            " +"<u><link anchor='page8'>8</link></u>", :inline_format => true
     footer
   end
 
   def page_3
+    add_dest "page3", dest_xyz(bounds.absolute_left, y)
     text "The Sophity Services Success Model", :color => "0000ff", :size => 16
     move_down 10
     text "Sophity has developed the Sophity 6-Point Services Success Model in order to provide a framework our customers use to build their business plan for a world-class consulting business.", :size => 12
@@ -107,6 +123,7 @@ class SurveyPdf < Prawn::Document
 
 
   def page_5
+    add_dest "page5", dest_xyz(bounds.absolute_left, y)
     text "Sophity Services Success Health Check – Introduction", :color => "0000ff", :size => 16
     move_down 10
     text "Sophity presented a series of statements in the form of a survey and asked the participant to rate the degree to which s/he agreed with each statement. The questions were framed such that the more you agreed with the statement in context with the reality of your current business, the more points you received for your response.", :size => 12
@@ -127,6 +144,7 @@ class SurveyPdf < Prawn::Document
 
 
   def page_6
+    add_dest "page6", dest_xyz(bounds.absolute_left, y)
     text "Sophity Services Success Health Check - #{@current_user.company} Results", :color => "0000ff", :size => 16
     move_down 20 
     main_build
@@ -144,10 +162,12 @@ class SurveyPdf < Prawn::Document
     
     move_down 20
     table_deltas
+    start_new_page
     footer
   end
 
    def page_8
+    add_dest "page8", dest_xyz(bounds.absolute_left, y)
     text "About Sophity LLC", :color => "0000ff", :size => 16
     move_down 20
     text "Sophity knows first hand that running a growing IT consulting business is challenging. People don’t scale well, sales are competitive, and poor visibility into practice and project health can wreck a business forecast or client relationship over night. If your practice is embedded in a software or hardware business, you have the added challenges of ensuring your mission is aligned with the corporate mission, managing through conflicts with sales, marketing, and product management, and ensuring your work does not adversely affect overall corporate financial reporting. (Did I hear you say “VSOE?”)", :size => 12
@@ -266,7 +286,18 @@ class SurveyPdf < Prawn::Document
       end
     end
 
+   def toc
+    table(toc_rows, :cell_style => {:border_width => 0}) 
+   end
 
+   def toc_rows
+      [["Table of Contents", "     "]]+
+      [[" The Sophity Services Success Model",  "<u> <link anchor='page3'>3</link></u> "]] +
+      [[" Sophity Services Success Health Check – Introduction  " ,  " <u> <link anchor='page5'>5</link></u>"]]+
+      [[" Sophity Services Success Health Check - #{@current_user.company} Results", "<u> <link anchor='page6'>6</link></u>"]] +
+      [[" About Sophity LLC", "<u> <link anchor='page8'>8</link></u>"]]
+
+   end
 
 
 end
