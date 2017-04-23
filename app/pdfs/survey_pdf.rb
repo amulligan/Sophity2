@@ -104,12 +104,12 @@ class SurveyPdf < Prawn::Document
 
     move_down 20
     line_y = cursor
-    toc_string = "<link anchor='page3'>The Sophity Services Success Model</link> " + "." * 500
+    toc_string = "<link anchor='page3'>The Sophity Services Success Model</link> " + " . " * 100
     text_box toc_string,
         :at => [0, line_y],
         :inline_format => true,
         :width => 412,
-        :height => 12,
+        :height => 18,
         :overflow => :truncate
 
     move_cursor_to line_y
