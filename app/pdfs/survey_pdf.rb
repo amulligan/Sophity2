@@ -53,16 +53,16 @@ class SurveyPdf < Prawn::Document
       bounding_box([72, 342], :width => 468, :height => 252) do
         font "Helvetica", :style => :bold_italic, :size => 20
         text "Sophity Services Success Model Health Check"
-        move_down 30
+        move_down 40
         font "Times-Roman", :size => 12, :style => :normal
         text "Prepared for:"
-        move_down 14
+        move_down 20
         text "#{ @current_user.name}"
-        move_down 6
+        move_down 12
         text "#{ @current_user.job_title}"
-        move_down 6
+        move_down 12
         text "#{ @current_user.company}"
-        move_down 14
+        move_down 20
         text "Prepared on: #{Time.now.strftime('%B %d, %Y')}"
       end
       bounding_box([72, 90], :width => 468, :height => 45) do
