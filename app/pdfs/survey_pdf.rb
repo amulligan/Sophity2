@@ -125,7 +125,12 @@ class SurveyPdf < Prawn::Document
     text "Each component is comprised of a number of attributes; Each component is described here.", :size => 12
     move_down 10
 
-    text "•" + "Services Business Strategy: Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management."
+    line_y = cursor
+    text "•"
+    bounding_box([15, line_y], width = 417) do
+      text "Services Business Strategy: Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management."
+    end
+
     text " - Services Go To Market Strategy: The Go To Market (GTM) Strategy evaluation looks at the degree to which there is a plan for how sales will be conducted and to whom. We look at the marketing plan, sales model, and sales team, among other things." , :size => 12
     text " - Services Portfolio: The Services Portfolio evaluation assesses the degree to which clear, easy to sell services offerings have been developed. We look at the alignment of the offerings to the services team’s skills and capabilities, the market need, and the sell-ability of each.", :size => 12
     text " - Repeatable Delivery Framework: The Repeatable Delivery Framework assessment reviews the tools, templates, and processes that have been developed for each service offering in the services portfolio and how they are used within services to improve delivery quality and scalability, new hire and partner onboarding, and even the sales process.", :size => 12
@@ -249,7 +254,7 @@ class SurveyPdf < Prawn::Document
     }
     footer_options = {
       at: [bounds.left, -8],
-      width: 216,
+      width: 240,
       align: :left,
       page_filter: (2..8),
       start_count_at: 2,
