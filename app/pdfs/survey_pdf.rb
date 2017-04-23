@@ -293,16 +293,16 @@ class SurveyPdf < Prawn::Document
    end
    end
 
-  #  def transaction_rows
-  #     [["Service Component", "Grade", "Top Concerns"]] +
-  #     @all_attempts.map do |line|
-  #        [line.survey.description, line.grade, " "]
    def table_rows
-    [["Service Component", "Grade", "Top Concerns"]] +
-      @all_attempts.map do |l|
-         [{:content => l.survey.description, :rowspan => l.survey.top_concerns.count}, {:content => l.grade, :rowspan => l.survey.top_concerns.count}, {:content => "test", :rowspan => l.survey.top_concerns.count}]
-      end
-   end
+      [["Service Component", "Grade", "Top Concerns"]] +
+      @all_attempts.map do |line|
+         [line.survey.description, line.grade, " "]
+  #  def table_rows
+  #   [["Service Component", "Grade", "Top Concerns"]] +
+  #     @all_attempts.map do |l|
+  #        [{:content => l.survey.description, :rowspan => l.survey.top_concerns.count}, {:content => l.grade, :rowspan => l.survey.top_concerns.count}, {:content => "test", :rowspan => l.survey.top_concerns.count}]
+  #     end
+  #  end
 
    def toc
     table(toc_rows, :cell_style => {:border_width => 0})
