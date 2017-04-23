@@ -102,13 +102,20 @@ class SurveyPdf < Prawn::Document
       text "Table of Contents", :color => "345A8A"
     end
 
+    move_down 20
     line_y = cursor
-    text "<link anchor='page3'>The Sophity Services Success Model</link>", :inline_format => true
+    text_box "<link anchor='page3'>The Sophity Services Success Model</link> " + "." * 500,
+        :at => [0, line_y],
+        :inline_format => true,
+        :width => 412,
+        :height => 12,
+        :overflow => :truncate
+
     move_cursor_to line_y
-    span(12, :position => :right) do
+    span(20, :position => :right) do
       text "<link anchor='page3'>3</link>", :align => :right, :inline_format => true
     end
-    move_down 18
+
     move_down 20
     text "The Sophity Services Success Model                                               " +"<u><link anchor='page3'>3</link></u>", :inline_format => true
     move_down 20
