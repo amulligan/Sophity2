@@ -231,7 +231,7 @@ class SurveyPdf < Prawn::Document
   def footers
     font "Helvetica", :style => :normal, :size => 8
     page_number_string = '<page>'
-    footer_string = "© 2016 Sophity LLC. All Rights Reserved. Cannot be used all#{'\0D0A'.force_encoding('UTF-8')}or in part without express written permission from Sophity LLC"
+    footer_string = "© 2016 Sophity LLC. All Rights Reserved. Cannot be used all or in part without express written permission from Sophity LLC"
     page_number_options = {
       at: [bounds.right - 12, -8],
       width: 12,
@@ -242,7 +242,7 @@ class SurveyPdf < Prawn::Document
     }
     footer_options = {
       at: [bounds.left, -8],
-      width: 300,
+      width: 200,
       align: :left,
       page_filter: (2..8),
       start_count_at: 2,
