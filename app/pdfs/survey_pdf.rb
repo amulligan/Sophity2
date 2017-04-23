@@ -35,31 +35,6 @@ class SurveyPdf < Prawn::Document
        @gradeLetter = "F"
     end
 
-    font_families.update(
-      "Avenir" => {
-        :normal => "#{Rails.root.join('vendor', 'assets', 'fonts', 'Avenir-Light.otf')}"
-        :bold => "#{Rails.root.join('vendor', 'assets', 'fonts', 'Avenir-Black.otf')}"
-        :bold_italic => "#{Rails.root.join('vendor', 'assets', 'fonts', 'Avenir-BlackOblique.otf')}"
-      }
-    )
-    #
-    # font_families.update(
-    #   "Calibri" => {
-    #     :normal => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Calibri.ttf"
-    #     :bold => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Calibri-Bold.ttf"
-    #   }
-    # )
-    #
-    # font_families.update(
-    #   "Cambria" => {
-    #     :normal => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Cambria.ttc"
-    #     :bold => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Cambria-Bold.ttf"
-    #     :italic => "#{Rails.root.join('vendor', 'assets', 'fonts')}/Cambria-Italic.ttf"
-    #   }
-    # )
-
-    #Symbol is already included in Prawn
-
     cover
     content
   end
@@ -74,10 +49,10 @@ class SurveyPdf < Prawn::Document
       image "#{Rails.root}/app/assets/images/puzzle.png",  :at => [25, 610], :width => (612 - 50)
       fill_color "000000"
       bounding_box([72, 342], :width => 468, :height => 252) do
-        font "Helvetica", :style => :bold_italic, :size => 20
+        font "DejaVuSans", :style => :bold_italic, :size => 20
         text "Sophity Services Success Model Health Check"
         move_down 30
-        font "Helvetica", :style => :normal, :size => 12
+        font :style => :normal, :size => 12
         text "Prepared for:"
         move_down 12
         text "#{ @current_user.name}"
@@ -89,7 +64,7 @@ class SurveyPdf < Prawn::Document
         text "Prepared on: #{Time.now.strftime('%B %d, %Y')}"
       end
       bounding_box([72, 90], :width => 468, :height => 45) do
-        font "Helvetica", :style => :normal, :size => 8
+        font :style => :normal, :size => 8
         text "© 2016 Sophity LLC. All Rights Reserved. Cannot be used all or in part without express written permission from Sophity LLC."
       end
     end
