@@ -75,7 +75,8 @@ class SurveyPdf < Prawn::Document
   end
 
   def content
-    font "Dustismo_Roman", :style => :normal, :size => 12
+
+    font "Times", :style => :normal, :size => 12
 
     start_new_page(:margin => [72, 90])
     table_of_contents
