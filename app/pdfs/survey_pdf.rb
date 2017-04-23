@@ -58,9 +58,9 @@ class SurveyPdf < Prawn::Document
         text "Prepared for:"
         move_down 20
         text "#{ @current_user.name}"
-        move_down 12
+        move_down 10
         text "#{ @current_user.job_title}"
-        move_down 12
+        move_down 10
         text "#{ @current_user.company}"
         move_down 20
         text "Prepared on: #{Time.now.strftime('%B %d, %Y')}"
@@ -168,7 +168,7 @@ class SurveyPdf < Prawn::Document
       text "The Sophity Services Success Model", :color => "345A8A"
     end
 
-    move_down 10
+    move_down 20
     text "Sophity has developed the Sophity 6-Point Services Success Model in order to provide a framework our customers use to build their business plan for a world-class consulting business."
     move_down 20
     text "We use this model to evaluate the current health of a consulting practice and identify opportunities to improve your business model and execution plan. We work with our customers to develop a roadmap of change that drives the business to growth and world-class status."
@@ -201,7 +201,9 @@ class SurveyPdf < Prawn::Document
     move_down 18
 
     line_y = cursor
-    text "•"
+    span(15, :position => :left) do
+      text "•"
+    end
     move_cursor_to line_y
     span(417, :position => :right) do
       text "Services Portfolio: The Services Portfolio evaluation assesses the degree to which clear, easy to sell services offerings have been developed. We look at the alignment of the offerings to the services team’s skills and capabilities, the market need, and the sell-ability of each."
@@ -217,7 +219,9 @@ class SurveyPdf < Prawn::Document
     move_down 18
 
     line_y = cursor
-    text "•"
+    span(15, :position => :left) do
+      text "•"
+    end
     move_cursor_to line_y
     span(417, :position => :right) do
       text "The Team: The Team assessment looks at the alignment of skills represented on the team and the stated mission of the services department, as well as the needs expressed by the market. Additionally, we assess how well services management communicates with, empowers, and invests in the team."
@@ -249,7 +253,7 @@ class SurveyPdf < Prawn::Document
       text "Sophity Services Success Health Check – Introduction", :color => "345A8A"
     end
 
-    move_down 10
+    move_down 20
     text "Sophity presented a series of statements in the form of a survey and asked the participant to rate the degree to which s/he agreed with each statement. The questions were framed such that the more you agreed with the statement in context with the reality of your current business, the more points you received for your response."
     move_down 20
     text "We took the average of the scores for all questions to calculate the category-level " +
@@ -271,7 +275,7 @@ class SurveyPdf < Prawn::Document
       text "Sophity Services Success Health Check – Your Results", :color => "345A8A"
     end
 
-    move_down 10
+    move_down 20
     build_results_table
     move_down 40
     text "Total Grade: #{ @gradeLetter }", :color => "0000ff", :size => 16
