@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170329141434) do
     t.integer  "question_id"
     t.integer  "option_id"
     t.boolean  "correct"
+    t.boolean  "concern"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -37,6 +38,7 @@ ActiveRecord::Schema.define(version: 20170329141434) do
     t.integer  "weight",      default: 0
     t.string   "text"
     t.boolean  "correct"
+    t.boolean  "concern"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

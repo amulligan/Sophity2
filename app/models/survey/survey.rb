@@ -34,6 +34,10 @@ class Survey::Survey < ActiveRecord::Base
     return self.questions.map(&:incorrect_options).flatten
   end
 
+  def top_concerns
+     return self.questions.map(&:concerns).flatten
+  end
+
   def available_for_participant?(participant)
     current_number_of_attempts = self.attempts.for_participant(participant).size
     upper_bound = self.attempts_number

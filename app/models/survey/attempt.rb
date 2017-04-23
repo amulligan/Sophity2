@@ -31,7 +31,7 @@ class Survey::Attempt < ActiveRecord::Base
   # callbacks
   before_create :collect_scores
 
-  before_save :find_grade
+  before_save :find_grade, :top_concerns
 
   def correct_answers
     return self.answers.where(:correct => true)
@@ -43,6 +43,10 @@ class Survey::Attempt < ActiveRecord::Base
 
   def self.high_score
     return scores.first.score
+  end
+
+ def top_concerns
+    return self.answers.where(:concern => true)
   end
 
   private
@@ -91,7 +95,9 @@ class Survey::Attempt < ActiveRecord::Base
      else
        self.grade = "F"
     end
-
-
   end
-end
+
+ 
+
+ end 
+  

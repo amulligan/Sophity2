@@ -21,4 +21,8 @@ class Survey::Question < ActiveRecord::Base
   def incorrect_options
     return options.incorrect
   end
+
+  def concerns
+    return options.is_concern
+  end
 end
