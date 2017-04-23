@@ -294,9 +294,11 @@ class SurveyPdf < Prawn::Document
    end
 
    def table_rows
+    top_concerns_string = "bla bla bla \n\r bla bla bla \n\r bla bla \n\r"
       [["Service Component", "Grade", "Top Concerns"]] +
       @all_attempts.map do |line|
-         [line.survey.description, line.grade, " "]
+        #  [{:content => l.survey.description, :rowspan => l.survey.top_concerns.count}, {:content => l.grade, :rowspan => l.survey.top_concerns.count}, {:content => "test", :rowspan => l.survey.top_concerns.count}]
+         [line.survey.description, line.grade, top_concerns_string]
       end
   end
 
