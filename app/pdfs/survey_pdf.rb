@@ -113,8 +113,8 @@ class SurveyPdf < Prawn::Document
 
   def intro_section
     add_dest "page3", dest_xyz(bounds.absolute_left, y)
-    font "Helvetica", :color => "345A8A", :size => 16 do
-      text "The Sophity Services Success Model"
+    font "Helvetica", :size => 16 do
+      text "The Sophity Services Success Model", :color => "345A8A"
     end
 
     move_down 10
@@ -124,12 +124,12 @@ class SurveyPdf < Prawn::Document
     move_down 20
     text "Our customers continue to use the Sophity 6-Point Services Success Model to evolve their business over time in order to address changes in the market and technical environment."
     move_down 20
-    text "The components of the Sophity 6-Point Services Success Model are:"
+    text "The components of the Sophity 6-Point Services Success Model are pictured below."
 
-    move_down 10
+    move_down 20
     image "#{Rails.root}/app/assets/images/6Dimensions.png",  :width => 342, :position => :center
 
-    move_down 10
+    move_down 20
     text "Each component is comprised of a number of attributes; Each component is described here."
     move_down 10
 
