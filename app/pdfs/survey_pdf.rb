@@ -237,7 +237,6 @@ class SurveyPdf < Prawn::Document
 
     move_down 20
     table_deltas
-    start_new_page
   end
 
    def outro_section
