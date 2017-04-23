@@ -62,7 +62,7 @@ def change_name
     @proficient = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [3 .. 5])
     @improve = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [2.3 .. 2.9])
     @deltas = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [1 .. 2])
-    @topConcerns = Survey::Question.find_by_sql ["SELECT sq.text FROM survey_answers sa join survey_questions sq on sa.question_id = sq.id join survey_attempts sat on sa.attempt_id = sat.id where sat.participant_id = :participant_id", {:participant_id=> current_user.id}];
+    #@topConcerns = Survey::Question.find_by_sql ["select sq.text  FROM  survey_questions sq  join survey_answers sa on sa.question_id = sq.id  join survey_surveys s on sq.survey_id = s.id join survey_attempts sat on sa.attempt_id = sat.id where sa.option_id <=3 and sat.participant_id = 1;", {:participant_id=> current_user.id}];
     @total_score = @all_attempts.sum(:score)
     @numericGrade = (@total_score * (-1)).to_f/ 45
     if (@numericGrade >= 4.7)

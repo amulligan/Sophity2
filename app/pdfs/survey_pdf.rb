@@ -172,13 +172,10 @@ class SurveyPdf < Prawn::Document
     text "Your grade of #{ @gradeLetter } indicates that", :size => 12
     move_down 10
     table_proficient
-
     move_down 20
     table_improve
-    
     move_down 20
     table_deltas
-    start_new_page
     footer
   end
 
@@ -208,6 +205,7 @@ class SurveyPdf < Prawn::Document
          "</link></u>", :color => "0000ff",
          :inline_format => true
     move_down 10
+    start_new_page
     text "<u><link href='https://www.facebook.com/sophity1/'>https://www.facebook.com/sophity1/" "</link></u>", :color => "0000ff",
          :inline_format => true
     move_down 10
@@ -284,19 +282,14 @@ class SurveyPdf < Prawn::Document
 
    def main_build
      move_down 20
-     table table_rows, :cell_style => { :font => "Times-Roman", :font_style => :italic }
+     table table_rows, :cell_style => { :font => "Times-Roman", :font_style => :bold, :font_size => 12 }
    end
 
-   def subtable(top_concerns)
-      top_concerns do |c|
-        [c.text]
-   end
-   end
 
-   def table_rows    
+   def table_rows   
     [["Service Component", "Grade", "Top Concerns"]] + 
       @all_attempts.map do |l| 
-         [{:content => l.survey.description, :rowspan => l.survey.top_concerns.count}, {:content => l.grade, :rowspan => l.survey.top_concerns.count}, {:content => "test", :rowspan => l.survey.top_concerns.count}]
+         [l.survey.description, l.grade, l.top_concerns.join("\n\r")]
       end
    end
 
