@@ -91,7 +91,7 @@ class SurveyPdf < Prawn::Document
     outline.define do
          page :title => "The Sophity Services Success Model", :destination => 3
          page :title => "Sophity Services Success Health Check – Introduction", :destination => 5
-         page :title => "Sophity Services Success Health Check - Results", :destination => 6
+         page :title => "Sophity Services Success Health Check – Results", :destination => 6
          page :title => "About Sophity LLC", :destination => 8
     end
   end
@@ -106,7 +106,7 @@ class SurveyPdf < Prawn::Document
     move_down 20
     text " Sophity Services Success Health Check – Introduction                    " + "<u><link anchor='page5'>5</link></u>", :size => 12, :inline_format => true
     move_down 20
-    text " Sophity Services Success Health Check - #{@current_user.company} Results           " +"<u><link anchor='page6'>6</link></u>", :size => 12,:inline_format => true
+    text " Sophity Services Success Health Check – Your Results           " +"<u><link anchor='page6'>6</link></u>", :size => 12,:inline_format => true
     move_down 20
     text " About Sophity LLC                                                                            " +"<u><link anchor='page8'>8</link></u>",:size => 12, :inline_format => true
   end
@@ -218,7 +218,7 @@ class SurveyPdf < Prawn::Document
     add_dest "page6", dest_xyz(bounds.absolute_left, y)
 
     font "Helvetica", :size => 16 do
-      text "Sophity Services Success Health Check - Your Results", :color => "345A8A"
+      text "Sophity Services Success Health Check – Your Results", :color => "345A8A"
     end
 
     move_down 20
@@ -283,7 +283,7 @@ class SurveyPdf < Prawn::Document
   def headers
     #This inserts an image in the pdf file and sets the size of the image
     font "Helvetica", :style => :normal, :size => 10
-    header_string = "Sophity Services Success Model Health Check - #{@current_user.company}"
+    header_string = "Sophity Services Success Model Health Check – #{@current_user.company}"
     header_options = {
       at: [bounds.right - 300, bounds.top + 32],
       width: 300,
@@ -334,22 +334,22 @@ class SurveyPdf < Prawn::Document
 
   def proficient_rows
     if @proficient.empty?
-      [["You're proficient in: "]] + [[" - " + "N/A"]]
+      [["You're proficient in: "]] + [[" – " + "N/A"]]
     else
       [["You're proficient in: "]] +
       @proficient.map do |p|
-        ["  - " + p.survey.description]
+        ["  – " + p.survey.description]
       end
     end
   end
 
   def improve_rows
     if @improve.empty?
-      [[ "You have room for improvement in these areas: "]]+ [[" - " + "N/A"]]
+      [[ "You have room for improvement in these areas: "]]+ [[" – " + "N/A"]]
     else
       [[ "You have room for improvement in these areas: "]]+
       @improve.map do |i|
-        ["  - " + i.survey.description]
+        ["  – " + i.survey.description]
       end
     end
   end
@@ -357,11 +357,11 @@ class SurveyPdf < Prawn::Document
   def deltas_rows
 
     if @deltas.empty?
-      [[ "You need to make significant improvement in these areas: "]] + [[" - " + "N/A"]]
+      [[ "You need to make significant improvement in these areas: "]] + [[" – " + "N/A"]]
     else
       [[ "You need to make significant improvement in these areas: "]] +
       @deltas.map do |d|
-        ["  - " + d.survey.description]
+        ["  – " + d.survey.description]
       end
     end
   end
@@ -402,7 +402,7 @@ class SurveyPdf < Prawn::Document
       [["Table of Contents", "     "]]+
       [[" The Sophity Services Success Model",  "<u> <link anchor='page3'>3</link></u> "]] +
       [[" Sophity Services Success Health Check – Introduction  " ,  " <u> <link anchor='page5'>5</link></u>"]]+
-      [[" Sophity Services Success Health Check - #{@current_user.company} Results", "<u> <link anchor='page6'>6</link></u>"]] +
+      [[" Sophity Services Success Health Check – #{@current_user.company} Results", "<u> <link anchor='page6'>6</link></u>"]] +
       [[" About Sophity LLC", "<u> <link anchor='page8'>8</link></u>"]]
 
    end
