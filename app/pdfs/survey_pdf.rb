@@ -54,7 +54,7 @@ class SurveyPdf < Prawn::Document
         font "Helvetica", :style => :bold_italic, :size => 20
         text "Sophity Services Success Model Health Check"
         move_down 30
-        font "Helvetica", :style => :normal, :size => 12
+        font "Times-Roman", :size => 12, :style => :normal
         text "Prepared for:"
         move_down 14
         text "#{ @current_user.name}"
@@ -97,22 +97,32 @@ class SurveyPdf < Prawn::Document
   end
 
   def table_of_contents
-    move_down 20
-    font "Helvetica", :color => "345A8A", :size => 16 do
-      text "Table of Contents"
+    move_down 10
+    font "Helvetica", :size => 16 do
+      text "Table of Contents", :color => "345A8A"
     end
+
+    line_y = cursor
+    text "<link anchor='page3'>The Sophity Services Success Model</link>", :inline_format => true
+    move_cursor_to line_y
+    span(12, :position => :right) do
+      text "<link anchor='page3'>3</link>", :align => :right, :inline_format => true
+    end
+    move_down 18
     move_down 20
-    text "The Sophity Services Success Model                                               " +"<u><link anchor='page3'>3</link></u>", :size => 12, :inline_format => true
+    text "The Sophity Services Success Model                                               " +"<u><link anchor='page3'>3</link></u>", :inline_format => true
     move_down 20
-    text " Sophity Services Success Health Check – Introduction                    " + "<u><link anchor='page5'>5</link></u>", :size => 12, :inline_format => true
+    text " Sophity Services Success Health Check – Introduction                    " + "<u><link anchor='page5'>5</link></u>", :inline_format => true
     move_down 20
-    text " Sophity Services Success Health Check – Your Results           " +"<u><link anchor='page6'>6</link></u>", :size => 12,:inline_format => true
+    text " Sophity Services Success Health Check – Your Results           " +"<u><link anchor='page6'>6</link></u>",:inline_format => true
     move_down 20
     text " About Sophity LLC                                                                            " +"<u><link anchor='page8'>8</link></u>",:size => 12, :inline_format => true
   end
 
   def intro_section
     add_dest "page3", dest_xyz(bounds.absolute_left, y)
+
+    move_down 10
     font "Helvetica", :size => 16 do
       text "The Sophity Services Success Model", :color => "345A8A"
     end
@@ -161,7 +171,7 @@ class SurveyPdf < Prawn::Document
     text "•"
     move_cursor_to line_y
     span(417, :position => :right) do
-      text "Repeatable Delivery Framework: The Repeatable Delivery Framework assessment reviews the tools, templates, and processes that have been developed for each service offering in the services portfolio and how they are used within services to improve delivery quality and scalability, new hire and partner onboarding, and even the sales process.", :size => 12
+      text "Repeatable Delivery Framework: The Repeatable Delivery Framework assessment reviews the tools, templates, and processes that have been developed for each service offering in the services portfolio and how they are used within services to improve delivery quality and scalability, new hire and partner onboarding, and even the sales process."
     end
     move_down 18
 
@@ -193,6 +203,7 @@ class SurveyPdf < Prawn::Document
   def about_survey
     add_dest "page5", dest_xyz(bounds.absolute_left, y)
 
+    move_down 10
     font "Helvetica", :size => 16 do
       text "Sophity Services Success Health Check – Introduction", :color => "345A8A"
     end
@@ -202,11 +213,11 @@ class SurveyPdf < Prawn::Document
     move_down 20
     text "Each statement was worth five (5) points. Points were awarded as follows:"
     move_down 20
-    text "        Strongly Agree: 5 points ", :size => 12, :indent_paragraphs => 80
-    text "        Agree: 4 points ", :size => 12, :indent_paragraphs => 80
-    text "        Neutral: 3 points ", :size => 12, :indent_paragraphs => 80
-    text "        Disagree: 2 points ", :size => 12, :indent_paragraphs => 80
-    text "        Strongly Disagree: 1 point ", :size => 12, :indent_paragraphs => 80
+    text "        Strongly Agree: 5 points ", :indent_paragraphs => 80
+    text "        Agree: 4 points ", :indent_paragraphs => 80
+    text "        Neutral: 3 points ", :indent_paragraphs => 80
+    text "        Disagree: 2 points ", :indent_paragraphs => 80
+    text "        Strongly Disagree: 1 point ", :indent_paragraphs => 80
     move_down 20
     text "A letter grade was provided for each of the six components of the Sophity 6-Point Services Success Model. An overall grade for your practice was also provided. Grades were determined by the number of points awarded per the information above. Grades were calculated as follows: "
     move_down 20
@@ -217,6 +228,7 @@ class SurveyPdf < Prawn::Document
   def your_scores
     add_dest "page6", dest_xyz(bounds.absolute_left, y)
 
+    move_down 10
     font "Helvetica", :size => 16 do
       text "Sophity Services Success Health Check – Your Results", :color => "345A8A"
     end
@@ -242,28 +254,29 @@ class SurveyPdf < Prawn::Document
    def outro_section
     add_dest "page8", dest_xyz(bounds.absolute_left, y)
 
+    move_down 10
     font "Helvetica", :size => 16 do
       text "About Sophity LLC", :color => "345A8A"
     end
 
     move_down 20
-    text "Sophity knows first hand that running a growing IT consulting business is challenging. People don’t scale well, sales are competitive, and poor visibility into practice and project health can wreck a business forecast or client relationship over night. If your practice is embedded in a software or hardware business, you have the added challenges of ensuring your mission is aligned with the corporate mission, managing through conflicts with sales, marketing, and product management, and ensuring your work does not adversely affect overall corporate financial reporting. (Did I hear you say “VSOE?”)", :size => 12
+    text "Sophity knows first hand that running a growing IT consulting business is challenging. People don’t scale well, sales are competitive, and poor visibility into practice and project health can wreck a business forecast or client relationship over night. If your practice is embedded in a software or hardware business, you have the added challenges of ensuring your mission is aligned with the corporate mission, managing through conflicts with sales, marketing, and product management, and ensuring your work does not adversely affect overall corporate financial reporting. (Did I hear you say “VSOE?”)"
     move_down 10
-    text "At Sophity, we are committed to partnering with our customers – members of the services leadership and delivery teams – to ensure you are wildly successful in your endeavor to build a world-class consulting business.", :size => 12
+    text "At Sophity, we are committed to partnering with our customers – members of the services leadership and delivery teams – to ensure you are wildly successful in your endeavor to build a world-class consulting business."
     move_down 10
-    text "Sophity provides software and consulting services designed to help you optimize the 6 dimensions of a success consulting practice and your business.", :size => 12
+    text "Sophity provides software and consulting services designed to help you optimize the 6 dimensions of a success consulting practice and your business."
     move_down 10
-    text "Clients who work with us:", :size => 12
-    text " Increase sales by defining an effective Services Portfolio that monetizes what you do.",  :size => 12, :indent_paragraphs => 30
-    text "Improve margins and expedite new hire onboarding by developing a Repeatable Delivery Framework that ensures consistent quality across your team.",  :size => 12, :indent_paragraphs => 30
-    text "Reduce friction, improve relationships, and improve employee and customer satisfaction by partnering with sales and marketing to define a Go To Market Strategy that accelerates sales while giving you the command and control you need to ensure a high-level customer satisfaction from every project.",  :size => 12, :indent_paragraphs => 30
-    text "Reduce voluntary attrition and increase employee satisfaction by developing the programs you need to find, hire, and retain the best people for your team.",  :size => 12, :indent_paragraphs => 30
-    text" Look like heroes to executive management when partnerships with members of operations and finance to align business strategies and ensure the right governance, controls, and reporting are in place to allow you to have the visibility you need into your practice’s health.",  :size => 12, :indent_paragraphs => 30
-    text "Contact us today to talk about how we can help you build a fast growing, profitable, and truly world-class consulting business.", :size => 12
+    text "Clients who work with us:"
+    text " Increase sales by defining an effective Services Portfolio that monetizes what you do.", :indent_paragraphs => 30
+    text "Improve margins and expedite new hire onboarding by developing a Repeatable Delivery Framework that ensures consistent quality across your team.", :indent_paragraphs => 30
+    text "Reduce friction, improve relationships, and improve employee and customer satisfaction by partnering with sales and marketing to define a Go To Market Strategy that accelerates sales while giving you the command and control you need to ensure a high-level customer satisfaction from every project.", :indent_paragraphs => 30
+    text "Reduce voluntary attrition and increase employee satisfaction by developing the programs you need to find, hire, and retain the best people for your team.", :indent_paragraphs => 30
+    text" Look like heroes to executive management when partnerships with members of operations and finance to align business strategies and ensure the right governance, controls, and reporting are in place to allow you to have the visibility you need into your practice’s health.", :indent_paragraphs => 30
+    text "Contact us today to talk about how we can help you build a fast growing, profitable, and truly world-class consulting business."
     move_down 10
-    text "Phone: 978-265-2378 ", :size => 12
+    text "Phone: 978-265-2378 "
     move_down 10
-    text "Email: info@sophity.com", :size => 12
+    text "Email: info@sophity.com"
     move_down 10
     text "<u><link href='www.sophity.com'>www.sophity.com" +
          "</link></u>", :color => "0000ff",
