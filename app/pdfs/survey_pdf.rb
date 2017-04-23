@@ -38,7 +38,7 @@ class SurveyPdf < Prawn::Document
     content
   end
 
-  def cover    
+  def cover
     image "#{Rails.root}/app/assets/images/sophity-report-logo.png",  :at => [50,700], :width => 450
     image "#{Rails.root}/app/assets/images/puzzle.png",  :at => [0,550], :width => 550
     move_cursor_to 300
@@ -65,11 +65,11 @@ class SurveyPdf < Prawn::Document
     page_6
     start_new_page
     page_8
-    outline.define do       
+    outline.define do
          page :title => "The Sophity Services Success Model", :destination => 3
          page :title => "Sophity Services Success Health Check – Introduction", :destination => 5
          page :title => "Sophity Services Success Health Check - Results", :destination => 6
-         page :title => "About Sophity LLC", :destination => 8       
+         page :title => "About Sophity LLC", :destination => 8
     end
   end
 
@@ -146,7 +146,7 @@ class SurveyPdf < Prawn::Document
   def page_6
     add_dest "page6", dest_xyz(bounds.absolute_left, y)
     text "Sophity Services Success Health Check - #{@current_user.company} Results", :color => "0000ff", :size => 16
-    move_down 20 
+    move_down 20
     main_build
     move_down 20
     text "Total Grade: #{ @gradeLetter }", :color => "0000ff", :size => 16
@@ -159,7 +159,7 @@ class SurveyPdf < Prawn::Document
 
     move_down 20
     table_improve
-    
+
     move_down 20
     table_deltas
     start_new_page
@@ -221,20 +221,20 @@ class SurveyPdf < Prawn::Document
 
   end
 
-  def table_proficient 
-    table(proficient_rows, :cell_style => {:border_width => 0}) 
+  def table_proficient
+    table(proficient_rows, :cell_style => {:border_width => 0})
  end
 
   def table_improve
-    table(improve_rows, :cell_style => {:border_width => 0}) 
+    table(improve_rows, :cell_style => {:border_width => 0})
   end
 
-  def table_deltas 
-    table(deltas_rows, :cell_style => {:border_width => 0}) 
+  def table_deltas
+    table(deltas_rows, :cell_style => {:border_width => 0})
 
   end
 
-  def proficient_rows   
+  def proficient_rows
     if @proficient.empty?
       [["You're proficient in: "]] + [[" - " + "N/A"]]
     else
@@ -245,11 +245,11 @@ class SurveyPdf < Prawn::Document
     end
   end
 
-  def improve_rows 
+  def improve_rows
     if @improve.empty?
       [[ "You have room for improvement in these areas: "]]+ [[" - " + "N/A"]]
-    else 
-      [[ "You have room for improvement in these areas: "]]+ 
+    else
+      [[ "You have room for improvement in these areas: "]]+
       @improve.map do |i|
         ["  - " + i.survey.description]
       end
@@ -257,11 +257,11 @@ class SurveyPdf < Prawn::Document
   end
 
   def deltas_rows
-    
+
     if @deltas.empty?
       [[ "You need to make significant improvement in these areas: "]] + [[" - " + "N/A"]]
     else
-      [[ "You need to make significant improvement in these areas: "]] + 
+      [[ "You need to make significant improvement in these areas: "]] +
       @deltas.map do |d|
         ["  - " + d.survey.description]
       end
@@ -281,13 +281,13 @@ class SurveyPdf < Prawn::Document
 
    def transaction_rows
       [["Service Component", "Grade", "Top Concerns"]] +
-      @all_attempts.map do |l|
-         [l.survey.description, l.grade, " "]
+      @all_attempts.map do |line|
+         [line.survey.description, line.grade, " "]
       end
     end
 
    def toc
-    table(toc_rows, :cell_style => {:border_width => 0}) 
+    table(toc_rows, :cell_style => {:border_width => 0})
    end
 
    def toc_rows
