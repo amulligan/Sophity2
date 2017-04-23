@@ -76,13 +76,7 @@ class SurveyPdf < Prawn::Document
 
   def content
 
-    font_families.update(
-     "Dustismo" => {
-     :normal => "#{Prawn::DATADIR}/fonts/Dustismo_Roman.ttf"
-     }
-    )
-
-    font "Dustismo", :style => :normal, :size => 12
+    font "Times-Roman", :style => :normal, :size => 12
 
     start_new_page(:margin => [72, 90])
     table_of_contents
