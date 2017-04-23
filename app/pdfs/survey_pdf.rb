@@ -307,11 +307,48 @@ class SurveyPdf < Prawn::Document
     text "Sophity provides software and consulting services designed to help you optimize the 6 dimensions of a success consulting practice and your business."
     move_down 10
     text "Clients who work with us:"
-    text " Increase sales by defining an effective Services Portfolio that monetizes what you do.", :indent_paragraphs => 30
-    text "Improve margins and expedite new hire onboarding by developing a Repeatable Delivery Framework that ensures consistent quality across your team.", :indent_paragraphs => 30
-    text "Reduce friction, improve relationships, and improve employee and customer satisfaction by partnering with sales and marketing to define a Go To Market Strategy that accelerates sales while giving you the command and control you need to ensure a high-level customer satisfaction from every project.", :indent_paragraphs => 30
-    text "Reduce voluntary attrition and increase employee satisfaction by developing the programs you need to find, hire, and retain the best people for your team.", :indent_paragraphs => 30
-    text" Look like heroes to executive management when partnerships with members of operations and finance to align business strategies and ensure the right governance, controls, and reporting are in place to allow you to have the visibility you need into your practice’s health.", :indent_paragraphs => 30
+    move_down 10
+
+    line_y = cursor
+    text "•"
+    move_cursor_to line_y
+    span(417, :position => :right) do
+      text "Increase sales by defining an effective Services Portfolio that monetizes what you do."
+    end
+    move_down 18
+
+    line_y = cursor
+    text "•"
+    move_cursor_to line_y
+    span(417, :position => :right) do
+      text "Improve margins and expedite new hire onboarding by developing a Repeatable Delivery Framework that ensures consistent quality across your team."
+    end
+    move_down 18
+
+    line_y = cursor
+    text "•"
+    move_cursor_to line_y
+    span(417, :position => :right) do
+      text "Reduce friction, improve relationships, and improve employee and customer satisfaction by partnering with sales and marketing to define a Go To Market Strategy that accelerates sales while giving you the command and control you need to ensure a high-level customer satisfaction from every project."
+    end
+    move_down 18
+
+    line_y = cursor
+    text "•"
+    move_cursor_to line_y
+    span(417, :position => :right) do
+      text "Reduce voluntary attrition and increase employee satisfaction by developing the programs you need to find, hire, and retain the best people for your team."
+    end
+    move_down 18
+
+    line_y = cursor
+    text "•"
+    move_cursor_to line_y
+    span(417, :position => :right) do
+      text "Look like heroes to executive management when partnerships with members of operations and finance to align business strategies and ensure the right governance, controls, and reporting are in place to allow you to have the visibility you need into your practice’s health."
+    end
+    move_down 18
+
     text "Contact us today to talk about how we can help you build a fast growing, profitable, and truly world-class consulting business."
     move_down 10
     text "Phone: 978-265-2378 "
