@@ -186,9 +186,8 @@ class SurveyPdf < Prawn::Document
     move_down 10
 
     span(432) do
-      draw_text "•", :at => [bounds.left, cursor]
       span(417, :position => :right) do
-        text "Services Business Strategy: Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management."
+        text "•    Services Business Strategy: Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management.", :indent_paragraphs => -15
       end
       move_down 18
 
