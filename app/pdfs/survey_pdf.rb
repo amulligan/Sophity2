@@ -312,7 +312,7 @@ class SurveyPdf < Prawn::Document
     span(417, :position => :right) do
       text "Increase sales by defining an effective Services Portfolio that monetizes what you do."
     end
-    move_down 12
+    move_down 8
 
     line_y = cursor
     text "•"
@@ -320,7 +320,7 @@ class SurveyPdf < Prawn::Document
     span(417, :position => :right) do
       text "Improve margins and expedite new hire onboarding by developing a Repeatable Delivery Framework that ensures consistent quality across your team."
     end
-    move_down 12
+    move_down 8
 
     line_y = cursor
     text "•"
@@ -344,7 +344,7 @@ class SurveyPdf < Prawn::Document
     span(417, :position => :right) do
       text "Look like heroes to executive management when partnerships with members of operations and finance to align business strategies and ensure the right governance, controls, and reporting are in place to allow you to have the visibility you need into your practice’s health."
     end
-    move_down 8
+    move_down 20
 
     text "Contact us today to talk about how we can help you build a fast growing, profitable, and truly world-class consulting business."
     move_down 10
@@ -355,7 +355,7 @@ class SurveyPdf < Prawn::Document
       ["<u><link href='www.sophity.com'>www.sophity.com</link></u>", "<u><link href='https://www.linkedin.com/company/sophity-llc/'>linkedin.com/company/sophity-llc</link></u>"]
     ], :cell_style => {:inline_format => true}, :position => :center do
       cells.borders = []
-      cells.padding = 4
+      cells.padding = 8
     end
 
   end
