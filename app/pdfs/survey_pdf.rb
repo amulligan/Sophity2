@@ -185,6 +185,7 @@ class SurveyPdf < Prawn::Document
     move_down 10
 
     span(432) do
+      text "   "
       line_y = cursor
       text "•"
       move_cursor_to line_y
