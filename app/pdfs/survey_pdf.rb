@@ -184,8 +184,9 @@ class SurveyPdf < Prawn::Document
     text "Each component is comprised of a number of attributes:"
     move_down 10
 
-    line_y = cursor
     span(432) do
+      line_y = cursor
+      move_cursor_to line_y
       text "•"
       move_cursor_to line_y
       span(417, :position => :right) do
@@ -194,6 +195,7 @@ class SurveyPdf < Prawn::Document
       move_down 18
 
       line_y = cursor
+      move_cursor_to line_y
       text "•"
       move_cursor_to line_y
       span(417, :position => :right) do
@@ -268,7 +270,7 @@ class SurveyPdf < Prawn::Document
       ["C","2.9","2.6","2.3"],
       ["D","2.0","1.7","1.4"],
       ["F","","<1.4",""],
-    ] do
+    ], :cell_style => {:align: :center} do
       cells.padding = 4
       cells.borders = [:bottom]
       column(0).borders = [:right, :bottom]
