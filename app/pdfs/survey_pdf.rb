@@ -187,47 +187,32 @@ class SurveyPdf < Prawn::Document
 
     span(432) do
       span(417, :position => :right) do
-        text "•    Services Business Strategy: Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management.", :indent_paragraphs => -15
+        text "•    Services Business Strategy: Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management.", :indent_paragraphs => -17
       end
       move_down 18
 
-      line_y = cursor
-      text "•"
-      move_cursor_to line_y
       span(417, :position => :right) do
-        text "Services Go To Market Strategy: The Go To Market (GTM) Strategy evaluation looks at the degree to which there is a plan for how sales will be conducted and to whom. We look at the marketing plan, sales model, and sales team, among other things."
+        text "•    Services Go To Market Strategy: The Go To Market (GTM) Strategy evaluation looks at the degree to which there is a plan for how sales will be conducted and to whom. We look at the marketing plan, sales model, and sales team, among other things.", :indent_paragraphs => -17
       end
       move_down 18
 
-      line_y = cursor
-      text "•"
-      move_cursor_to line_y
       span(417, :position => :right) do
-        text "Services Portfolio: The Services Portfolio evaluation assesses the degree to which clear, easy to sell services offerings have been developed. We look at the alignment of the offerings to the services team’s skills and capabilities, the market need, and the sell-ability of each."
+        text "•    Services Portfolio: The Services Portfolio evaluation assesses the degree to which clear, easy to sell services offerings have been developed. We look at the alignment of the offerings to the services team’s skills and capabilities, the market need, and the sell-ability of each.", :indent_paragraphs => -17
       end
       move_down 18
 
-      line_y = cursor
-      text "•"
-      move_cursor_to line_y
       span(417, :position => :right) do
-        text "Repeatable Delivery Framework: The Repeatable Delivery Framework assessment reviews the tools, templates, and processes that have been developed for each service offering in the services portfolio and how they are used within services to improve delivery quality and scalability, new hire and partner onboarding, and even the sales process."
+        text "•    Repeatable Delivery Framework: The Repeatable Delivery Framework assessment reviews the tools, templates, and processes that have been developed for each service offering in the services portfolio and how they are used within services to improve delivery quality and scalability, new hire and partner onboarding, and even the sales process.", :indent_paragraphs => -17
       end
       move_down 18
 
-      line_y = cursor
-      text "•"
-      move_cursor_to line_y
       span(417, :position => :right) do
-        text "The Team: The Team assessment looks at the alignment of skills represented on the team and the stated mission of the services department, as well as the needs expressed by the market. Additionally, we assess how well services management communicates with, empowers, and invests in the team."
+        text "•    The Team: The Team assessment looks at the alignment of skills represented on the team and the stated mission of the services department, as well as the needs expressed by the market. Additionally, we assess how well services management communicates with, empowers, and invests in the team.", :indent_paragraphs => -17
       end
       move_down 18
 
-      line_y = cursor
-      text "•"
-      move_cursor_to line_y
       span(417, :position => :right) do
-        text "Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals."
+        text "•    Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals.", :indent_paragraphs => -17
       end
       move_down 18
     end
