@@ -184,9 +184,8 @@ class SurveyPdf < Prawn::Document
     text "Each component is comprised of a number of attributes:"
     move_down 10
 
+    line_y = cursor
     span(432) do
-      text "   "
-      line_y = cursor
       text "•"
       move_cursor_to line_y
       span(417, :position => :right) do
@@ -217,23 +216,23 @@ class SurveyPdf < Prawn::Document
         text "Repeatable Delivery Framework: The Repeatable Delivery Framework assessment reviews the tools, templates, and processes that have been developed for each service offering in the services portfolio and how they are used within services to improve delivery quality and scalability, new hire and partner onboarding, and even the sales process."
       end
       move_down 18
-    end
 
-    line_y = cursor
-    text "•"
-    move_cursor_to line_y
-    span(417, :position => :right) do
-      text "The Team: The Team assessment looks at the alignment of skills represented on the team and the stated mission of the services department, as well as the needs expressed by the market. Additionally, we assess how well services management communicates with, empowers, and invests in the team."
-    end
-    move_down 18
+      line_y = cursor
+      text "•"
+      move_cursor_to line_y
+      span(417, :position => :right) do
+        text "The Team: The Team assessment looks at the alignment of skills represented on the team and the stated mission of the services department, as well as the needs expressed by the market. Additionally, we assess how well services management communicates with, empowers, and invests in the team."
+      end
+      move_down 18
 
-    line_y = cursor
-    text "•"
-    move_cursor_to line_y
-    span(417, :position => :right) do
-      text "Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals."
+      line_y = cursor
+      text "•"
+      move_cursor_to line_y
+      span(417, :position => :right) do
+        text "Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals."
+      end
+      move_down 18
     end
-    move_down 18
 
     move_down 20
     bounding_box([45, cursor], :width => 342) do
