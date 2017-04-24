@@ -36,6 +36,8 @@ class SurveyPdf < Prawn::Document
     end
     cover
     content
+    headers
+    footers
   end
 
   def cover
@@ -72,22 +74,25 @@ class SurveyPdf < Prawn::Document
   end
 
   def content
+
     font "Times-Roman", :style => :normal, :size => 12
+
     start_new_page(:margin => [72, 90])
-    page_2
+    table_of_contents
     start_new_page(:margin => [72, 90])
-    page_3
+    intro_section
     start_new_page(:margin => [72, 90])
-    page_5
+    about_survey
     start_new_page(:margin => [72, 90])
-    page_6
+    your_scores
     start_new_page(:margin => [72, 90])
-    page_8
-    outline.define do       
+    outro_section
+
+    outline.define do
          page :title => "The Sophity Services Success Model", :destination => 3
          page :title => "Sophity Services Success Health Check – Introduction", :destination => 5
-         page :title => "Sophity Services Success Health Check - Results", :destination => 6
-         page :title => "About Sophity LLC", :destination => 8       
+         page :title => "Sophity Services Success Health Check – Results", :destination => 6
+         page :title => "About Sophity LLC", :destination => 8
     end
   end
 
@@ -96,78 +101,178 @@ class SurveyPdf < Prawn::Document
     text "Sophity Services Success Model Health Check - #{@current_user.company}", :align => :center
   end
 
-  def page_2
+  def table_of_contents
+    move_down 10
+    font "Helvetica", :size => 16 do
+      text "Table of Contents", :color => "345A8A"
+    end
+
     move_down 20
-    text "Table of Contents",:color => "0000ff", :size => 16
+    line_y = cursor
+    toc_string = "<link anchor='page3'>The Sophity Services Success Model " + " . " * 100 + "</link>"
+    text_box toc_string,
+        :at => [0, line_y],
+        :inline_format => true,
+        :width => 412,
+        :height => 18,
+        :overflow => :truncate
+    move_cursor_to line_y
+    span(20, :position => :right) do
+      text "<link anchor='page3'>3</link>", :align => :right, :inline_format => true
+    end
+
     move_down 20
-    text "The Sophity Services Success Model                                               " +"<u><link anchor='page3'>3</link></u>", :size => 12, :inline_format => true
+    line_y = cursor
+    toc_string = "<link anchor='page5'>Sophity Services Success Health Check – Introduction" + " . " * 100 + "</link>"
+    text_box toc_string,
+        :at => [0, line_y],
+        :inline_format => true,
+        :width => 412,
+        :height => 18,
+        :overflow => :truncate
+    move_cursor_to line_y
+    span(20, :position => :right) do
+      text "<link anchor='page5'>5</link>", :align => :right, :inline_format => true
+    end
+
     move_down 20
-    text " Sophity Services Success Health Check – Introduction                    " + "<u><link anchor='page5'>5</link></u>", :size => 12, :inline_format => true
+    line_y = cursor
+    toc_string = "<link anchor='page6'>Sophity Services Success Health Check – Your Results " + " . " * 100 + "</link>"
+    text_box toc_string,
+        :at => [0, line_y],
+        :inline_format => true,
+        :width => 412,
+        :height => 18,
+        :overflow => :truncate
+    move_cursor_to line_y
+    span(20, :position => :right) do
+      text "<link anchor='page6'>6</link>", :align => :right, :inline_format => true
+    end
+
     move_down 20
-    text " Sophity Services Success Health Check - #{@current_user.company} Results           " +"<u><link anchor='page6'>6</link></u>", :size => 12,:inline_format => true
-    move_down 20
-    text " About Sophity LLC                                                                            " +"<u><link anchor='page8'>8</link></u>",:size => 12, :inline_format => true
-    footer
+    line_y = cursor
+    toc_string = "<link anchor='page8'>About Sophity LLC " + " . " * 100 + "</link>"
+    text_box toc_string,
+        :at => [0, line_y],
+        :inline_format => true,
+        :width => 412,
+        :height => 18,
+        :overflow => :truncate
+    move_cursor_to line_y
+    span(20, :position => :right) do
+      text "<link anchor='page8'>8</link>", :align => :right, :inline_format => true
+    end
   end
 
-  def page_3
+  def intro_section
     add_dest "page3", dest_xyz(bounds.absolute_left, y)
-    text "The Sophity Services Success Model", :color => "0000ff", :size => 16
-    move_down 10
-    text "Sophity has developed the Sophity 6-Point Services Success Model in order to provide a framework our customers use to build their business plan for a world-class consulting business.", :size => 12
+
     move_down 20
-    text "We use this model to evaluate the current health of a consulting practice and identify opportunities to improve your business model and execution plan. We work with our customers to develop a roadmap of change that drives the business to growth and world-class status.", :size => 12
+    font "Helvetica", :size => 16 do
+      text "The Sophity Services Success Model", :color => "345A8A"
+    end
+
     move_down 20
-    text "Our customers continue to use the Sophity 6-Point Services Success Model to evolve their business over time in order to address changes in the market and technical environment.", :size => 12
+    text "Sophity has developed the Sophity 6-Point Services Success Model in order to provide a framework our customers use to build their business plan for a world-class consulting business."
     move_down 20
-    text "The components of the Sophity 6-Point Services Success Model are:", :size => 12
-    move_down 10
-    image "#{Rails.root}/app/assets/images/6Dimensions.png",  :width => 400, :position => :center
-    move_down 10
-    text "Each component is comprised of a number of attributes; Each component is described here.", :size => 12
-    move_down 10
-    text " - Services Business Strategy: Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management." , :size => 12
-    start_new_page
-    text " - Services Go To Market Strategy: The Go To Market (GTM) Strategy evaluation looks at the degree to which there is a plan for how sales will be conducted and to whom. We look at the marketing plan, sales model, and sales team, among other things." , :size => 12
-    text " - Services Portfolio: The Services Portfolio evaluation assesses the degree to which clear, easy to sell services offerings have been developed. We look at the alignment of the offerings to the services team’s skills and capabilities, the market need, and the sell-ability of each.", :size => 12
-    text " - Repeatable Delivery Framework: The Repeatable Delivery Framework assessment reviews the tools, templates, and processes that have been developed for each service offering in the services portfolio and how they are used within services to improve delivery quality and scalability, new hire and partner onboarding, and even the sales process.", :size => 12
-    text " - The Team: The Team assessment looks at the alignment of skills represented on the team and the stated mission of the services department, as well as the needs expressed by the market. Additionally, we assess how well services management communicates with, empowers, and invests in the team." , :size => 12
-    text " -  Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals." , :size => 12
+    text "We use this model to evaluate the current health of a consulting practice and identify opportunities to improve your business model and execution plan. We work with our customers to develop a roadmap of change that drives the business to growth and world-class status."
     move_down 20
-    bounding_box([16, cursor], :width => 400) do
-      image "#{Rails.root}/app/assets/images/Categories.png", :width => 400, :position => :center
+    text "Our customers continue to use the Sophity 6-Point Services Success Model to evolve their business over time in order to address changes in the market and technical environment."
+    move_down 20
+    text "The components of the Sophity 6-Point Services Success Model are pictured below."
+
+    move_down 30
+    image "#{Rails.root}/app/assets/images/6Dimensions.png",  :width => 342, :position => :center
+
+    move_down 30
+    text "Each component is comprised of a number of attributes:"
+    move_down 10
+
+    span(432) do
+      span(417, :position => :right) do
+        text "•    Services Business Strategy: Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management.", :indent_paragraphs => -17
+      end
+      move_down 18
+
+      span(417, :position => :right) do
+        text "•    Services Go To Market Strategy: The Go To Market (GTM) Strategy evaluation looks at the degree to which there is a plan for how sales will be conducted and to whom. We look at the marketing plan, sales model, and sales team, among other things.", :indent_paragraphs => -17
+      end
+      move_down 18
+
+      span(417, :position => :right) do
+        text "•    Services Portfolio: The Services Portfolio evaluation assesses the degree to which clear, easy to sell services offerings have been developed. We look at the alignment of the offerings to the services team’s skills and capabilities, the market need, and the sell-ability of each.", :indent_paragraphs => -17
+      end
+      move_down 18
+
+      span(417, :position => :right) do
+        text "•    Repeatable Delivery Framework: The Repeatable Delivery Framework assessment reviews the tools, templates, and processes that have been developed for each service offering in the services portfolio and how they are used within services to improve delivery quality and scalability, new hire and partner onboarding, and even the sales process.", :indent_paragraphs => -17
+      end
+      move_down 18
+
+      span(417, :position => :right) do
+        text "•    The Team: The Team assessment looks at the alignment of skills represented on the team and the stated mission of the services department, as well as the needs expressed by the market. Additionally, we assess how well services management communicates with, empowers, and invests in the team.", :indent_paragraphs => -17
+      end
+      move_down 18
+
+      span(417, :position => :right) do
+        text "•    Business Operations & Financial Management: The Business Operations & Financial Management assessment reviews whether the KPIs, practice operations, and financial tools and processes are in support of the services business’s core purpose and goals.", :indent_paragraphs => -17
+      end
+      move_down 18
+    end
+
+    move_down 20
+    bounding_box([45, cursor], :width => 342) do
+      image "#{Rails.root}/app/assets/images/Categories.png", :width => 342, :position => :center
       stroke_bounds
     end
-    footer
+
   end
 
 
-  def page_5
+  def about_survey
     add_dest "page5", dest_xyz(bounds.absolute_left, y)
-    text "Sophity Services Success Health Check – Introduction", :color => "0000ff", :size => 16
-    move_down 10
-    text "Sophity presented a series of statements in the form of a survey and asked the participant to rate the degree to which s/he agreed with each statement. The questions were framed such that the more you agreed with the statement in context with the reality of your current business, the more points you received for your response.", :size => 12
+
     move_down 20
-    text "Each statement was worth five (5) points. Points were awarded as follows:", :size => 12
+    font "Helvetica", :size => 16 do
+      text "Sophity Services Success Health Check – Introduction", :color => "345A8A"
+    end
+
     move_down 20
-    text "        Strongly Agree: 5 points ", :size => 12, :indent_paragraphs => 80
-    text "        Agree: 4 points ", :size => 12, :indent_paragraphs => 80
-    text "        Neutral: 3 points ", :size => 12, :indent_paragraphs => 80
-    text "        Disagree: 2 points ", :size => 12, :indent_paragraphs => 80
-    text "        Strongly Disagree: 1 point ", :size => 12, :indent_paragraphs => 80
+    text "Sophity presented a series of statements in the form of a survey and asked the participant to rate the degree to which s/he agreed with each statement. The questions were framed such that the more you agreed with the statement in context with the reality of your current business, the more points you received for your response."
     move_down 20
-    text "A letter grade was provided for each of the six components of the Sophity 6-Point Services Success Model. An overall grade for your practice was also provided. Grades were determined by the number of points awarded per the information above. Grades were calculated as follows: ", :size => 12
+    text "We took the average of the scores for all questions to calculate the category-level " +
+        "scores. We then took the average of the 6 category scores to calculate the total score for your business."
     move_down 20
-    image "#{Rails.root}/app/assets/images/scores.png", :width => 400
-    footer
+    text "The following table shows how the letter grades were derived:"
+    move_down 20
+
+     table [
+      ["", {:content => "Category Average", :colspan => 3}],
+      ["Letter Grade", "+", "", "-"],
+      ["A",">4.7","4.4","4.1"],
+      ["B","3.8","3.5","3.2"],
+      ["C","2.9","2.6","2.3"],
+      ["D","2.0","1.7","1.4"],
+      ["F","","<1.4",""],
+    ], :cell_style => {:align => :center}, :position => :center do
+      cells.padding = 4
+      cells.borders = [:bottom]
+      column(0).borders = [:right, :bottom]
+    end
+
   end
 
 
-  def page_6
+  def your_scores
     add_dest "page6", dest_xyz(bounds.absolute_left, y)
-    text "Sophity Services Success Health Check - #{@current_user.company} Results", :color => "0000ff", :size => 16
-    move_down 20 
-    main_build
+
+    move_down 20
+    font "Helvetica", :size => 16 do
+      text "Sophity Services Success Health Check – Your Results", :color => "345A8A"
+    end
+
+    move_down 20
+    build_results_table
     move_down 40
     text "Total Grade: #{ @gradeLetter }", :color => "0000ff", :size => 16
     move_down 20
@@ -176,65 +281,127 @@ class SurveyPdf < Prawn::Document
     text "Your grade of #{ @gradeLetter } indicates that", :size => 12
     move_down 10
     table_proficient
+
     move_down 20
     table_improve
+
     move_down 20
     table_deltas
-    footer
   end
 
-   def page_8
+  def outro_section
     add_dest "page8", dest_xyz(bounds.absolute_left, y)
-    text "About Sophity LLC", :color => "0000ff", :size => 16
+
+    move_down 10
+    font "Helvetica", :size => 16 do
+      text "About Sophity LLC", :color => "345A8A"
+    end
+
+    font "Times-Roman", :style => :normal, :size => 10
+
     move_down 20
-    text "Sophity knows first hand that running a growing IT consulting business is challenging. People don’t scale well, sales are competitive, and poor visibility into practice and project health can wreck a business forecast or client relationship over night. If your practice is embedded in a software or hardware business, you have the added challenges of ensuring your mission is aligned with the corporate mission, managing through conflicts with sales, marketing, and product management, and ensuring your work does not adversely affect overall corporate financial reporting. (Did I hear you say “VSOE?”)", :size => 12
+    text "Sophity knows first hand that running a growing IT consulting business is challenging. People don’t scale well, sales are competitive, and poor visibility into practice and project health can wreck a business forecast or client relationship over night. If your practice is embedded in a software or hardware business, you have the added challenges of ensuring your mission is aligned with the corporate mission, managing through conflicts with sales, marketing, and product management, and ensuring your work does not adversely affect overall corporate financial reporting. (Did I hear you say “VSOE?”)"
     move_down 10
-    text "At Sophity, we are committed to partnering with our customers – members of the services leadership and delivery teams – to ensure you are wildly successful in your endeavor to build a world-class consulting business.", :size => 12
+    text "At Sophity, we are committed to partnering with our customers – members of the services leadership and delivery teams – to ensure you are wildly successful in your endeavor to build a world-class consulting business."
     move_down 10
-    text "Sophity provides software and consulting services designed to help you optimize the 6 dimensions of a success consulting practice and your business.", :size => 12
+    text "Sophity provides software and consulting services designed to help you optimize the 6 dimensions of a success consulting practice and your business."
     move_down 10
-    text "Clients who work with us:", :size => 12
-    text " Increase sales by defining an effective Services Portfolio that monetizes what you do.",  :size => 12, :indent_paragraphs => 30
-    text "Improve margins and expedite new hire onboarding by developing a Repeatable Delivery Framework that ensures consistent quality across your team.",  :size => 12, :indent_paragraphs => 30
-    text "Reduce friction, improve relationships, and improve employee and customer satisfaction by partnering with sales and marketing to define a Go To Market Strategy that accelerates sales while giving you the command and control you need to ensure a high-level customer satisfaction from every project.",  :size => 12, :indent_paragraphs => 30
-    text "Reduce voluntary attrition and increase employee satisfaction by developing the programs you need to find, hire, and retain the best people for your team.",  :size => 12, :indent_paragraphs => 30
-    text" Look like heroes to executive management when partnerships with members of operations and finance to align business strategies and ensure the right governance, controls, and reporting are in place to allow you to have the visibility you need into your practice’s health.",  :size => 12, :indent_paragraphs => 30
-    text "Contact us today to talk about how we can help you build a fast growing, profitable, and truly world-class consulting business.", :size => 12
+    text "Clients who work with us:"
     move_down 10
-    text "Phone: 978-265-2378 ", :size => 12
+
+    line_y = cursor
+    text "•"
+    move_cursor_to line_y
+    span(417, :position => :right) do
+      text "Increase sales by defining an effective Services Portfolio that monetizes what you do."
+    end
+    move_down 8
+
+    line_y = cursor
+    text "•"
+    move_cursor_to line_y
+    span(417, :position => :right) do
+      text "Improve margins and expedite new hire onboarding by developing a Repeatable Delivery Framework that ensures consistent quality across your team."
+    end
+    move_down 8
+
+    line_y = cursor
+    text "•"
+    move_cursor_to line_y
+    span(417, :position => :right) do
+      text "Reduce friction, improve relationships, and improve employee and customer satisfaction by partnering with sales and marketing to define a Go To Market Strategy that accelerates sales while giving you the command and control you need to ensure a high-level customer satisfaction from every project."
+    end
+    move_down 8
+
+    line_y = cursor
+    text "•"
+    move_cursor_to line_y
+    span(417, :position => :right) do
+      text "Reduce voluntary attrition and increase employee satisfaction by developing the programs you need to find, hire, and retain the best people for your team."
+    end
+    move_down 8
+
+    line_y = cursor
+    text "•"
+    move_cursor_to line_y
+    span(417, :position => :right) do
+      text "Look like heroes to executive management when partnerships with members of operations and finance to align business strategies and ensure the right governance, controls, and reporting are in place to allow you to have the visibility you need into your practice’s health."
+    end
+    move_down 20
+
+    text "Contact us today to talk about how we can help you build a fast growing, profitable, and truly world-class consulting business."
     move_down 10
-    text "Email: info@sophity.com", :size => 12
-    move_down 10
-    text "<u><link href='www.sophity.com'>www.sophity.com" +
-         "</link></u>", :color => "0000ff",
-         :inline_format => true
-    move_down 10
-    start_new_page
-    text "<u><link href='https://www.facebook.com/sophity1/'>https://www.facebook.com/sophity1/" "</link></u>", :color => "0000ff",
-         :inline_format => true
-    move_down 10
-    text "<u><link href='https://twitter.com/SophityPSA'>https://twitter.com/SophityPSA" "</link></u>", :color => "0000ff",
-         :inline_format => true
-    move_down 10
-    text "<u><link href='https://www.linkedin.com/company/sophity-llc/'>https://www.linkedin.com/company/sophity-llc/" "</link></u>", :color => "0000ff",
-         :inline_format => true
-    footer
+
+    table [
+      ["Phone: 978-265-2378", "<u><link href='https://www.facebook.com/sophity1/'>facebook.com/sophity1</link></u>"],
+      ["Email: info@sophity.com", "<u><link href='https://twitter.com/SophityPSA'>twitter.com/SophityPSA</link></u>"],
+      ["<u><link href='www.sophity.com'>www.sophity.com</link></u>", "<u><link href='https://www.linkedin.com/company/sophity-llc/'>linkedin.com/company/sophity-llc</link></u>"]
+    ], :cell_style => {:inline_format => true}, :position => :center do
+      cells.borders = []
+      cells.padding = 8
+    end
+
   end
 
-  def footer
-      string = '#<page>'
-  # Green page numbers 1 to 7
-  options = {
-    at: [bounds.right - 150, 0],
-    width: 150,
-    align: :right,
-    page_filter: (2..8),
-    start_count_at: 2,
-    color: '000000'
-  }
-  number_pages string, options
+  def headers
+    #This inserts an image in the pdf file and sets the size of the image
+    font "Helvetica", :style => :normal, :size => 10
+    header_string = "Sophity Services Success Model Health Check – #{@current_user.company}"
+    header_options = {
+      at: [bounds.right - 300, bounds.top + 32],
+      width: 300,
+      align: :right,
+      page_filter: (2..8),
+      start_count_at: 2,
+      color: '000000'
+    }
+    number_pages header_string, header_options
+  end 
 
+  def footers
+    font "Helvetica", :style => :normal, :size => 8
+    page_number_string = '<page>'
+    footer_string = "© 2016 Sophity LLC. All Rights Reserved. Cannot be used all or in part without express written permission from Sophity LLC."
+    page_number_options = {
+      at: [bounds.right - 12, -8],
+      width: 12,
+      align: :right,
+      page_filter: (2..8),
+      start_count_at: 2,
+      color: '000000'
+    }
+    footer_options = {
+      at: [bounds.left, -8],
+      width: 240,
+      align: :left,
+      page_filter: (2..8),
+      start_count_at: 2,
+      color: '000000'
+    }
+    number_pages page_number_string, page_number_options
+    number_pages footer_string, footer_options
   end
+
 
   def table_proficient 
     table(proficient_rows, :cell_style => {:border_width => 0}) 
@@ -284,9 +451,9 @@ class SurveyPdf < Prawn::Document
   end
 
 
-   def main_build
+   def build_results_table
      move_down 20
-     table table_rows, :cell_style => { :font => "Times-Roman", :font_style => :bold, :font_size => 12 }
+     table table_rows, :cell_style => { :font => "Times-Roman", :font_style => :bold, :font_size => 12 }, :width => 432
    end
 
 
@@ -296,19 +463,5 @@ class SurveyPdf < Prawn::Document
          [l.survey.description, l.grade, l.top_concerns.join("\n\r")]
       end
    end
-
-   def toc
-    table(toc_rows, :cell_style => {:border_width => 0}) 
-   end
-
-   def toc_rows
-      [["Table of Contents", "     "]]+
-      [[" The Sophity Services Success Model",  "<u> <link anchor='page3'>3</link></u> "]] +
-      [[" Sophity Services Success Health Check – Introduction  " ,  " <u> <link anchor='page5'>5</link></u>"]]+
-      [[" Sophity Services Success Health Check - #{@current_user.company} Results", "<u> <link anchor='page6'>6</link></u>"]] +
-      [[" About Sophity LLC", "<u> <link anchor='page8'>8</link></u>"]]
-
-   end
-
 
 end

@@ -148,8 +148,4 @@ module SurveysHelper
     end
   end
 
-  def list_concerns survey
-    list_concerns = ActiveRecord::Base.connection.execute("select sq.text  FROM  survey_questions sq  join survey_answers sa on sa.question_id = sq.id  join survey_surveys s on sq.survey_id = s.id join survey_attempts sat on sa.attempt_id = sat.id where sa.option_id <=3 and sat.participant_id = 1;");
-    return list_concerns
-  end
 end
