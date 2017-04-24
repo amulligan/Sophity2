@@ -77,6 +77,7 @@ class SurveyPdf < Prawn::Document
   def content
 
     font "Times-Roman", :style => :normal, :size => 12
+    default_leading 3
 
     start_new_page(:margin => [72, 90])
     table_of_contents
@@ -185,12 +186,12 @@ class SurveyPdf < Prawn::Document
     move_down 10
 
     span(432) do
-      line_y = cursor
-      move_cursor_to line_y
-      text "•"
-      move_cursor_to line_y
       span(417, :position => :right) do
-        text "Services Business Strategy: Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management."
+        line_y = cursor
+        text "Services Business Strategy: "
+        move_cursor_to line_y
+        draw_text "•", :at => [bounds.left - 17, cursor]
+        text "Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management."
       end
       move_down 18
 
