@@ -294,6 +294,8 @@ class SurveyPdf < Prawn::Document
       text "About Sophity LLC", :color => "345A8A"
     end
 
+    font "Times-Roman", :style => :normal, :size => 10
+
     move_down 20
     text "Sophity knows first hand that running a growing IT consulting business is challenging. People don’t scale well, sales are competitive, and poor visibility into practice and project health can wreck a business forecast or client relationship over night. If your practice is embedded in a software or hardware business, you have the added challenges of ensuring your mission is aligned with the corporate mission, managing through conflicts with sales, marketing, and product management, and ensuring your work does not adversely affect overall corporate financial reporting. (Did I hear you say “VSOE?”)"
     move_down 10
@@ -351,7 +353,9 @@ class SurveyPdf < Prawn::Document
       ["Phone: 978-265-2378", "<u><link href='https://www.facebook.com/sophity1/'>facebook.com/sophity1</link></u>"],
       ["Email: info@sophity.com", "<u><link href='https://twitter.com/SophityPSA'>twitter.com/SophityPSA</link></u>"],
       ["<u><link href='www.sophity.com'>www.sophity.com</link></u>", "<u><link href='https://www.linkedin.com/company/sophity-llc/'>linkedin.com/company/sophity-llc</link></u>"]
-    ], :cell_style => {:inline_format => true}
+    ], :cell_style => {:inline_format => true}, :position => :center do
+      cells.borders = []
+    end
 
   end
 
