@@ -261,14 +261,18 @@ class SurveyPdf < Prawn::Document
     move_down 20
 
     table [
-      ["", "Category Average"],
+      ["", {:content => "Category Average", :colspan => 3}],
       ["Letter Grade", "+", "", "-"],
       ["A",">4.7","4.4","4.1"],
       ["B","3.8","3.5","3.2"],
       ["C","2.9","2.6","2.3"],
       ["D","2.0","1.7","1.4"],
       ["F","","<1.4",""],
-    ]
+    ] do
+      cells.padding = 4
+      cells.borders = [:bottom]
+      column(0).borders = [:right, :bottom]
+    end
 
   end
 
