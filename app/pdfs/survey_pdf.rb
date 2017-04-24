@@ -189,8 +189,8 @@ class SurveyPdf < Prawn::Document
       span(417, :position => :right) do
         line_y = cursor
         text "Services Business Strategy: "
-        move_cursor_to line_y
         draw_text "•", :at => [bounds.left - 17, cursor]
+        move_cursor_to line_y
         text "Evaluates the degree to which the services business strategy is aligned with the corporate strategy (in an embedded consulting business) and the strategies of key business partners such as sales, marketing, finance, and product management."
       end
       move_down 18
