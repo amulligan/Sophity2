@@ -6,21 +6,6 @@
     </div>
 
     <div class="hc-results-actions-wrapper card-rise">
-<<<<<<< HEAD
-      <% if @participant.report_requested %>
-      <div class="hc-report-response modal card-fixed">
-        <h2>Done!</h2>
-        <p><strong>Check your email:</strong> your report is on the way!</p>
-
-        <p>Can't wait? Download a copy
-        <strong>
-          <%= link_to "here.", download_path(@user, :format => 'pdf'), :style=> 'text-decoration:none;'%>
-        </strong></p>
-
-        <p>Questions? <a href="http://www.sophity.com/contactus/">Get in touch.</a></p>
-      </div>
-      <%end %>
-=======
        <% if @participant.report_requested %>
           <div class="hc-report-response modal card-fixed">
             <h2>Done!</h2>
@@ -30,12 +15,11 @@
             <strong>
               <%= link_to "here.", download_path(@user, :format => 'pdf'), :style=> 'text-decoration:none;'%>
             </strong></p>
-            
+
             <p> Next, <a href="https://my.timetrade.com/book/XPNS2", target="_blank">set up your free consultation</a> to discuss your results.</p>
-           
+
           </div>
         <%end %>
->>>>>>> 2f36b694683d9959007ee2bdd42fbc186929bab5
 
       <div class="hc-results-header">
         <h2>Need More Information?</h2>
@@ -45,32 +29,31 @@
 
       <div class="hc-user-info">
         <%= form_for(@participant) do |f| %>
-        <%= f.hidden_field :report_requested %>
-        <%= f.label :name %>
-        <%= f.text_field :name, class: 'form-control', required: true %>
-        <%= f.label :job_title %>
-        <%= f.text_field :job_title, class: 'form-control', required: true %>
-        <%= f.label :company %>
-        <%= f.text_field :company, class: 'form-control', required: true %>
-        <%= f.label :phone %>
-        <%= f.text_field :phone, class: 'form-control', required: true %>
-        <div class="hc-phone-checkbox">
-          <%= f.check_box :send_notification, class: 'hc-phone-inner' %>
-          <%= f.label I18n.t(:send_notification), class: 'hc-phone-inner'%> <br>
-        </div>
+          <%= f.hidden_field :report_requested %>
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control', required: true %>
+          <%= f.label :job_title %>
+          <%= f.text_field :job_title, class: 'form-control', required: true %>
+          <%= f.label :company %>
+          <%= f.text_field :company, class: 'form-control', required: true %>
+          <%= f.label :phone %>
+          <%= f.text_field :phone, class: 'form-control', required: true %>
+          <div class="hc-phone-checkbox">
+            <%= f.check_box :send_notification, class: 'hc-phone-inner' %>
+            <%= f.label I18n.t(:send_notification), class: 'hc-phone-inner'%> <br>
+          </div>
 
-        <%= f.submit 'REQUEST REPORT', id: 'hc-report-button', class: 'clickable' %>
+          <%= f.submit 'REQUEST REPORT', id: 'hc-report-button', class: 'clickable' %>
         <% end %>
       </div>
 
-<<<<<<< HEAD
-=======
-     
->>>>>>> 2f36b694683d9959007ee2bdd42fbc186929bab5
     </div>
-  <div class="hc-results-links card-rise">
-    <h3>What's Next?</h3>
-    <%= link_to "Take Another Health Check", login_path%>
-    <a href="http://www.sophity.com/">Back to Sophity</a>
+
+    <div class="hc-results-links card-rise">
+      <h3>What's Next?</h3>
+      <%= link_to "Take Another Health Check", login_path%>
+      <a href="http://www.sophity.com/">Back to Sophity</a>
+    </div>
+    
   </div>
 </section>
