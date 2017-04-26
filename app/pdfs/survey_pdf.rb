@@ -3,7 +3,8 @@ class SurveyPdf < Prawn::Document
     super()
     @current_user = current_user
     @all_attempts = all_attempts
-    @total_score = total_score.round(1)
+    @total_score = total_score
+    @total_score = @total_score.round(1)
     @proficient = proficient
     @improve = improve
     @deltas = deltas
