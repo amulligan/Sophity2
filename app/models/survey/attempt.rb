@@ -64,13 +64,13 @@ class Survey::Attempt < ActiveRecord::Base
       return ["N/A"]
     end
     if self.grade.include? 'A'
-      return top_concerns_list.first(3)
+      return top_concerns_list.first(3).flatten.first(2)
     elsif self.grade.include? 'B'
-      return top_concerns_list.first(3)
+      return top_concerns_list.first(3).flatten.first(3)
     elsif self.grade.include? 'C'
-      return top_concerns_list.first(2)
+      return top_concerns_list.first(2).flatten.first(4)
     else
-      return top_concerns_list.first(1)
+      return top_concerns_list.first(2).flatten.first(5)
     end
 end
 
