@@ -402,7 +402,7 @@ class SurveyPdf < Prawn::Document
       at: [bounds.left, -8],
       width: 240,
       align: :left,
-      page_filter: (2..8),
+      page_filter: (2..15),
       start_count_at: 2,
       color: '000000'
     }
