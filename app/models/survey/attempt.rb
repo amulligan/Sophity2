@@ -70,7 +70,7 @@ class Survey::Attempt < ActiveRecord::Base
     elsif self.grade.include? 'C'
       return top_concerns_list.first(2)
     else
-      return top_concerns_list.first(1)
+      return [top_concerns_list.first]
     end
 end
 
