@@ -60,17 +60,17 @@ class Survey::Attempt < ActiveRecord::Base
              join survey_attempts sat on sa.attempt_id = sat.id
              where sa.option_id =3 and sat.participant_id = ? and s.id= ?", self.participant_id, self.survey.id]).map(&:text)]
       ]
-    if top_concerns_list.empty?
-      return ["N/A"]
-    end
     elsif self.grade.include? 'A'
+      if top_concerns_list.empty?
+        return ["N/A"]
+      end
       return top_concerns_list.first(3)
     elsif self.grade.include? 'B'
       return top_concerns_list.first(3)
     elsif self.grade.include? 'C'
       return top_concerns_list.first(2)
     else
-      return [top_concerns_list.first]
+      return top_concerns_list.first(2)
     end
 end
 
