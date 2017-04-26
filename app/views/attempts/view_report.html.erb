@@ -6,6 +6,7 @@
     </div>
 
     <div class="hc-results-actions-wrapper card-rise">
+<<<<<<< HEAD
       <% if @participant.report_requested %>
       <div class="hc-report-response modal card-fixed">
         <h2>Done!</h2>
@@ -19,6 +20,22 @@
         <p>Questions? <a href="http://www.sophity.com/contactus/">Get in touch.</a></p>
       </div>
       <%end %>
+=======
+       <% if @participant.report_requested %>
+          <div class="hc-report-response modal card-fixed">
+            <h2>Done!</h2>
+            <p><strong>Check your email:</strong> your report is on the way!</p>
+
+            <p>Can't wait? Download a copy
+            <strong>
+              <%= link_to "here.", download_path(@user, :format => 'pdf'), :style=> 'text-decoration:none;'%>
+            </strong></p>
+            
+            <p> Next, <a href="https://my.timetrade.com/book/XPNS2", target="_blank">set up your free consultation</a> to discuss your results.</p>
+           
+          </div>
+        <%end %>
+>>>>>>> 2f36b694683d9959007ee2bdd42fbc186929bab5
 
       <div class="hc-results-header">
         <h2>Need More Information?</h2>
@@ -46,6 +63,10 @@
         <% end %>
       </div>
 
+<<<<<<< HEAD
+=======
+     
+>>>>>>> 2f36b694683d9959007ee2bdd42fbc186929bab5
     </div>
   <div class="hc-results-links card-rise">
     <h3>What's Next?</h3>

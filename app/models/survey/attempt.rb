@@ -46,8 +46,23 @@ class Survey::Attempt < ActiveRecord::Base
   end
 
  def top_concerns
-    return self.answers.where(:concern => true)
-  end
+     top_concerns_list = Survey::Question.find_by_sql(["select sq.text FROM  survey_questions sq  join survey_answers sa on sa.question_id = sq.id 
+            join survey_surveys s on sq.survey_id = s.id
+             join survey_attempts sat on sa.attempt_id = sat.id
+             where sa.option_id <=3 and sat.participant_id = ? and s.id= ?", self.participant_id, self.survey.id]).map(&:text)
+
+     if self.grade.include? 'A'
+       if top_concerns_list.empty?
+        return ["N/A"]
+       else 
+        return [top_concerns_list.first]
+       end 
+    elsif self.grade.include? 'B'      
+      return top_concerns_list.first(2)
+    else
+      return top_concerns_list.first(3)
+    end
+end
 
   private
 
@@ -67,7 +82,8 @@ class Survey::Attempt < ActiveRecord::Base
   def find_grade
     numericScore = (self.answers.map(&:value).reduce(:+) || 0) * (-1)
     numericGrade = numericScore.to_f/self.survey.questions.count
-    self.numericGrade = numericGrade
+    self.numericGrade = numericGrade.round(1)
+    
      if (numericGrade >= 4.7) 
         self.grade = "A+"
      elsif (numericGrade >= 4.4)

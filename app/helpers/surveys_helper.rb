@@ -146,6 +146,6 @@ module SurveysHelper
      elsif (numericGrade <= 1.3)
         "F"
     end
-    
   end
+
 end

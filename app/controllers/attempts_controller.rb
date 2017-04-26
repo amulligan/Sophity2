@@ -24,7 +24,6 @@ class AttemptsController < ApplicationController
     else
       @total_score = @all_attempts.sum(:score)
       @numericGrade = (@total_score * (-1)).to_f/ 45
-      # @gradeLetter = (@total_score).to_s + "/45 = " + (@numericGrade).to_s + ": "
     if (@numericGrade >= 4.7)
         @gradeLetter = "A+"
      elsif (@numericGrade >= 4.4)
@@ -78,11 +77,6 @@ class AttemptsController < ApplicationController
       @participant = current_user
       render :new
     end
-  end
-
-  def restart
-    Survey::Attempt.where(participant_id: current_user.id).delete_all
-    #redirect_to 
   end
 
   def delete_user_attempts

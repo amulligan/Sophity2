@@ -21,10 +21,7 @@ class UsersController < ApplicationController
         @user = User.new(email: params[:email].downcase)
         @user.save
         log_in user
-       end
-
-      #UserNotifier.send_signup_email(@user).deliver
-      #redirect_to view_report_path(participant_id: current_user.id)
+       end     
   end
 
 def change_name
@@ -38,7 +35,7 @@ def change_name
       @user.save
       log_in @user
      end
-    #redirect_to view_report_path(participant_id: @user.id)
+    
   end
 
   def edit
@@ -49,7 +46,11 @@ def change_name
     @user = User.find(params[:id])
     @user.report_requested = true
     params[:report_requested] = true
-
+    if current_user.send_notification
+        attachment = generate_pdf
+        UserNotifier.send_signup_email(@current_user, attachment).deliver_now
+        UserNotifier.send_admin_report(@current_user, attachment).deliver_now
+    end
     if @user.update_attributes(user_params)
        redirect_to view_report_path(participant_id: @user.id)
     else
@@ -58,11 +59,42 @@ def change_name
   end
 
   def download_pdf
+    attachment = generate_pdf
+    filename = "SophityHealthCheckReport– #{@current_user.company}.pdf"
+    respond_to do |format|
+    format.html # show.html.erb
+    format.pdf do       
+        send_data(generate_pdf, :filename => filename, :type => "application/pdf") 
+      end
+    end
+    
+  end
+
+
+  private
+   def user_params
+    params.require(:user).permit(:name, :email,:company,:job_title,:phone,:send_notification, :report_requested)
+   end
+
+# Confirms a logged-in user.
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+
+    # Confirms the correct user.
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
+    end
+
+   def generate_pdf 
     @all_attempts = Survey::Attempt.where(participant_id: current_user.id)
     @proficient = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [3 .. 5])
     @improve = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [2.3 .. 2.9])
     @deltas = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [1 .. 2])
-    @topConcerns = Survey::Question.find_by_sql ["SELECT sq.text FROM survey_answers sa join survey_questions sq on sa.question_id = sq.id join survey_attempts sat on sa.attempt_id = sat.id where sat.participant_id = :participant_id", {:participant_id=> current_user.id}];
     @total_score = @all_attempts.sum(:score)
     @numericGrade = (@total_score * (-1)).to_f/ 45
     if (@numericGrade >= 4.7)
@@ -92,40 +124,13 @@ def change_name
      else
        @gradeLetter = "F"
     end
-    if current_user.send_notification
-        #UserNotifier.send_signup_email(@current_user).deliver
-    end
-    filename = 'SophityReport.pdf'
-    respond_to do |format|
-    format.html # show.html.erb
-    format.pdf do
-        pdf = SurveyPdf.new(current_user,@all_attempts,@proficient, @improve, @deltas,@numericGrade)
-        send_data pdf.render, filename: filename, type: 'application/pdf'
-      end
-    end
+
+    SurveyPdf.new(current_user,@all_attempts,@proficient, @improve, @deltas,@numericGrade) do |attachment|
+    end.render
+
+
+
 
   end
-
-
-  private
-   def user_params
-    params.require(:user).permit(:name, :email,:company,:job_title,:phone,:send_notification, :report_requested)
-   end
-
-# Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
-
-    # Confirms the correct user.
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
-    end
-
-   
 
 end

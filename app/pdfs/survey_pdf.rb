@@ -3,7 +3,7 @@ class SurveyPdf < Prawn::Document
     super()
     @current_user = current_user
     @all_attempts = all_attempts
-    @total_score = total_score
+    @total_score = total_score.round(1)
     @proficient = proficient
     @improve = improve
     @deltas = deltas
@@ -67,7 +67,7 @@ class SurveyPdf < Prawn::Document
       end
       bounding_box([72, 90], :width => 468, :height => 45) do
         font "Helvetica", :style => :normal, :size => 8
-        text "© 2016 Sophity LLC. All Rights Reserved. Cannot be used all or in part without express written permission from Sophity LLC."
+        text "© 2017 Sophity LLC. All Rights Reserved. Cannot be used all or in part without express written permission from Sophity LLC."
       end
     end
     # move_down 20
@@ -170,13 +170,23 @@ class SurveyPdf < Prawn::Document
     end
 
     move_down 20
-    text "Sophity has developed the Sophity 6-Point Services Success Model in order to provide a framework our customers use to build their business plan for a world-class consulting business."
+    formatted_text [ { :text => "Sophity has developed the  " },
+                     { :text => "Sophity 6-Point Services Success Model ", :styles => [:italic] },
+                     { :text => "in order to provide a framework our customers use to build their business plan for a world-class consulting business. "}
+                   ]
+
     move_down 20
     text "We use this model to evaluate the current health of a consulting practice and identify opportunities to improve your business model and execution plan. We work with our customers to develop a roadmap of change that drives the business to growth and world-class status."
     move_down 20
-    text "Our customers continue to use the Sophity 6-Point Services Success Model to evolve their business over time in order to address changes in the market and technical environment."
+    formatted_text [ { :text => "Our customers continue to use the " },
+                    { :text => "Sophity 6-Point Services Success Model ", :styles => [:italic] },
+                    { :text => "to evolve their business over time in order to address changes in the market and technical environment."}
+                  ]
     move_down 20
-    text "The components of the Sophity 6-Point Services Success Model are pictured below."
+    formatted_text [ { :text => "The components of the "},
+                    { :text => "Sophity 6-Point Services Success Model ", :styles => [:italic] },
+                    { :text => "are pictured below."}
+                  ]
 
     move_down 30
     image "#{Rails.root}/app/assets/images/6Dimensions.png",  :width => 342, :position => :center
@@ -246,11 +256,11 @@ class SurveyPdf < Prawn::Document
     table [
       ["", {:content => "Category Average", :colspan => 3}],
       ["Letter Grade", "+", "", "-"],
-      ["A",">4.7","4.4","4.1"],
-      ["B","3.8","3.5","3.2"],
-      ["C","2.9","2.6","2.3"],
-      ["D","2.0","1.7","1.4"],
-      ["F","","<1.4",""],
+      ["A","5","–","4.1"],
+      ["B","4.0","–","3.2"],
+      ["C","3.1","–","2.3"],
+      ["D","2.2","–","1.4"],
+      ["F","1.3","–","0"],
     ], :cell_style => {:align => :center}, :position => :center do
       cells.padding = 4
       cells.borders = [:bottom]
@@ -275,7 +285,7 @@ class SurveyPdf < Prawn::Document
     move_down 20
     text "Comments: ", :size => 12
     move_down 5
-    text "Your grade of #{ @gradeLetter } indicates that", :size => 12
+    text "Your responses indicate that...", :size => 12
     move_down 10
     table_proficient
 
@@ -360,7 +370,6 @@ class SurveyPdf < Prawn::Document
 
   end
 
-
   def headers
     #This inserts an image in the pdf file and sets the size of the image
     font "Helvetica", :style => :normal, :size => 10
@@ -379,7 +388,7 @@ class SurveyPdf < Prawn::Document
   def footers
     font "Helvetica", :style => :normal, :size => 8
     page_number_string = '<page>'
-    footer_string = "© 2016 Sophity LLC. All Rights Reserved. Cannot be used all or in part without express written permission from Sophity LLC."
+    footer_string = "© 2017 Sophity LLC. All Rights Reserved. Cannot be used all or in part without express written permission from Sophity LLC."
     page_number_options = {
       at: [bounds.right - 12, -8],
       width: 12,
@@ -401,6 +410,11 @@ class SurveyPdf < Prawn::Document
   end
 
 
+  def table_proficient
+    table(proficient_rows, :cell_style => {:border_width => 0})
+  end
+
+
   def build_results_table
     table table_rows, :cell_style => { :font => "Helvetica", :font_style => :italic }, :width => 432
   end
@@ -409,7 +423,6 @@ class SurveyPdf < Prawn::Document
     top_concerns_string = "bla bla bla \n\r bla bla bla \n\r bla bla \n\r"
     [["Service Component", "Grade", "Top Concerns"]] +
         @all_attempts.map do |line|
-        #  [{:content => l.survey.description, :rowspan => l.survey.top_concerns.count}, {:content => l.grade, :rowspan => l.survey.top_concerns.count}, {:content => "test", :rowspan => l.survey.top_concerns.count}]
           [line.survey.description, line.grade, top_concerns_string]
         end
   end
@@ -461,33 +474,21 @@ class SurveyPdf < Prawn::Document
   end
 
 
+  def build_results_table
+    move_down 20
+    table table_rows, {:header => true} do |table|
+      table.row(0).font_style = :bold
+      table.cells.padding = 4
+      table.width = 450
+      table.column(1).width = 50
+    end
+  end
 
-  #  def subtable(top_concerns)
-  #     top_concerns do |c|
-  #       [c.text]
-  #     end
-  #  end
-
-
-  #  def table_rows
-  #   [["Service Component", "Grade", "Top Concerns"]] +
-  #     @all_attempts.map do |l|
-  #        [{:content => l.survey.description, :rowspan => l.survey.top_concerns.count}, {:content => l.grade, :rowspan => l.survey.top_concerns.count}, {:content => "test", :rowspan => l.survey.top_concerns.count}]
-  #     end
-  #  end
-
-  #  def toc
-  #   table(toc_rows, :cell_style => {:border_width => 0})
-  #  end
-   #
-  #  def toc_rows
-  #     [["Table of Contents", "     "]]+
-  #     [[" The Sophity Services Success Model",  "<u> <link anchor='page3'>3</link></u> "]] +
-  #     [[" Sophity Services Success Health Check – Introduction  " ,  " <u> <link anchor='page5'>5</link></u>"]]+
-  #     [[" Sophity Services Success Health Check – #{@current_user.company} Results", "<u> <link anchor='page6'>6</link></u>"]] +
-  #     [[" About Sophity LLC", "<u> <link anchor='page8'>8</link></u>"]]
-   #
-  #  end
-
+  def table_rows
+    [["Service Component", "Grade", "Top Concerns"]] +
+      @all_attempts.map do |l|
+        [l.survey.description, l.grade, "• " + l.top_concerns.join("\n\r"+"• ")]
+      end
+  end
 
 end
