@@ -379,7 +379,7 @@ class SurveyPdf < Prawn::Document
       at: [bounds.right - 300, bounds.top + 32],
       width: 300,
       align: :right,
-      page_filter: (2..8),
+      page_filter: (2..15),
       start_count_at: 2,
       color: '000000'
     }
@@ -394,7 +394,7 @@ class SurveyPdf < Prawn::Document
       at: [bounds.right - 12, -8],
       width: 12,
       align: :right,
-      page_filter: (2..8),
+      page_filter: (2..15),
       start_count_at: 2,
       color: '000000'
     }
