@@ -413,18 +413,18 @@ class SurveyPdf < Prawn::Document
     table(proficient_rows, :cell_style => {:border_width => 0})
   end
 
-
-  def build_results_table
-    table table_rows, :cell_style => { :font => "Helvetica", :font_style => :italic }, :width => 432
-  end
-
-  def table_rows
-    top_concerns_string = "bla bla bla \n\r bla bla bla \n\r bla bla \n\r"
-    [["Service Component", "Grade", "Top Concerns"]] +
-        @all_attempts.map do |line|
-          [line.survey.description, line.grade, top_concerns_string]
-        end
-  end
+  #
+  # def build_results_table
+  #   table table_rows, :cell_style => { :font => "Helvetica", :font_style => :italic }, :width => 432
+  # end
+  #
+  # def table_rows
+  #   top_concerns_string = "bla bla bla \n\r bla bla bla \n\r bla bla \n\r"
+  #   [["Service Component", "Grade", "Top Concerns"]] +
+  #       @all_attempts.map do |line|
+  #         [line.survey.description, line.grade, top_concerns_string]
+  #       end
+  # end
 
 
   def table_proficient
@@ -474,7 +474,6 @@ class SurveyPdf < Prawn::Document
 
 
   def build_results_table
-    move_down 20
     table table_rows, {:header => true} do |table|
       table.row(0).font_style = :bold
       table.cells.padding = 4
