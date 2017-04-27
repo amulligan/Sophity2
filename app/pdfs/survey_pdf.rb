@@ -485,7 +485,7 @@ class SurveyPdf < Prawn::Document
   def table_rows
     [["Service Component", "Grade", "Top Concerns"]] +
       @all_attempts.map do |l|
-        [l.survey.description, l.grade, "<font size='14'>•</font>  <i>" + l.top_concerns.join("<font size='4'>\n\r\n\r</font>"+"</i>•  ") + "</i>"]
+        [l.survey.description, l.grade, "<font size='14'>•</font>  <i>" + l.top_concerns.join("<font size='4'>\n\r\n\r</font>"+"•  ") + "</i>"]
       end
   end
 
