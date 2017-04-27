@@ -457,7 +457,7 @@ class SurveyPdf < Prawn::Document
   def build_results_table
     table table_rows, {:header => true} do |table|
       table.row(0).font_style = :bold
-      table.cells.padding = 4
+      table.cells.padding = 12
       table.width = 450
       table.column(1).width = 50
     end
@@ -466,7 +466,7 @@ class SurveyPdf < Prawn::Document
   def table_rows
     [["Service Component", "Grade", "Top Concerns"]] +
       @all_attempts.map do |l|
-        [l.survey.description, l.grade, "•  " + l.top_concerns.join("\n\r\n\r"+"•  ") + "\n\r"]
+        [l.survey.description, l.grade, "•  " + l.top_concerns.join("\n\r\n\r"+"•  ")]
       end
   end
 
