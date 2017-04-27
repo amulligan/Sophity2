@@ -1,34 +1,27 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Synopsis
 
-This line is a test line. FooO!
+The Sophity 6-Point Services Health Check is an online survey designed as a tool for leaders of professional services organizations to assess their team's consulting practices. It's less than 50 questions, phrased as agree-disagree statements, and culminates by calculating and displaying scores across 6 question topics.
 
-Things you may want to cover:
+## Code Summary
+
+This is a Ruby on Rails app which runs the Health Check and stores its results and user profiles in a Postgres database.
+For now, you can view the app in action at https://sophity-healthcheck.herokuapp.com/.
+
+## Motivation
+
+The Health Check is a project for Sophity (http://sophity.com), a PSO consultancy specializing in improving time tracking and project management for SaaS PSOs.
+
+## License
+
+This code is copyright (c)2017 Sam Nolting and Andra Stanciu. All content and PSO knowledge is copyright (c)2017 Sophity LLC.
+
+
+A full set of installation and configuration instructions are being written and will be published shortly.
 
 * Ruby version
 
  This app runs on:
   ruby-2.3.1
   rails-4.2.8
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
