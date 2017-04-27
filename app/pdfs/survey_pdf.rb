@@ -283,8 +283,13 @@ class SurveyPdf < Prawn::Document
     build_results_table
 
     start_new_page(:margin => [72, 90])
-    move_down 10
-    text "Total Grade: #{ @gradeLetter }", :color => "345A8A", :size => 16
+    move_down 20
+    font "Helvetica", :size => 16 do
+      text "Summary", :color => "345A8A"
+    end
+
+    move_down 20
+    text "Total Grade: #{ @gradeLetter }", :style => :bold
     move_down 20
     table_proficient
 
