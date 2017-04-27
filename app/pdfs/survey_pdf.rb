@@ -474,7 +474,7 @@ class SurveyPdf < Prawn::Document
 
 
   def build_results_table
-    table table_rows, {:header => true, :inline-format => true} do |table|
+    table table_rows, {:header => true, :inline_format => true} do |table|
       table.row(0).font_style = :bold
       table.cells.padding = 4
       table.width = 450
