@@ -483,7 +483,7 @@ class SurveyPdf < Prawn::Document
   def table_rows
     [["Service Component", "Grade", "Top Concerns"]] +
       @all_attempts.map do |l|
-        [l.survey.description, l.grade, "•  " + l.top_concerns.join("\n\r\n\r"+"•  ")]
+        [l.survey.description, l.grade, "•  " + l.top_concerns.join("\n\r\n\r"+"•  ") + "\n\r"]
       end
   end
 
