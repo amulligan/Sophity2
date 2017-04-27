@@ -288,7 +288,7 @@ class SurveyPdf < Prawn::Document
       text "Summary", :color => "345A8A"
     end
 
-    move_down 20
+    move_down 24
     text "Total Grade: #{ @gradeLetter }", :style => :bold
     move_down 20
     table_proficient
