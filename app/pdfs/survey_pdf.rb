@@ -284,8 +284,6 @@ class SurveyPdf < Prawn::Document
     move_down 40
     text "Total Grade: #{ @gradeLetter }", :color => "345A8A", :size => 16
     move_down 20
-    text "Comments: ", :size => 12
-    move_down 10
     table_proficient
 
     move_down 20
