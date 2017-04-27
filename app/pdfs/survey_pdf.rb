@@ -351,7 +351,7 @@ class SurveyPdf < Prawn::Document
     text "•"
     move_cursor_to line_y
     span(417, :position => :right) do
-      text "Look like heroes to executive management when partnerships with members of operations and finance to align business strategies and ensure the right governance, controls, and reporting are in place to allow you to have the visibility you need into your practice’s health."
+      text "Look like heroes to executive management when your business strategies align with corporate goals and you have the right governance, controls, and reporting to manage your business effectively."
     end
     move_down 20
 
