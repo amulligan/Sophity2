@@ -261,7 +261,7 @@ class SurveyPdf < Prawn::Document
       ["B","4.0","–","3.2"],
       ["C","3.1","–","2.3"],
       ["D","2.2","–","1.4"],
-      ["F","1.3","–","0"],
+      ["F","1.3","–","1"],
     ], :cell_style => {:align => :center}, :position => :center do
       cells.padding = 4
       cells.borders = [:bottom]
@@ -282,11 +282,9 @@ class SurveyPdf < Prawn::Document
     move_down 20
     build_results_table
     move_down 40
-    text "Total Grade: #{ @gradeLetter }", :color => "0000ff", :size => 16
+    text "Total Grade: #{ @gradeLetter }", :color => "345A8A", :size => 16
     move_down 20
     text "Comments: ", :size => 12
-    move_down 5
-    text "Your responses indicate that...", :size => 12
     move_down 10
     table_proficient
 
