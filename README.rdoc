@@ -7,7 +7,7 @@ The Sophity 6-Point Services Health Check is an online survey designed as a tool
 ## Code Summary
 
 This is a Ruby on Rails app which runs the Health Check and stores its results and user profiles in a Postgres database.
-For now, you can view the app in action at https://sophity-check-si.herokuapp.com/.
+For now, you can view the app in action at https://sophity-healthcheck.herokuapp.com/.
 
 ## Motivation
 
