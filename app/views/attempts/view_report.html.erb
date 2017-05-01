@@ -1,25 +1,26 @@
 <section id="hc-results-section" class="hc-results-section">
   <div class="hc-results-wrapper card-fixed">
+    <% if @participant.report_requested %>
+       <div class="hc-report-response modal card-fixed">
+         <h2>Done!</h2>
+         <p><strong>Check your email:</strong> your report is on the way!</p>
+
+         <p>Can't wait? Download a copy
+         <strong>
+           <%= link_to "here.", download_path(@user, :format => 'pdf'), :style=> 'text-decoration:none;'%>
+         </strong></p>
+
+         <p> Next, <a href="https://my.timetrade.com/book/XPNS2", target="_blank">set up your free consultation</a> to discuss your results.</p>
+
+       </div>
+     <%end %>
+
     <div class="card-rise">
       <div class="hc-results-caption">Your Score</div>
       <div class="hc-results-score"><%= @gradeLetter %></div>
     </div>
 
     <div class="hc-results-actions-wrapper card-rise">
-       <% if @participant.report_requested %>
-          <div class="hc-report-response modal card-fixed">
-            <h2>Done!</h2>
-            <p><strong>Check your email:</strong> your report is on the way!</p>
-
-            <p>Can't wait? Download a copy
-            <strong>
-              <%= link_to "here.", download_path(@user, :format => 'pdf'), :style=> 'text-decoration:none;'%>
-            </strong></p>
-
-            <p> Next, <a href="https://my.timetrade.com/book/XPNS2", target="_blank">set up your free consultation</a> to discuss your results.</p>
-
-          </div>
-        <%end %>
 
       <div class="hc-results-header">
         <h2>Need More Information?</h2>
@@ -54,6 +55,6 @@
       <%= link_to "Take Another Health Check", login_path%>
       <a href="http://www.sophity.com/">Back to Sophity</a>
     </div>
-    
+
   </div>
 </section>
