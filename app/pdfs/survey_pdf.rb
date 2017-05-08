@@ -475,7 +475,7 @@ class SurveyPdf < Prawn::Document
   def table_rows
     [["Service Component", "Grade", "Top Concerns"]] +
       @all_attempts.map do |l|
-        if top_concerns.size > 6
+        if l.top_concerns.size > 6
           [[l.survey.description, l.grade, "•  " + l.top_concerns[0..5].join("\n\r\n\r"+"•  ")]
           ["", "", "•  " + l.top_concerns[6...].join("\n\r\n\r"+"•  ")]]
         else
