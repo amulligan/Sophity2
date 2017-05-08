@@ -58,20 +58,16 @@ class Survey::Attempt < ActiveRecord::Base
        [Survey::Question.find_by_sql(["select sq.text FROM  survey_questions sq  join survey_answers sa on sa.question_id = sq.id
             join survey_surveys s on sq.survey_id = s.id
              join survey_attempts sat on sa.attempt_id = sat.id
-             where sa.option_id =3 and sat.participant_id = ? and s.id= ?", self.participant_id, self.survey.id]).map(&:text)]
+             where sa.option_id =3 and sat.participant_id = ? and s.id= ?", self.participant_id, self.survey.id]).map {|x| x.text << " (#{x.score})"}]
       ]
     if top_concerns_list.flatten.empty?
       return ["N/A"]
     end
-    if self.grade.include? 'A'
-      return top_concerns_list.flatten.first(2)
-    elsif self.grade.include? 'B'
-      return top_concerns_list.flatten.first(3)
-    elsif self.grade.include? 'C'
-      return top_concerns_list.flatten.first(4)
-    else
-      return top_concerns_list.flatten.first(5)
+    concerns_to_return = top_concerns_list.first(2)
+    if concerns_to_return.length < 5
+      concerns_to_return << top_concerns_list[2].first(5 - concerns_to_return.length)
     end
+    return concerns_to_return.flatten
 end
 
   private
