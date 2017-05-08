@@ -118,33 +118,33 @@ module SurveysHelper
   end
 
   def letter_grade numeric_grade
-    numericGrade = (numeric_grade * (-1)).to_f/ 45
-    if (numericGrade >= 4.7) 
-         "A+"
-     elsif (numericGrade >= 4.4 && numericGrade <= 4.6) 
-         "A"
-     elsif (numericGrade >= 4.1 && numericGrade <= 4.3) 
-        "A-"
-     elsif (numericGrade >= 3.8 && numericGrade <= 4.0) 
+    numericGrade = ((numeric_grade * (-1)).to_f/ 45).round(1)
+    if (@numericGrade >= 4.7)
+        "A+"
+     elsif (@numericGrade >= 4.4)
+        "A"
+     elsif (@numericGrade >= 4.1)
+       "A-"
+     elsif (@numericGrade >= 3.8)
        "B+"
-     elsif (numericGrade>= 3.5 && numericGrade <= 3.7) 
+     elsif (@numericGrade>= 3.5)
        "B"
-    elsif (numericGrade >= 3.2 && numericGrade <= 3.4) 
-        "B-"
-    elsif (numericGrade >= 2.9 && numericGrade <= 3.1) 
+    elsif (@numericGrade >= 3.2)
+       "B-"
+    elsif (@numericGrade >= 2.9)
         "C+"
-     elsif (numericGrade >= 2.6 && numericGrade <= 2.8) 
-        "C"
-     elsif (numericGrade >= 2.3 && numericGrade <= 2.5) 
-        "C-"
-     elsif (numericGrade >= 2.0 && numericGrade <= 2.2) 
-        "D+"
-     elsif (numericGrade >= 1.7 && numericGrade <= 1.9) 
-        "D"
-     elsif (numericGrade >= 1.4 && numericGrade <= 1.6) 
-        "D-"
-     elsif (numericGrade <= 1.3)
-        "F"
+     elsif (@numericGrade >= 2.6)
+       "C"
+     elsif (@numericGrade >= 2.3)
+       "C-"
+     elsif (@numericGrade >= 2.0)
+       "D+"
+     elsif (@numericGrade >= 1.7)
+       "D"
+     elsif (@numericGrade >= 1.4)
+       "D-"
+     else
+       "F"
     end
   end
 
