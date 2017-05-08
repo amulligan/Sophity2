@@ -469,7 +469,8 @@ class SurveyPdf < Prawn::Document
       table.cells.padding = 10
       table.width = 450
       table.column(1).width = 60
-      table.column(3).borders = [:right, :bottom, :top]
+      table.column(2).borders = [:top, :bottom, :left]
+      table.column(3).borders = [:top, :bottom, :right]
     end
   end
 
