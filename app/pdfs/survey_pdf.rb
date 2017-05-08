@@ -260,11 +260,11 @@ class SurveyPdf < Prawn::Document
     table [
       ["", {:content => "Category Average", :colspan => 3}],
       ["Letter Grade", "+", "", "-"],
-      ["A","5","–","4.1"],
-      ["B","4.0","–","3.2"],
-      ["C","3.1","–","2.3"],
-      ["D","2.2","–","1.4"],
-      ["F","1.3","–","1"],
+      ["A","5","–","4.1", "(Strongly Agree)"],
+      ["B","4.0","–","3.2", "(Agree)"],
+      ["C","3.1","–","2.3", "(Neutral)"],
+      ["D","2.2","–","1.4", "(Disagree)"],
+      ["F","1.3","–","1", "(Strongly Disagree)"],
     ], :cell_style => {:align => :center}, :position => :center do
       cells.padding = 4
       cells.borders = [:bottom]
@@ -475,7 +475,12 @@ class SurveyPdf < Prawn::Document
   def table_rows
     [["Service Component", "Grade", "Top Concerns"]] +
       @all_attempts.map do |l|
-        [l.survey.description, l.grade, "•  " + l.top_concerns.join("\n\r\n\r"+"•  ")]
+        if top_concerns.size > 6
+          [[l.survey.description, l.grade, "•  " + l.top_concerns[0..5].join("\n\r\n\r"+"•  ")]
+          ["", "", "•  " + l.top_concerns[6...].join("\n\r\n\r"+"•  ")]]
+        else
+          [l.survey.description, l.grade, "•  " + l.top_concerns.join("\n\r\n\r"+"•  ")]
+        end
       end
   end
 
