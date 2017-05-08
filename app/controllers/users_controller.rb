@@ -46,11 +46,11 @@ def change_name
     @user = User.find(params[:id])
     @user.report_requested = true
     params[:report_requested] = true
-    if current_user.send_notification
+    # if current_user.send_notification
         attachment = generate_pdf
         UserNotifier.send_signup_email(@current_user, attachment).deliver_now
         UserNotifier.send_admin_report(@current_user, attachment).deliver_now
-    end
+    # end
     if @user.update_attributes(user_params)
        redirect_to view_report_path(participant_id: @user.id)
     else
