@@ -21,7 +21,7 @@ class UsersController < ApplicationController
         @user = User.new(email: params[:email].downcase)
         @user.save
         log_in user
-       end
+       end     
   end
 
 def change_name
@@ -35,7 +35,7 @@ def change_name
       @user.save
       log_in @user
      end
-
+    
   end
 
   def edit
@@ -63,11 +63,11 @@ def change_name
     filename = "SophityHealthCheckReport– #{@current_user.company}.pdf"
     respond_to do |format|
     format.html # show.html.erb
-    format.pdf do
-        send_data(generate_pdf, :filename => filename, :type => "application/pdf")
+    format.pdf do       
+        send_data(generate_pdf, :filename => filename, :type => "application/pdf") 
       end
     end
-
+    
   end
 
 
@@ -90,13 +90,13 @@ def change_name
       redirect_to(root_url) unless current_user?(@user)
     end
 
-   def generate_pdf
+   def generate_pdf 
     @all_attempts = Survey::Attempt.where(participant_id: current_user.id)
     @proficient = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [3 .. 5])
     @improve = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [2.3 .. 2.9])
     @deltas = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [1 .. 2])
     @total_score = @all_attempts.sum(:score)
-    @numericGrade = ((@total_score * (-1)).to_f/ 45).round(1)
+    @numericGrade = (@total_score * (-1)).to_f/ 45
     if (@numericGrade >= 4.7)
         @gradeLetter = "A+"
      elsif (@numericGrade >= 4.4)
