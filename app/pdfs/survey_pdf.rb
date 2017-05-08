@@ -467,14 +467,14 @@ class SurveyPdf < Prawn::Document
     table table_rows, {:header => true} do |table|
       table.column(2).size = 11
       table.column(3).size = 11
-      table.row(0).size = 12
-      table.row(0).font_style = :bold
       table.cells.padding = 8
       table.width = 450
       table.column(1).width = 55
       table.column(2).borders = [:top, :bottom, :left]
       table.column(3).borders = [:top, :bottom, :right]
       table.row(0).borders = [:bottom]
+      table.row(0).size = 12
+      table.row(0).font_style = :bold
     end
   end
 
