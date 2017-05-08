@@ -466,6 +466,7 @@ class SurveyPdf < Prawn::Document
   def build_results_table
     table table_rows, {:header => true} do |table|
       table.row(0).font_style = :bold
+      table.row(0).borders = [:bottom]
       table.cells.padding = 10
       table.width = 450
       table.column(1).width = 60
