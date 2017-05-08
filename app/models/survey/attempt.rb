@@ -87,32 +87,32 @@ end
 
   def find_grade
     numericScore = (self.answers.map(&:value).reduce(:+) || 0) * (-1)
-    numericGrade = numericScore.to_f/self.survey.questions.count
-    numericGrade = numericGrade.round(1)
+    self.numericGrade = numericScore.to_f/self.survey.questions.count
+    self.numericGrade = self.numericGrade.round(1)
 
-     if (numericGrade >= 4.7)
+     if (self.numericGrade >= 4.7)
         self.grade = "A+"
-     elsif (numericGrade >= 4.4)
+     elsif (self.numericGrade >= 4.4)
         self.grade = "A"
-     elsif (numericGrade >= 4.1)
+     elsif (self.numericGrade >= 4.1)
        self.grade = "A-"
-     elsif (numericGrade >= 3.8)
+     elsif (self.numericGrade >= 3.8)
        self.grade  = "B+"
-     elsif (numericGrade>= 3.5)
+     elsif (self.numericGrade>= 3.5)
        self.grade = "B"
-    elsif (numericGrade >= 3.2)
+    elsif (self.numericGrade >= 3.2)
        self.grade = "B-"
-    elsif (numericGrade >= 2.9)
+    elsif (self.numericGrade >= 2.9)
         self.grade = "C+"
-     elsif (numericGrade >= 2.6)
+     elsif (self.numericGrade >= 2.6)
        self.grade = "C"
-     elsif (numericGrade >= 2.3)
+     elsif (self.numericGrade >= 2.3)
        self.grade = "C-"
-     elsif (numericGrade >= 2.0)
+     elsif (self.numericGrade >= 2.0)
        self.grade = "D+"
-     elsif (numericGrade >= 1.7)
+     elsif (self.numericGrade >= 1.7)
        self.grade = "D"
-     elsif (numericGrade >= 1.4)
+     elsif (self.numericGrade >= 1.4)
        self.grade = "D-"
      else
        self.grade = "F"
