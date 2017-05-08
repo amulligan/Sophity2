@@ -469,11 +469,12 @@ class SurveyPdf < Prawn::Document
       table.cells.padding = 10
       table.width = 450
       table.column(1).width = 60
+      table.column(3).borders = [:right, :bottom, :top]
     end
   end
 
   def table_rows
-    [["Service Component", "Grade", "Top Concerns"]] +
+    [["Service Component", "Grade", {:content => "Top Concerns", :colspan => 2}]] +
       @all_attempts.map do |l|
           [l.survey.description, l.grade, "•  " + l.top_concerns.first(5).join("\n\r\n\r"+"•  ")] +
           [(l.top_concerns.slice(5, 10) || []).unshift("").join("\n\r\n\r"+"•  ")]
