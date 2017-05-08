@@ -95,8 +95,8 @@ def change_name
     @proficient = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [3 .. 5])
     @improve = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [2.3 .. 2.9])
     @deltas = Survey::Attempt.where(participant_id: current_user.id, numericGrade: [1 .. 2])
-    @total_score = @all_attempts.sum(:score).round(1)
-    @numericGrade = (@total_score * (-1)).to_f/ 45
+    @total_score = @all_attempts.sum(:score)
+    @numericGrade = ((@total_score * (-1)).to_f/ 45).round(1)
     if (@numericGrade >= 4.7)
         @gradeLetter = "A+"
      elsif (@numericGrade >= 4.4)

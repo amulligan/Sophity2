@@ -88,7 +88,7 @@ end
   def find_grade
     numericScore = (self.answers.map(&:value).reduce(:+) || 0) * (-1)
     numericGrade = numericScore.to_f/self.survey.questions.count
-    self.numericGrade = numericGrade.round(1)
+    numericGrade = numericGrade.round(1)
 
      if (numericGrade >= 4.7)
         self.grade = "A+"
