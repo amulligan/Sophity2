@@ -8,7 +8,7 @@
         <%= form_for(:session, url: login_path) do |f| %>
 
         <%= f.label :email, 'Confirm your email address:'%>
-        <%= f.email_field :email, class: 'form-control', '#{params[:email]}' %>
+        <%= f.email_field :email, class: 'form-control', value: '#{params[:email]}' %>
 
         <%= f.submit "Submit", class: "clickable" %>
       <% end %>
