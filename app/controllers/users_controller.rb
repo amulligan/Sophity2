@@ -40,6 +40,7 @@ def change_name
 
   def edit
     @user = User.find(params[:id])
+    @user.update_attributes(user_params)
   end
 
   def update
