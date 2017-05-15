@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
   def new
-    if !params[:initial_email]
-      redirect_to root_url(initial_email: params[:email])
+    if !@user
+      @user = User.new(email: params[:email])
+      redirect_to root_url(@user)
     end
   end
 
