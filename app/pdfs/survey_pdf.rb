@@ -251,25 +251,25 @@ class SurveyPdf < Prawn::Document
     text "We took the average of the scores for all questions to calculate the category-level " +
         "scores. We then took the average of the 6 category scores to calculate the total score for your business."
     move_down 20
-    text "The following table shows how the letter grades were derived:"
-    move_down 20
+    # text "The following table shows how the letter grades were derived:"
+    # move_down 20
 
     # bounding_box([45, cursor], :width => 342) do
     #   image "#{Rails.root}/app/assets/images/scores.png", :width => 342, :position => :center
     # end
-    table [
-      ["", {:content => "Category Average", :colspan => 3}],
-      ["Letter Grade", "+", "", "-", ""],
-      ["A","5","–","4.1", "(Strongly Agree)"],
-      ["B","4.0","–","3.2", "(Agree)"],
-      ["C","3.1","–","2.3", "(Neutral)"],
-      ["D","2.2","–","1.4", "(Disagree)"],
-      ["F","1.3","–","1", "(Strongly Disagree)"],
-    ], :cell_style => {:align => :center}, :position => :center do
-      cells.padding = 4
-      cells.borders = [:bottom]
-      column(0).borders = [:right, :bottom]
-    end
+    # table [
+    #   ["", {:content => "Category Average", :colspan => 3}],
+    #   ["Letter Grade", "+", "", "-", ""],
+    #   ["A","5","–","4.1", "(Strongly Agree)"],
+    #   ["B","4.0","–","3.2", "(Agree)"],
+    #   ["C","3.1","–","2.3", "(Neutral)"],
+    #   ["D","2.2","–","1.4", "(Disagree)"],
+    #   ["F","1.3","–","1", "(Strongly Disagree)"],
+    # ], :cell_style => {:align => :center}, :position => :center do
+    #   cells.padding = 4
+    #   cells.borders = [:bottom]
+    #   column(0).borders = [:right, :bottom]
+    # end
 
   end
 
