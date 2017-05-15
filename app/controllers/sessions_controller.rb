@@ -2,6 +2,8 @@ class SessionsController < ApplicationController
   def new
     email = params[:email]
     flash[:danger] = email
+
+    redirect_to root_url(email: email)
   end
 
   def create
