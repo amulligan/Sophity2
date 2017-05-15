@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     if params[:initial_email]
       @user = User.new(email: params[:initial_email])
       @user.save
-      redirect_to root_url(@user)
+      redirect_to root_url(email: @user.email)
     end
   end
 
