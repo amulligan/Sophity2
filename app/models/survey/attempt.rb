@@ -65,7 +65,7 @@ class Survey::Attempt < ActiveRecord::Base
     end
     concerns_to_return = top_concerns_list.first(2).flatten
     if concerns_to_return.empty?
-      concerns_to_return = top_concerns_list[last]
+      concerns_to_return = top_concerns_list[-1]
     end
     return concerns_to_return.flatten
 end
