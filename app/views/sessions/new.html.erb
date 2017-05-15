@@ -7,8 +7,8 @@
         </div>
         <%= form_for(:session, url: login_path) do |f| %>
 
-        <%= f.label :email, 'What is your email address?'%>
-        <%= f.email_field :email, class: 'form-control' %>
+        <%= f.label :email, 'Confirm your email address:'%>
+        <%= f.email_field :email, class: 'form-control', default: params[:email] %>
 
 
         <%= f.submit "Submit", class: "clickable" %>
