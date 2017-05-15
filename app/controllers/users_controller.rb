@@ -71,7 +71,7 @@ def change_name
 
   private
    def user_params
-    params.require(:user).permit(:name, :email,:company,:job_title,:phone,:send_notification, :report_requested)
+    params.require(:user).permit(:name, :email,:company,:job_title,:phone, :report_requested)
    end
 
 # Confirms a logged-in user.
