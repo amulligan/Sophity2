@@ -63,9 +63,9 @@ class Survey::Attempt < ActiveRecord::Base
     if top_concerns_list.flatten.empty?
       return ["N/A"]
     end
-    concerns_to_return = top_concerns_list.first(2)
-    if concerns_to_return.length < 5
-      concerns_to_return << top_concerns_list[2].first(5 - concerns_to_return.length)
+    concerns_to_return = top_concerns_list.first(2).flatten
+    if concerns_to_return.empty?
+      concerns_to_return << top_concerns_list[last]
     end
     return concerns_to_return.flatten
 end
