@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
     email = params[:email]
-
+    flash[:danger] email
   end
 
   def create
