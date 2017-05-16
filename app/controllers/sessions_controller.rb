@@ -1,7 +1,17 @@
 class SessionsController < ApplicationController
   def new
     if params[:initial_email]
-      redirect_to action: 'create', session: {email: params[:initial_email]}
+      user = User.find_by(email: params[:initial_email].downcase)
+      if user
+        log_in user
+        Survey::Attempt.where(participant_id: current_user.id).destroy_all
+
+      else
+        @user = User.new(email: params[:session][:email].downcase)
+        @user.save
+        log_in @user
+
+      end
     end
   end
 
