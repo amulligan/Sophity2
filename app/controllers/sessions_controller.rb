@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
         Survey::Attempt.where(participant_id: current_user.id).destroy_all
 
       else
-        @user = User.new(email: params[:session][:email].downcase)
+        @user = User.new(email: params[:initial_email].downcase)
         @user.save
         log_in @user
 
