@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
         log_in @user
 
       end
+      redirect_to new_attempt_path(participant_id: current_user.id, survey_id:1)
     end
   end
 
